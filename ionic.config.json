@@ -1,0 +1,7 @@
+{
+  "name": "plastic-market-ionic",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
