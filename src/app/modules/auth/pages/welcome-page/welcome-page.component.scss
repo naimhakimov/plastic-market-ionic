@@ -1,0 +1,11 @@
+.welcome {
+  @apply flex flex-col justify-between p-[35px] bg-white h-full gap-[20px];
+
+  &__title {
+    @apply text-[24px] font-bold leading-[29px] text-primary uppercase text-center;
+  }
+
+  &__subtitle {
+    @apply text-[16px] font-normal leading-[19px] text-black text-center mt-[14px];
+  }
+}

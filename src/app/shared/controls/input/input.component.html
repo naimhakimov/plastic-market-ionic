@@ -1,0 +1,14 @@
+<div
+  class="flex gap-[13px] items-center pb-[16px] border-b-[1px] border-b-gray"
+>
+  <span class="icon {{ icon }}"></span>
+  <input
+    type="text"
+    class="outline-none border-none w-full"
+    [value]="value"
+    [placeholder]="placeholder || ''"
+    [attr.disabled]="isDisabled ? true : null"
+    (keyup)="onKeyup($event)"
+    (blur)="onBlur()"
+  />
+</div>

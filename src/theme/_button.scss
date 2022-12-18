@@ -1,0 +1,13 @@
+.btn {
+  @apply w-full text-white rounded-[14px] text-center py-[17px] border-none outline-none text-[16px] leading-[17px] font-bold hover:opacity-[.8];
+
+  &-primary,
+  &-primary[type='button'] {
+    @apply bg-primary;
+    box-shadow: -3px 7px 13px #f1f7ff;
+  }
+
+  &-default {
+    @apply text-primary;
+  }
+}

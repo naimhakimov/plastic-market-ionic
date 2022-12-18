@@ -1,0 +1,57 @@
+.icon {
+  width: 24px;
+  height: 24px;
+  display: inline-block;
+  -webkit-mask-size: contain !important;
+  mask-size: contain !important;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  @apply bg-gray;
+
+  &-message {
+    -webkit-mask: url('../assets/icon/message.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/message.svg') no-repeat 50% 50%;
+  }
+
+  &-lock {
+    -webkit-mask: url('../assets/icon/lock.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/lock.svg') no-repeat 50% 50%;
+  }
+
+  &-phone {
+    -webkit-mask: url('../assets/icon/phone.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/phone.svg') no-repeat 50% 50%;
+  }
+
+  &-email {
+    -webkit-mask: url('../assets/icon/email.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/email.svg') no-repeat 50% 50%;
+  }
+
+  &-home {
+    -webkit-mask: url('../assets/icon/home.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/home.svg') no-repeat 50% 50%;
+  }
+
+  &-favourite {
+    -webkit-mask: url('../assets/icon/favourite.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/favourite.svg') no-repeat 50% 50%;
+  }
+
+  &-create {
+    -webkit-mask: url('../assets/icon/create.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/create.svg') no-repeat 50% 50%;
+  }
+
+  &-user {
+    -webkit-mask: url('../assets/icon/user.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/user.svg') no-repeat 50% 50%;
+  }
+
+  &-message-icon {
+    -webkit-mask: url('../assets/icon/message-icon.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/message-icon.svg') no-repeat 50% 50%;
+  }
+}

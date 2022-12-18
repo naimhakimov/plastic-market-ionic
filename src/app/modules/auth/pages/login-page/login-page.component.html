@@ -1,0 +1,31 @@
+<div class="pt-[90px] px-[35px] flex flex-col justify-between h-full pb-[42px]">
+  <h1 class="pl-[5px] text-[36px] leading-[43px] text-primary font-bold">
+    Вход
+  </h1>
+
+  <form class="mt-[87px]">
+    <div>
+      <app-input
+        placeholder="Номер телефона или Email*"
+        icon="icon-email"
+      ></app-input>
+    </div>
+
+    <div class="mt-[32px]">
+      <app-input placeholder="Пароль*" icon="icon-lock"></app-input>
+    </div>
+
+    <p class="text-[12px] leading-[17px] text-primary text-right mt-[15px]">
+      Забыли пароль ?
+    </p>
+
+    <button class="btn btn-primary mt-[48px]" type="button">Вход</button>
+  </form>
+
+  <p class="text-[12px] leading-[17px] text-primary text-center">
+    У вас нет аккаунта? &nbsp;
+    <span class="font-bold" routerLink="/auth/register"
+      >Зарегистрироваться</span
+    >
+  </p>
+</div>

@@ -1,0 +1,41 @@
+<div class="pt-[90px] px-[35px] flex flex-col justify-between h-full pb-[42px]">
+  <h1 class="pl-[5px] text-[36px] leading-[43px] text-primary font-bold">
+    Регистрация
+  </h1>
+
+  <form class="mt-[78px] flex flex-col gap-[32px]">
+    <div>
+      <app-input
+        placeholder="Имя пользователя*"
+        icon="icon-message"
+      ></app-input>
+    </div>
+
+    <div>
+      <app-input placeholder="Номер телефона*" icon="icon-phone"></app-input>
+    </div>
+
+    <div>
+      <app-input placeholder="Email*" icon="icon-email"></app-input>
+    </div>
+
+    <div>
+      <app-input placeholder="Пароль*" icon="icon-lock"></app-input>
+    </div>
+
+    <div>
+      <button class="btn btn-primary" type="button">Зарегистрироваться</button>
+      <p class="text-[12px] leading-[17px] text-primary text-center mt-[20px]">
+        Естӣ аккаунт? &nbsp;
+        <span class="font-bold" routerLink="/auth/login">Войти</span>
+      </p>
+    </div>
+  </form>
+
+  <p class="text-[12px] leading-[17px] text-primary text-center">
+    У вас нет аккаунта? &nbsp;
+    <span class="font-bold" routerLink="/auth/register"
+      >Зарегистрироваться</span
+    >
+  </p>
+</div>
