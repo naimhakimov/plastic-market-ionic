@@ -54,4 +54,24 @@
     -webkit-mask: url('../assets/icon/message-icon.svg') no-repeat 50% 50%;
     mask: url('../assets/icon/message-icon.svg') no-repeat 50% 50%;
   }
+
+  &-menu {
+    -webkit-mask: url('../assets/icon/menu.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/menu.svg') no-repeat 50% 50%;
+  }
+
+  &-search {
+    -webkit-mask: url('../assets/icon/search.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/search.svg') no-repeat 50% 50%;
+  }
+
+  &-filter {
+    -webkit-mask: url('../assets/icon/filter.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/filter.svg') no-repeat 50% 50%;
+  }
+
+  &-notice {
+    -webkit-mask: url('../assets/icon/notice.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/notice.svg') no-repeat 50% 50%;
+  }
 }

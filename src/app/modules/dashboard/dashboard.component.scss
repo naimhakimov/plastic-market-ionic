@@ -1,0 +1,9 @@
+.tab-selected {
+  ion-label {
+    @apply text-primary;
+  }
+
+  .icon {
+    @apply bg-primary;
+  }
+}
