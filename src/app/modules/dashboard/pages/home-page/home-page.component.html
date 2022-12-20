@@ -1,28 +1,43 @@
-<div class="p-[22px]" id="main-content">
-  <div class='flex items-center justify-between'>
-    <ion-menu-toggle>
-      <span class='icon icon-menu w-[16px]'></span>
-    </ion-menu-toggle>
-    <div class='flex gap-[8px] items-center rounded-[10px] bg-light-gray py-[10px] px-[13px]'>
-      <span class='icon icon-search w-[20px]'></span>
-      <input type='text' class='bg-transparent outline-none border-none'>
-      <span class='icon icon-filter w-[18px]'></span>
-    </div>
+<ion-content>
+  <div class='p-[22px]' id='main-content'>
+    <div class='flex items-center justify-between'>
+      <ion-menu-toggle>
+        <span class='icon icon-menu w-[16px]'></span>
+      </ion-menu-toggle>
+      <div class='flex gap-[8px] items-center rounded-[10px] bg-light-gray py-[10px] px-[13px]'>
+        <span class='icon icon-search w-[20px]'></span>
+        <input type='text' class='bg-transparent outline-none border-none'>
+        <span class='icon icon-filter w-[18px]' (click)='openModal()'></span>
+      </div>
 
-    <div class='relative'>
-      <span class='icon icon-notice w-[18px]'></span>
-      <span class='absolute top-0 r-0 rounded-full w-[5px] h-[5px] bg-orange'></span>
-    </div>
-  </div>
-
-  <p class='text-primary text-[20px] leading-[24px] font-bold mt-[32px] mb-[27px]'>Полимерное сырье</p>
-
-  <div>
-    <div class='border-1 border-white rounded-[10px]'>
       <div class='relative'>
-        <img class='rounded-t-[10px]' src='/assets/01.png' alt=''>
+        <span class='icon icon-notice w-[18px]'></span>
+        <span class='absolute top-0 r-0 rounded-full w-[5px] h-[5px] bg-orange'></span>
+      </div>
+    </div>
+
+    <div>
+      <p class='text-primary text-[20px] leading-[24px] font-bold mt-[32px] mb-[27px]'>Полимерное сырье</p>
+
+      <div class='grid grid-cols-2 grid-flow gap-[6px]'>
+        <app-card-item
+          routerLink='/dashboard/product-details/1'
+          class='border-[1px] border-gray-light rounded-[10px] flex-1'
+          *ngFor='let item of [1,2,3,4,5,6]'>
+        </app-card-item>
+      </div>
+    </div>
+
+    <div>
+      <p class='text-primary text-[20px] leading-[24px] font-bold my-[27px]'>Полиэтиленовые смолы</p>
+
+      <div class='grid grid-cols-2 grid-flow gap-[6px]'>
+        <app-card-item
+          routerLink='/dashboard/product-details/1'
+          class='border-[1px] border-gray-light rounded-[10px] flex-1'
+          *ngFor='let item of [1,2,3,4,5,6]'>
+        </app-card-item>
       </div>
     </div>
   </div>
-</div>
-
+</ion-content>

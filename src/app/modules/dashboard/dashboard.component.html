@@ -28,14 +28,11 @@
 </ion-tabs>
 
 <ion-menu contentId="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Menu Content</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="ion-padding">
-    <ion-menu-toggle>
-      <ion-button>Click to close the menu</ion-button>
-    </ion-menu-toggle>
-  </ion-content>
+  <div class='mt-[20px]'>
+    <div class='flex items-center gap-[17px] px-[25px] py-[10px]' *ngFor='let i of [1,2,3,4,5]'>
+      <span class='icon icon-catalog w-[22px] h-[22px] bg-black-200'></span>
+      <p class='text-[14px] leading-[17px] text-black-100'>Полимерные отходы</p>
+      <span class='icon icon-arrow-right w-[13px] h-[13px] bg-black-100'></span>
+    </div>
+  </div>
 </ion-menu>

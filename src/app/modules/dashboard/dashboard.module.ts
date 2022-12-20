@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { RouterModule, Routes } from '@angular/router'
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular'
+import { IonicModule } from '@ionic/angular'
 
 import { DashboardComponent } from './dashboard.component'
 import { HomePageComponent } from './pages/home-page/home-page.component'
@@ -9,6 +9,10 @@ import { FavouritePageComponent } from './pages/favourite-page/favourite-page.co
 import { CreateComponent } from './pages/create/create.component'
 import { MessageComponent } from './pages/message/message.component'
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component'
+import { CardItemComponent } from './components/card-item/card-item.component'
+import { ProductDetailsComponent } from './pages/product-details/product-details.component'
+import { FilterComponent } from './components/filter/filter.component'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 
 const routes: Routes = [
   {
@@ -16,8 +20,17 @@ const routes: Routes = [
     component: DashboardComponent,
     children: [
       {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full'
+      },
+      {
         path: 'home',
         component: HomePageComponent
+      },
+      {
+        path: 'product-details/:id',
+        component: ProductDetailsComponent
       },
       {
         path: 'favourite',
@@ -35,16 +48,28 @@ const routes: Routes = [
         path: 'profile',
         component: ProfilePageComponent
       }
-    ],
-  },
+    ]
+  }
 ]
 
 @NgModule({
-  declarations: [DashboardComponent, HomePageComponent],
+  declarations: [
+    DashboardComponent,
+    HomePageComponent,
+    CardItemComponent,
+    CreateComponent,
+    MessageComponent,
+    ProfilePageComponent,
+    ProductDetailsComponent,
+    FilterComponent
+  ],
   imports: [
     CommonModule,
     IonicModule,
-    RouterModule.forChild(routes),
-  ],
+    FormsModule,
+    ReactiveFormsModule,
+    RouterModule.forChild(routes)
+  ]
 })
-export class DashboardModule {}
+export class DashboardModule {
+}

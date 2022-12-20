@@ -74,4 +74,19 @@
     -webkit-mask: url('../assets/icon/notice.svg') no-repeat 50% 50%;
     mask: url('../assets/icon/notice.svg') no-repeat 50% 50%;
   }
+
+  &-heart {
+    -webkit-mask: url('../assets/icon/heart.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/heart.svg') no-repeat 50% 50%;
+  }
+
+  &-catalog {
+    -webkit-mask: url('../assets/icon/catalog.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/catalog.svg') no-repeat 50% 50%;
+  }
+
+  &-arrow-right {
+    -webkit-mask: url('../assets/icon/arrow-right.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/arrow-right.svg') no-repeat 50% 50%;
+  }
 }
