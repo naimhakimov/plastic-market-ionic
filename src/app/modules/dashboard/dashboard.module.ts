@@ -13,6 +13,8 @@ import { CardItemComponent } from './components/card-item/card-item.component'
 import { ProductDetailsComponent } from './pages/product-details/product-details.component'
 import { FilterComponent } from './components/filter/filter.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { SwiperModule } from 'swiper/angular'
+import { ProductsComponent } from './pages/products/products.component'
 
 const routes: Routes = [
   {
@@ -27,10 +29,6 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomePageComponent
-      },
-      {
-        path: 'product-details/:id',
-        component: ProductDetailsComponent
       },
       {
         path: 'favourite',
@@ -61,13 +59,15 @@ const routes: Routes = [
     MessageComponent,
     ProfilePageComponent,
     ProductDetailsComponent,
-    FilterComponent
+    FilterComponent,
+    ProductsComponent
   ],
   imports: [
     CommonModule,
     IonicModule,
     FormsModule,
     ReactiveFormsModule,
+    SwiperModule,
     RouterModule.forChild(routes)
   ]
 })
