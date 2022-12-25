@@ -89,4 +89,22 @@
     -webkit-mask: url('../assets/icon/arrow-right.svg') no-repeat 50% 50%;
     mask: url('../assets/icon/arrow-right.svg') no-repeat 50% 50%;
   }
+
+  &-star {
+    -webkit-mask: url('../assets/icon/star.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/star.svg') no-repeat 50% 50%;
+    @apply bg-yellow;
+  }
+
+  &-star-full {
+    -webkit-mask: url('../assets/icon/star-full.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/star-full.svg') no-repeat 50% 50%;
+    @apply bg-yellow;
+  }
+
+  &-check {
+    -webkit-mask: url('../assets/icon/check.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/check.svg') no-repeat 50% 50%;
+    @apply bg-primary;
+  }
 }

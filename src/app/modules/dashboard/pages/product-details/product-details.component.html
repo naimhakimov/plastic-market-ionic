@@ -13,7 +13,7 @@
     </swiper>
 
     <div class='z-10 absolute top-[20px] left-[23px] right-[23px] flex justify-between items-center'>
-      <ion-nav-link router-direction="back" [component]="component"
+      <ion-nav-link router-direction='back' [component]='component'
                     class='rotate-180 flex items-center justify-center bg-primary w-[44px] h-[44px] rounded-full hover:opacity-[.8]'>
         <span class='icon icon-arrow-right bg-white w-[7px] h-[15px]'></span>
       </ion-nav-link>
@@ -30,6 +30,47 @@
       </div>
 
       <div class='mt-[4px] text-[14px] leading-[17px] font-medium text-gray'>Алматы</div>
+      <div class='mt-[8px] flex'>
+        <span class='icon icon-star-full ml-[4px] w-[16px]'></span>
+        <span class='icon icon-star-full ml-[4px] w-[16px]'></span>
+        <span class='icon icon-star-full ml-[4px] w-[16px]'></span>
+        <span class='icon icon-star-full ml-[4px] w-[16px]'></span>
+        <span class='icon icon-star ml-[4px] w-[16px]'></span>
+      </div>
+
+      <div class='mt-[5px] text-[14px] leading-[24px] text-primary'>На постоянной основе</div>
+
+      <div class='mt-[22px] flex items-start'>
+        <div class='relative'>
+          <img class='min-w-[27px]' src='./assets/img/avatar.svg' alt=''>
+          <span class='absolute top-0 right-0 w-[7px] h-[7px] rounded-full bg-primary z-10'></span>
+        </div>
+        <div>
+          <div class='text-[20px] leading-[24px] text-bold text-primary ml-[12px]'>
+            Фетисова Дарья
+            <span class='ml-[8px] icon icon-check w-[12px] h-[11px]'></span>
+          </div>
+          <div class='flex ml-[8px] items-center'>
+            <span class='icon icon-star-full bg-orange-100 w-[16px] mr-[6px]'></span>
+            <span class='mr-[8px] text-[14px] leading-[24px] text-black'>4.5</span>
+            <span class='text-[14px] leading-[17px] text-gray-200'>На Plastic market с Мая 2017</span>
+          </div>
+        </div>
+      </div>
+
+      <div class='flex mt-[28px] mb-[32px]'>
+        <button class='btn btn-outline-primary mr-[31px]'>Написать</button>
+        <button class='btn btn-primary'>Позвонить</button>
+      </div>
+
+      <ion-segment value="default" mode='ios'>
+        <ion-segment-button value="default">
+          <ion-label>Default</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="segment">
+          <ion-label>Segment</ion-label>
+        </ion-segment-button>
+      </ion-segment>
     </div>
   </div>
 </ion-content>

@@ -10,4 +10,8 @@
   &-default {
     @apply text-primary;
   }
+
+  &-outline-primary {
+    @apply text-gray-strong border-2 border-primary border-solid;
+  }
 }
