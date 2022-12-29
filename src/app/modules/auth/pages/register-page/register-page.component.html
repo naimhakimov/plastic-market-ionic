@@ -3,28 +3,29 @@
     Регистрация
   </h1>
 
-  <form class="mt-[78px] flex flex-col">
+  <form class="mt-[78px] flex flex-col" [formGroup]='form'>
     <div class='mb-[16px]'>
       <app-input
+        formControlName='name'
         placeholder="Имя пользователя*"
         icon="icon-message"
       ></app-input>
     </div>
 
     <div class='mb-[16px]'>
-      <app-input placeholder="Номер телефона*" icon="icon-phone"></app-input>
+      <app-input placeholder="Номер телефона*" icon="icon-phone" formControlName='phone'></app-input>
     </div>
 
     <div class='mb-[16px]'>
-      <app-input placeholder="Email*" icon="icon-email"></app-input>
+      <app-input placeholder="Email*" icon="icon-email" formControlName='email'></app-input>
     </div>
 
     <div class='mb-[16px]'>
-      <app-input placeholder="Пароль*" icon="icon-lock"></app-input>
+      <app-input placeholder="Пароль*" icon="icon-lock" formControlName='password'></app-input>
     </div>
 
     <div>
-      <button class="btn btn-primary" type="button">Зарегистрироваться</button>
+      <button class="btn btn-primary" type="button" (click)='onSubmit()' [disabled]='form.invalid'>Зарегистрироваться</button>
       <p class="text-[12px] leading-[17px] text-primary text-center mt-[20px]">
         Естӣ аккаунт? &nbsp;
         <span class="font-bold" routerLink="/auth/login">Войти</span>

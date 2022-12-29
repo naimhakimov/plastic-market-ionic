@@ -1,31 +1,32 @@
-<div class="pt-[90px] px-[35px] flex flex-col justify-between h-full pb-[42px] bg-white">
-  <h1 class="pl-[5px] text-[36px] leading-[43px] text-primary font-bold">
+<div class='pt-[90px] px-[35px] flex flex-col justify-between h-full pb-[42px] bg-white'>
+  <h1 class='pl-[5px] text-[36px] leading-[43px] text-primary font-bold'>
     Вход
   </h1>
 
-  <form class="mt-[87px]">
+  <form class='mt-[87px]' [formGroup]='form'>
     <div>
       <app-input
-        placeholder="Номер телефона или Email*"
-        icon="icon-email"
+        formControlName='login'
+        placeholder='Номер телефона или Email*'
+        icon='icon-email'
       ></app-input>
     </div>
 
-    <div class="mt-[32px]">
-      <app-input placeholder="Пароль*" icon="icon-lock"></app-input>
+    <div class='mt-[32px]'>
+      <app-input formControlName='password' placeholder='Пароль*' icon='icon-lock'></app-input>
     </div>
 
-    <p class="text-[12px] leading-[17px] text-primary text-right mt-[15px]">
+    <p class='text-[12px] leading-[17px] text-primary text-right mt-[15px]'>
       Забыли пароль ?
     </p>
 
-    <button class="btn btn-primary mt-[48px]" type="button" routerLink='/dashboard/home'>Вход</button>
+    <button class='btn btn-primary mt-[48px]' type='button' (click)='onSubmit()' [disabled]='form.invalid'>Вход</button>
   </form>
 
-  <p class="text-[12px] leading-[17px] text-primary text-center">
+  <p class='text-[12px] leading-[17px] text-primary text-center'>
     У вас нет аккаунта? &nbsp;
-    <span class="font-bold" routerLink="/auth/register"
-      >Зарегистрироваться</span
+    <span class='font-bold' routerLink='/auth/register'
+    >Зарегистрироваться</span
     >
   </p>
 </div>

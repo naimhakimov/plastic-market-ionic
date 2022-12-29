@@ -59,18 +59,36 @@
       </div>
 
       <div class='flex mt-[28px] mb-[32px]'>
-        <button class='btn btn-outline-primary mr-[31px]'>Написать</button>
-        <button class='btn btn-primary'>Позвонить</button>
+        <button class='btn btn-outline-primary mr-[31px] btn-sm'>Написать</button>
+        <button class='btn btn-primary btn-sm'>Позвонить</button>
       </div>
 
-      <ion-segment value="default" mode='ios'>
-        <ion-segment-button value="default">
-          <ion-label>Default</ion-label>
-        </ion-segment-button>
-        <ion-segment-button value="segment">
-          <ion-label>Segment</ion-label>
-        </ion-segment-button>
-      </ion-segment>
+      <div class='w-full rounded-[12px] flex bg-primary-100 items-center'>
+        <div
+          *ngFor="let i of ['Описание', 'Доставка и оплата']; let idx = index"
+          class='text-[14px] leading-[18px] font-semibold rounded-[12px] px-[15px] py-[13px] transition-all	'
+          [class.active]='active === idx' (click)='active = idx'>{{i}}</div>
+      </div>
+
+      <div class='text-[14px] leading-[23px] text-gray-300 mt-[24px]'>
+        Продукции включает полиэтиленовые смолы ПВХ, ПНД, EVA и LLDPE с отличным quatity. Позвольте мне кратко
+        представить себя в качестве одного из основных трейдеров на рынке полимерных (ПВХ, ПП, ПЭ, EVA, PS, ABS, PC) уже
+        более десяти лет с хорошим обслуживанием и опыта. У нас есть долгосрочный бизнес и хорошие отношения с Formosa
+        Plastics Corporation, CGPC (Тайвань), LG Chemical (Ю.Корея), Shintech (США) и Shin-Etsu, Taiyo в Японии. Наш
+        основной рынок находится в Индии, Китае, Бангладеш, Пакистан, Ближний Восток, Юго-Восточную Азию, Россию,
+        Украину и Латинской Америки.
+      </div>
+
+      <div class='text-[16px] font-semibold text-black mt-[40px] mb-[25px]'>Характеристики</div>
+
+      <div class='flex justify-between mb-[14px]'>
+        <div class='text-[14px] leading-[20px] font-semibold text-gray-300 opacity-[.7] flex-[40%]'>Материал</div>
+        <div class='text-[14px] leading-[20px] font-semibold text-gray-300'>ПНД/ПВД/ПП/ПВХ/ПА/ПЭТФ/ПК/АБС/</div>
+      </div>
+      <div class='flex justify-between mb-[14px]'>
+        <div class='text-[14px] leading-[20px] font-semibold text-gray-300 opacity-[.7] flex-[40%]'>Материал</div>
+        <div class='text-[14px] leading-[20px] font-semibold text-gray-300'>ПНД/ПВД/ПП/ПВХ/ПА/ПЭТФ/ПК/АБС/</div>
+      </div>
     </div>
   </div>
 </ion-content>

@@ -12,6 +12,8 @@ SwiperCore.use([Autoplay, Keyboard, Pagination, Zoom]);
 export class ProductDetailsComponent implements OnInit {
   component = ProductsComponent
 
+  active = 0
+
   constructor() { }
 
   ngOnInit() {}

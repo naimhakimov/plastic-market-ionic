@@ -7,38 +7,46 @@ import { LoginPageComponent } from './pages/login-page/login-page.component'
 import { RegisterPageComponent } from './pages/register-page/register-page.component'
 import { IonicModule } from '@ionic/angular'
 import { InputModule } from '../../shared'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { AuthService } from '../../services/auth.service'
+import { HttpClientModule } from '@angular/common/http'
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'welcome',
-    pathMatch: 'full',
+    pathMatch: 'full'
   },
   {
     path: 'welcome',
-    component: WelcomePageComponent,
+    component: WelcomePageComponent
   },
   {
     path: 'login',
-    component: LoginPageComponent,
+    component: LoginPageComponent
   },
   {
     path: 'register',
-    component: RegisterPageComponent,
-  },
+    component: RegisterPageComponent
+  }
 ]
 
 @NgModule({
   declarations: [
     WelcomePageComponent,
     LoginPageComponent,
-    RegisterPageComponent,
+    RegisterPageComponent
   ],
   imports: [
     CommonModule,
+    HttpClientModule,
     RouterModule.forChild(routes),
+    FormsModule,
+    ReactiveFormsModule,
     IonicModule,
-    InputModule,
+    InputModule
   ],
+  providers: [AuthService]
 })
-export class AuthModule {}
+export class AuthModule {
+}
