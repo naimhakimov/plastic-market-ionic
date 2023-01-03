@@ -1,0 +1,20 @@
+ion-select {
+  --placeholder-opacity: 1;
+  width: 100%;
+  justify-content: space-between;
+}
+
+ion-select::part(placeholder),
+ion-select::part(text) {
+  flex: 0 0 auto;
+
+  @apply text-[16px] leading-[17px] text-gray-500;
+}
+
+ion-select::part(icon) {
+  color: transparent;
+
+  background-image: url("../../../../assets/icon/arrow.svg");
+  background-repeat: no-repeat;
+  background-size: 7px 13px;
+}

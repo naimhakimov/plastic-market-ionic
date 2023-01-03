@@ -20,16 +20,16 @@
       <span class='icon icon-heart bg-primary'></span>
     </div>
 
-    <div class='px-[22px] pt-[25px] pb-[15px]'>
+    <div class='px-[22px] pt-[25px] pb-[15px]' *ngIf='offerByIdData'>
       <div class='flex justify-between'>
-        <h1 class='text-[18px] leading-[22px] font-bold text-gray-300'>Пленка полиэтиленовая вторичная</h1>
+        <h1 class='text-[18px] leading-[22px] font-bold text-gray-300'>{{ offerByIdData.name }}</h1>
         <div class='flex flex-col items-end'>
-          <p class='text-[12px] leading-[14px] text-gray-200 line-through'>$22</p>
-          <p class='text-primary text-[18px] leading-[21px] font-bold'>$16</p>
+          <p class='text-[12px] leading-[14px] text-gray-200 line-through' *ngIf='false'>$22</p>
+          <p class='text-primary text-[18px] leading-[21px] font-bold'>{{ offerByIdData.amount }}</p>
         </div>
       </div>
 
-      <div class='mt-[4px] text-[14px] leading-[17px] font-medium text-gray'>Алматы</div>
+      <div class='mt-[4px] text-[14px] leading-[17px] font-medium text-gray' *ngIf='offerByIdData?.city'>{{ offerByIdData.city.name }}</div>
       <div class='mt-[8px] flex'>
         <span class='icon icon-star-full ml-[4px] w-[16px]'></span>
         <span class='icon icon-star-full ml-[4px] w-[16px]'></span>
@@ -40,20 +40,20 @@
 
       <div class='mt-[5px] text-[14px] leading-[24px] text-primary'>На постоянной основе</div>
 
-      <div class='mt-[22px] flex items-start'>
+      <div class='mt-[22px] flex items-start' *ngIf='offerByIdData?.user'>
         <div class='relative'>
           <img class='min-w-[27px]' src='./assets/img/avatar.svg' alt=''>
           <span class='absolute top-0 right-0 w-[7px] h-[7px] rounded-full bg-primary z-10'></span>
         </div>
         <div>
           <div class='text-[20px] leading-[24px] text-bold text-primary ml-[12px]'>
-            Фетисова Дарья
+            {{ offerByIdData.user.name }}
             <span class='ml-[8px] icon icon-check w-[12px] h-[11px]'></span>
           </div>
           <div class='flex ml-[8px] items-center'>
             <span class='icon icon-star-full bg-orange-100 w-[16px] mr-[6px]'></span>
-            <span class='mr-[8px] text-[14px] leading-[24px] text-black'>4.5</span>
-            <span class='text-[14px] leading-[17px] text-gray-200'>На Plastic market с Мая 2017</span>
+            <span class='mr-[8px] text-[14px] leading-[24px] text-black'>{{ offerByIdData.user.rating }}</span>
+            <span class='text-[14px] leading-[17px] text-gray-200'>На Plastic market с {{ offerByIdData.user.created_at | date: 'dd.MM.yyy' }}</span>
           </div>
         </div>
       </div>
@@ -70,25 +70,27 @@
           [class.active]='active === idx' (click)='active = idx'>{{i}}</div>
       </div>
 
-      <div class='text-[14px] leading-[23px] text-gray-300 mt-[24px]'>
-        Продукции включает полиэтиленовые смолы ПВХ, ПНД, EVA и LLDPE с отличным quatity. Позвольте мне кратко
-        представить себя в качестве одного из основных трейдеров на рынке полимерных (ПВХ, ПП, ПЭ, EVA, PS, ABS, PC) уже
-        более десяти лет с хорошим обслуживанием и опыта. У нас есть долгосрочный бизнес и хорошие отношения с Formosa
-        Plastics Corporation, CGPC (Тайвань), LG Chemical (Ю.Корея), Shintech (США) и Shin-Etsu, Taiyo в Японии. Наш
-        основной рынок находится в Индии, Китае, Бангладеш, Пакистан, Ближний Восток, Юго-Восточную Азию, Россию,
-        Украину и Латинской Америки.
-      </div>
+     <ng-container [ngSwitch]='active'>
+       <div *ngSwitchCase='0' class='text-[14px] leading-[23px] text-gray-300 mt-[24px]'>
+         {{ offerByIdData.description }}
+       </div>
+       <div *ngSwitchCase='1' class='text-[14px] leading-[23px] text-gray-300 mt-[24px]'>
 
-      <div class='text-[16px] font-semibold text-black mt-[40px] mb-[25px]'>Характеристики</div>
+       </div>
+     </ng-container>
 
-      <div class='flex justify-between mb-[14px]'>
-        <div class='text-[14px] leading-[20px] font-semibold text-gray-300 opacity-[.7] flex-[40%]'>Материал</div>
-        <div class='text-[14px] leading-[20px] font-semibold text-gray-300'>ПНД/ПВД/ПП/ПВХ/ПА/ПЭТФ/ПК/АБС/</div>
-      </div>
-      <div class='flex justify-between mb-[14px]'>
-        <div class='text-[14px] leading-[20px] font-semibold text-gray-300 opacity-[.7] flex-[40%]'>Материал</div>
-        <div class='text-[14px] leading-[20px] font-semibold text-gray-300'>ПНД/ПВД/ПП/ПВХ/ПА/ПЭТФ/ПК/АБС/</div>
-      </div>
+      <ng-container *ngIf='false'>
+        <div class='text-[16px] font-semibold text-black mt-[40px] mb-[25px]'>Характеристики</div>
+
+        <div class='flex justify-between mb-[14px]'>
+          <div class='text-[14px] leading-[20px] font-semibold text-gray-300 opacity-[.7] flex-[40%]'>Материал</div>
+          <div class='text-[14px] leading-[20px] font-semibold text-gray-300'>ПНД/ПВД/ПП/ПВХ/ПА/ПЭТФ/ПК/АБС/</div>
+        </div>
+        <div class='flex justify-between mb-[14px]'>
+          <div class='text-[14px] leading-[20px] font-semibold text-gray-300 opacity-[.7] flex-[40%]'>Материал</div>
+          <div class='text-[14px] leading-[20px] font-semibold text-gray-300'>ПНД/ПВД/ПП/ПВХ/ПА/ПЭТФ/ПК/АБС/</div>
+        </div>
+      </ng-container>
     </div>
   </div>
 </ion-content>

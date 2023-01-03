@@ -21,4 +21,8 @@ export class FilterComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  change(event: any) {
+    console.log(event)
+  }
 }

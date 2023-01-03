@@ -18,10 +18,13 @@ module.exports = {
       'gray-100': "#DADADA",
       'gray-200': "#C0C0C0",
       'gray-300': "#4D4D4D",
+      'gray-400': "#777777",
+      'gray-500': "#434343",
       'transparent': 'transparent',
       orange: '#EC5B22',
       "orange-100": '#EEA86C',
-      yellow: '#FFBF2C'
+      yellow: '#FFBF2C',
+      'purple-900': '#2D264B'
     },
   },
   plugins: [],

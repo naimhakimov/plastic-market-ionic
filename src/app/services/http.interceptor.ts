@@ -21,7 +21,7 @@ export class HttpInterceptorCustom implements HttpInterceptor {
       url: environment.apiUrl + req.url,
       body: {
         ...req.body,
-        token: '12312412'
+        token: localStorage.getItem('token') || ''
       }
     })
 

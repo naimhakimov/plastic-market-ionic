@@ -107,4 +107,20 @@
     mask: url('../assets/icon/check.svg') no-repeat 50% 50%;
     @apply bg-primary;
   }
+
+  &-close {
+    -webkit-mask: url('../assets/icon/close.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/close.svg') no-repeat 50% 50%;
+  }
+
+  &-arrow {
+    -webkit-mask: url('../assets/icon/arrow.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/arrow.svg') no-repeat 50% 50%;
+  }
+
+  &-circle {
+    -webkit-mask: url('../assets/icon/circle.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/circle.svg') no-repeat 50% 50%;
+  }
+
 }

@@ -1,17 +1,95 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button color="medium" (click)="cancel()">Cancel</ion-button>
-    </ion-buttons>
-    <ion-title>Welcome</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="confirm()">Confirm</ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-<ion-content class="ion-padding">
-  <ion-item>
-    <ion-label position="stacked">Your name</ion-label>
-    <ion-input [(ngModel)]="name" placeholder="Your name"></ion-input>
-  </ion-item>
+<ion-content>
+  <div class='p-[22px] bg-white '>
+    <div class='flex justify-between items-center'>
+      <div (click)='cancel()' class='bg-primary flex justify-center items-center rounded-full p-[15px]'>
+        <span class='icon icon-close bg-white w-[14px] h-[14px]'></span>
+      </div>
+
+      <div class='text-[14px] leading-[17px] text-gray-200'>Очистить</div>
+    </div>
+
+    <div class='mt-[28px] text-[18px] leading-[23px] text-gray-300'>
+      Фильтры
+    </div>
+
+    <form class='mt-[38px]'>
+      <div class='mb-[22px]'>
+        <app-select
+          placeholder='Самые дешевые '
+          label='Сортировка'
+          [items]="[{id: '1', name: 'Самые дешевые'}]"
+          (changed)='change($event)'>
+        </app-select>
+      </div>
+
+      <div class='mb-[22px]'>
+        <app-select
+          placeholder='Твердый пластик '
+          label='Категория'
+          [items]="[{id: '1', name: 'Твердый пластик'}]"
+          (changed)='change($event)'>
+        </app-select>
+      </div>
+
+      <div class='mb-[22px]'>
+        <app-select
+          placeholder='Алматы'
+          label='Местоположение'
+          [items]="[{id: '1', name: 'Алматы '}]"
+          (changed)='change($event)'>
+        </app-select>
+      </div>
+
+      <div class='mb-[22px]'>
+        <app-select
+          placeholder='Навалом'
+          label='Тип'
+          [items]="[{id: '1', name: 'Навалом'}]"
+          (changed)='change($event)'>
+        </app-select>
+      </div>
+
+      <div class='mb-[22px]'>
+        <app-select
+          placeholder='20 тонн'
+          label='Объем'
+          [items]="[{id: '1', name: '20 тонн'}]"
+          (changed)='change($event)'>
+        </app-select>
+      </div>
+
+      <div class='mb-[22px]'>
+        <app-select
+          placeholder='ПНД'
+          label='Материал'
+          [items]="[{id: '1', name: 'ПНД'}]"
+          (changed)='change($event)'>
+        </app-select>
+      </div>
+
+      <div class='mb-[22px] border-b-[1px] border-[#EBEBED] pb-[7px]'>
+        <div class='text-[11px] leading-[13px] text-gray-400 flex items-center mb-[6px]'>Проверенные <span
+          class='ml-[6px] icon icon-circle w-[12px] h-[12px] bg-purple-900'></span></div>
+        <div class='flex justify-between'>
+          <span class='text-[16px] leading-[17px] text-gray-500'>Проверенные документы</span>
+          <ion-checkbox mode='md'></ion-checkbox>
+        </div>
+      </div>
+
+
+      <div class='mb-[22px] flex items-end'>
+        <div>
+          <div class='text-[11px] leading-[13px] text-gray-400 flex items-center mb-[6px]'>Цена</div>
+          <app-input placeholder='от' type='number'></app-input>
+        </div>
+
+        <div class='items-end ml-[30px]'>
+          <app-input placeholder='до' type='number'></app-input>
+        </div>
+      </div>
+
+      <button class='btn btn-primary mt-[4px]' (click)='cancel()'>Показать результаты</button>
+
+    </form>
+  </div>
 </ion-content>

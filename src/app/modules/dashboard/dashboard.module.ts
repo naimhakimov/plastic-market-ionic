@@ -15,6 +15,8 @@ import { FilterComponent } from './components/filter/filter.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { SwiperModule } from 'swiper/angular'
 import { ProductsComponent } from './pages/products/products.component'
+import { SelectModule } from '../../shared/controls/select/select.module'
+import { InputModule } from '../../shared'
 
 const routes: Routes = [
   {
@@ -68,7 +70,9 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     SwiperModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    SelectModule,
+    InputModule
   ]
 })
 export class DashboardModule {

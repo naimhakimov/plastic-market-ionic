@@ -1,10 +1,10 @@
 <div
-  class="flex items-center pb-[16px] border-b-[1px] border-b-gray"
+  class="flex items-center pb-[16px] border-b-[1px] border-b-gray input"
 >
-  <span class="icon {{ icon }}"></span>
+  <span *ngIf='icon' class="icon {{ icon }} mr-[13px] input-icon"></span>
   <input
-    type="text"
-    class="outline-none border-none w-full ml-[13px] placeholder:text-gray-100"
+    [type]="type"
+    class="outline-none border-none w-full placeholder:text-gray-100 input-content"
     [value]="value"
     [placeholder]="placeholder || ''"
     [attr.disabled]="isDisabled ? true : null"

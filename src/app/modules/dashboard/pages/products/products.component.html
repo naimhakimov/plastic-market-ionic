@@ -25,23 +25,25 @@
         class='grid grid-cols-2 grid-flow mx-[-5px]'>
         <app-card-item
           class='border-[1px] border-gray-light rounded-[10px] flex-1 m-[5px]'
-          *ngFor='let item of [1,2,3,4,5,6]'>
+          [offer]='item'
+          (click)='offerService.offerId.next(item.id)'
+          *ngFor='let item of offers'>
         </app-card-item>
       </ion-nav-link>
     </div>
 
-    <div>
-      <p class='text-primary text-[20px] leading-[24px] font-bold my-[27px]'>Полиэтиленовые смолы</p>
+<!--    <div>-->
+<!--      <p class='text-primary text-[20px] leading-[24px] font-bold my-[27px]'>Полиэтиленовые смолы</p>-->
 
-      <ion-nav-link
-        router-direction='forward'
-        [component]='component'
-        class='grid grid-cols-2 grid-flow mx-[-5px]'>
-        <app-card-item
-          class='border-[1px] border-gray-light rounded-[10px] flex-1 m-[5px]'
-          *ngFor='let item of [1,2,3,4,5,6]'>
-        </app-card-item>
-      </ion-nav-link>
-    </div>
+<!--      <ion-nav-link-->
+<!--        router-direction='forward'-->
+<!--        [component]='component'-->
+<!--        class='grid grid-cols-2 grid-flow mx-[-5px]'>-->
+<!--        <app-card-item-->
+<!--          class='border-[1px] border-gray-light rounded-[10px] flex-1 m-[5px]'-->
+<!--          *ngFor='let item of [1,2,3,4,5,6]'>-->
+<!--        </app-card-item>-->
+<!--      </ion-nav-link>-->
+<!--    </div>-->
   </div>
 </ion-content>

@@ -1,40 +1,39 @@
-import {
-  Component,
-  OnInit,
-  forwardRef,
-  Input,
-  Output,
-  EventEmitter,
-} from '@angular/core'
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms'
+import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core'
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
+
+export interface Items {
+  id: string;
+  name: string;
+}
 
 @Component({
-  selector: 'app-input',
-  templateUrl: './input.component.html',
-  styleUrls: ['./input.component.scss'],
+  selector: 'app-select',
+  templateUrl: './select.component.html',
+  styleUrls: ['./select.component.scss'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputComponent),
+      useExisting: forwardRef(() => SelectComponent),
       multi: true,
     },
   ],
 })
-export class InputComponent implements OnInit, ControlValueAccessor {
+export class SelectComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder!: string
+  @Input() label!: string
   @Input() icon!: string
-  @Input() type = 'text'
-  @Output() changed = new EventEmitter<string>()
+  @Output() changed = new EventEmitter<any>()
 
   value: string | null = null
   isDisabled!: boolean
 
-  constructor() {}
-
-  ngOnInit(): void {}
-
   private propagateChange: any = () => {}
   private propagateTouched: any = () => {}
+  @Input() items: Items[] = []
+
+  constructor() { }
+
+  ngOnInit() {}
 
   writeValue(value: string): void {
     this.value = value
@@ -52,7 +51,7 @@ export class InputComponent implements OnInit, ControlValueAccessor {
     this.isDisabled = isDisabled
   }
 
-  onKeyup(value: any): void {
+  onChange(value: any): void {
     this.value = value.target?.value
     this.propagateChange(value.target?.value)
     this.changed.emit(value.target?.value)

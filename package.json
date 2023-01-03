@@ -28,6 +28,7 @@
     "@capacitor/keyboard": "4.1.0",
     "@capacitor/status-bar": "4.1.1",
     "@ionic/angular": "^6.4.1",
+    "@ngneat/until-destroy": "^9.2.2",
     "ionicons": "^6.0.3",
     "rxjs": "~7.5.0",
     "swiper": "^8.4.5",

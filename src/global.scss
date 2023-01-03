@@ -47,7 +47,20 @@
 .swiper .swiper-pagination-bullet-active {
   @apply bg-primary;
 }
+
 .swiper .swiper-slide img {
   width: 100%;
   height: 338px;
 }
+
+.item-label-stacked {
+  --min-height: 100% !important;
+
+}
+
+@supports ((-webkit-margin-start: 0) or (margin-inline-start: 0)) or (-webkit-margin-start: 0) {
+  .item-native {
+    padding: 0 !important;
+  }
+}
+
