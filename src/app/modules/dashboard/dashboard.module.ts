@@ -6,7 +6,6 @@ import { IonicModule } from '@ionic/angular'
 import { DashboardComponent } from './dashboard.component'
 import { HomePageComponent } from './pages/home-page/home-page.component'
 import { FavouritePageComponent } from './pages/favourite-page/favourite-page.component'
-import { CreateComponent } from './pages/create/create.component'
 import { MessageComponent } from './pages/message/message.component'
 import { ProfilePageComponent } from './pages/profile-page/profile-page.component'
 import { CardItemComponent } from './components/card-item/card-item.component'
@@ -17,6 +16,7 @@ import { SwiperModule } from 'swiper/angular'
 import { ProductsComponent } from './pages/products/products.component'
 import { SelectModule } from '../../shared/controls/select/select.module'
 import { InputModule } from '../../shared'
+import { CreateComponent } from './components/create/create.component'
 
 const routes: Routes = [
   {
@@ -35,10 +35,6 @@ const routes: Routes = [
       {
         path: 'favourite',
         component: FavouritePageComponent
-      },
-      {
-        path: 'create',
-        component: CreateComponent
       },
       {
         path: 'message',
