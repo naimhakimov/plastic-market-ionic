@@ -35,7 +35,7 @@ export class LoginPageComponent implements OnInit {
       .subscribe(res => {
         this.form.reset()
         localStorage.setItem('user', JSON.stringify(res.data))
-        localStorage.setItem('token', JSON.stringify(res.data.token))
+        localStorage.setItem('token', res.data.token)
         this.router.navigate(['/dashboard'])
       })
   }

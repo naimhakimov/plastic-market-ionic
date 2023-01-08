@@ -18,14 +18,14 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'auth',
-    pathMatch: 'full',
-  },
-  {
-    path: '*',
     redirectTo: 'dashboard',
     pathMatch: 'full',
-  }
+  },
+  // {
+  //   path: '*',
+  //   redirectTo: 'dashboard',
+  //   pathMatch: 'full',
+  // }
 ]
 
 @NgModule({

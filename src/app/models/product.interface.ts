@@ -1,4 +1,4 @@
-import { City } from './city.interface'
+import { CityInterface } from './city.interface'
 
 export interface Category {
   id: string;
@@ -20,7 +20,7 @@ export interface Offer {
   description: string;
   image: string;
   disabled: string;
-  city: City;
+  city: CityInterface;
   category: Category;
   favorite: number;
 }

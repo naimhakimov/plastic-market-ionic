@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core'
 import { HttpClient } from '@angular/common/http'
-import { BehaviorSubject, Observable } from 'rxjs'
+import { BehaviorSubject, map, Observable } from 'rxjs'
+
 import { iResponse } from '../models/auth.interface'
 import { Offer } from '../models/product.interface'
 import { UserInterface } from '../models/user.interface'
+import { CategoryInterface } from '../models/category.interface'
+import { CityInterface } from '../models/city.interface'
 
 @Injectable({
   providedIn: 'root'
@@ -28,5 +31,17 @@ export class OfferService {
 
   getOffer(offerId: string): Observable<iResponse<{ offer: Offer & { user: UserInterface } }>> {
     return this._http.post<iResponse<{ offer: Offer & { user: UserInterface } }>>('/get_offer', { id: offerId })
+  }
+
+  getCategories(): Observable<CategoryInterface[]> {
+    return this._http
+      .get<iResponse<{ categories: CategoryInterface[] }>>('/get_categories')
+      .pipe(map(res => res.data.categories))
+  }
+
+  getCountries(): Observable<CityInterface[]> {
+    return this._http
+      .get<iResponse<{ cities: CityInterface[] }>>('/get_cities')
+      .pipe(map(res => res.data.cities))
   }
 }

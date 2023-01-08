@@ -158,4 +158,25 @@
     mask: url('../assets/icon/wallet.svg') no-repeat 50% 50%;
   }
 
+  &-burger {
+    -webkit-mask: url('../assets/icon/burger.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/burger.svg') no-repeat 50% 50%;
+    width: 13px;
+    height: 3px;
+  }
+
+  &-view {
+    -webkit-mask: url('../assets/icon/view.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/view.svg') no-repeat 50% 50%;
+    width: 12px;
+    height: 10px;
+  }
+
+  &-heart-svg {
+    -webkit-mask: url('../assets/icon/heart-svg.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/heart-svg.svg') no-repeat 50% 50%;
+    width: 10px;
+    height: 9px;
+  }
+
 }

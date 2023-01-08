@@ -1,3 +1,50 @@
-<p>
-  profile-page works!
-</p>
+<ion-content>
+  <div class='p-[22px] bg-white'>
+    <h1 class='text-primary font-bold text-[20px] leading-[24px] mb-[37px]'>Список продаж</h1>
+
+    <div class='w-full rounded-[12px] flex bg-primary-100 items-center'>
+      <div
+        *ngFor="let i of ['Активные', 'Неактивные', 'На модерации']; let idx = index"
+        class='text-[14px] leading-[18px] font-semibold rounded-[12px] px-[15px] py-[13px] transition-all whitespace-nowrap	text-gray-700'
+        [class.active]='active === idx' (click)='active = idx'>{{i}}</div>
+    </div>
+
+    <div class='mt-[34px]'>
+      <div class='mb-[14px]' *ngFor='let i of [1,2,3,4,5]'>
+        <div class='bg-green-100 rounded-[12px] flex items-center justify-center'>
+          <img class='max-[100%]' src='./assets/03.png' alt=''>
+        </div>
+
+        <div class='flex justify-between mt-[15px]'>
+          <h1 class='text-[12px] leading-[14px] font-medium text-gray-strong'>Пленка полиэтиленовая вторичная</h1>
+          <span class='icon icon-burger bg-gray-strong'></span>
+        </div>
+
+        <div>
+          <span class='text-[14px] leading-[17px] font-semibold text-primary mr-[10px]'>$25</span>
+          <span class='text-gray-strong text-[10px] leading-[12px] line-through'>$35</span>
+        </div>
+
+        <div class='flex justify-between items-center mt-[6px]'>
+          <span class='text-[12px] leading-[14px] text-gray-200'>с 14 февр. по 14 марта </span>
+          <div class='flex justify-center items-center'>
+            <div class='flex items-center'>
+              <span class='icon icon-view bg-gray-strong mr-[5px]'></span>
+              <span class='text-[11px] leading-[14px] text-gray-strong font-bold'>50</span>
+            </div>
+            <div class='ml-[14px] flex items-center'>
+              <span class='icon icon-phone bg-gray-strong mr-[5px] w-[10px] h-[10px]'></span>
+              <span class='text-[11px] leading-[14px] text-gray-strong font-bold'>8</span>
+            </div>
+
+            <div class='ml-[14px] flex items-center'>
+              <span class='icon icon-heart-svg bg-gray-strong mr-[5px]'></span>
+              <span class='text-[11px] leading-[14px] text-gray-strong font-bold'>3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ion-content>

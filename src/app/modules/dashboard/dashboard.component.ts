@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { ModalController } from '@ionic/angular'
 import { CreateComponent } from './components/create/create.component'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-dashboard',
@@ -9,10 +10,13 @@ import { CreateComponent } from './components/create/create.component'
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private modalCtrl: ModalController) {
+  constructor(private modalCtrl: ModalController, private router: Router) {
   }
 
   ngOnInit() {
+    if (!localStorage.getItem('token')) {
+      this.router.navigate(['/auth/login'])
+    }
   }
 
   async createModal() {

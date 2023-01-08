@@ -1,0 +1,21 @@
+ion-textarea.custom-textarea {
+  --background: white;
+  --placeholder-color: #4F4F4F;
+  --padding-end: 0;
+  --padding-start: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --placeholder-opacity: 1;
+  padding-inline-start: 35px;
+}
+
+
+::ng-deep app-input {
+  .input {
+    @apply border-b-gray-50 border-b-[1px];
+  }
+
+  .input-content::placeholder {
+    @apply text-gray-600;
+  }
+}

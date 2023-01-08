@@ -1,15 +1,13 @@
 <ion-content>
-  <form class='py-[30px] px-[22px] bg-white'>
+  <form [formGroup]='form' class='py-[30px] px-[22px] bg-white'>
     <h1 class='text-[20px] leading-[24px] text-primary font-bold mb-[37px]'>Создайте объявление</h1>
 
     <div class='mb-[18px]'>
-      <app-input icon='icon-title' placeholder='Название'></app-input>
+      <app-input formControlName='name' icon='icon-title' placeholder='Название'></app-input>
     </div>
 
-    <div class='mb-[18px] border-b-[1px] border-gray-50 pb-[16px] flex items-center' (click)='openSelect()'>
-      <span class='icon icon-category w-[18px] h-[18px]'></span>
-      <span class='flex-1 ml-[15px] text-[16px] leading-[17px] text-gray-600'>Категория</span>
-      <span class='icon icon-arrow-right w-[7px] h-[13px] bg-purple-900'></span>
+    <div class='mb-[18px]'>
+      <app-custom-select icon='icon-category' [items]='categories' label='Категория'></app-custom-select>
     </div>
 
     <div class='mb-[18px] border-b-[1px] border-gray-50 pb-[12px]'>
@@ -18,7 +16,7 @@
         <span class='flex-1 ml-[15px] text-[16px] leading-[17px] text-gray-600'>Фото</span>
       </div>
 
-      <div class='flex flex-wrap mx-[-4px] pt-[14px]'>
+      <div class='flex flex-wrap mx-[-4px] pt-[14px] mb-[18px]'>
         <div class='p-[4px]'><img src='./assets/img/img.png' alt=''></div>
         <div class='p-[4px]'><img src='./assets/img/img.png' alt=''></div>
         <div class='p-[4px]'><img src='./assets/img/img.png' alt=''></div>
@@ -35,10 +33,25 @@
       </div>
     </div>
 
-    <div class='mb-[18px] border-b-[1px] border-gray-50 pb-[16px] flex items-center' (click)='openSelect()'>
-      <span class='icon icon-location w-[18px] h-[18px]'></span>
-      <span class='flex-1 ml-[15px] text-[16px] leading-[17px] text-gray-600'>Местонахождение</span>
-      <span class='icon icon-arrow-right w-[7px] h-[13px] bg-purple-900'></span>
+    <div class=' mb-[18px]'>
+      <div class='relative border-b-[1px] border-gray-50 pb-[16px]'>
+        <ion-textarea formControlName='description' class='custom-textarea' placeholder='Описание'></ion-textarea>
+
+        <span class='icon icon-description absolute top-0 left-0 z-10 w-[20px] h-[20px]'></span>
+      </div>
+      <div class='text-[12px] leading-[17px] text-gray-600 mt-[3px]'>{{ form.controls['description'].value.length }}/8000</div>
+    </div>
+
+    <div class='mb-[18px]'>
+      <app-custom-select
+        label='Местонахождение'
+        icon='icon-location'
+        [items]='cities'
+      ></app-custom-select>
+    </div>
+
+    <div class='mb-[18px] border-b-[1px] border-gray-50 pb-[16px] flex items-center'>
+
     </div>
 
 
