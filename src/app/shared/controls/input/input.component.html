@@ -1,14 +1,14 @@
 <div
-  class="flex gap-[13px] items-center pb-[16px] border-b-[1px] border-b-gray"
+  class='flex items-center pb-[16px] border-b-[1px] border-b-gray input'
 >
-  <span class="icon {{ icon }}"></span>
+  <span *ngIf='icon' class='icon {{ icon }} mr-[13px] input-icon w-[20px] h-[20px]'></span>
   <input
-    type="text"
-    class="outline-none border-none w-full"
-    [value]="value"
+    [type]='type'
+    class='outline-none border-none w-full placeholder:text-gray-100 input-content'
+    [value]='value'
     [placeholder]="placeholder || ''"
-    [attr.disabled]="isDisabled ? true : null"
-    (keyup)="onKeyup($event)"
-    (blur)="onBlur()"
+    [attr.disabled]='isDisabled ? true : null'
+    (keyup)='onKeyup($event)'
+    (blur)='onBlur()'
   />
 </div>

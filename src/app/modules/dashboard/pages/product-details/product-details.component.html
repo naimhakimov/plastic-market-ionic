@@ -1,0 +1,98 @@
+<ion-content>
+  <div class='relative'>
+    <swiper [autoplay]='true' [keyboard]='true' [pagination]='true' [zoom]='true' [loop]='true'>
+      <ng-template swiperSlide>
+        <img class='w-full' src='./assets/02.png' alt=''>
+      </ng-template>
+      <ng-template swiperSlide>
+        <img class='w-full' src='./assets/02.png' alt=''>
+      </ng-template>
+      <ng-template swiperSlide>
+        <img class='w-full' src='./assets/02.png' alt=''>
+      </ng-template>
+    </swiper>
+
+    <div class='z-10 absolute top-[20px] left-[23px] right-[23px] flex justify-between items-center'>
+      <ion-nav-link router-direction='back' [component]='component'
+                    class='rotate-180 flex items-center justify-center bg-primary w-[44px] h-[44px] rounded-full hover:opacity-[.8]'>
+        <span class='icon icon-arrow-right bg-white w-[7px] h-[15px]'></span>
+      </ion-nav-link>
+      <span class='icon icon-heart bg-primary'></span>
+    </div>
+
+    <div class='px-[22px] pt-[25px] pb-[15px]' *ngIf='offerByIdData'>
+      <div class='flex justify-between'>
+        <h1 class='text-[18px] leading-[22px] font-bold text-gray-300'>{{ offerByIdData.name }}</h1>
+        <div class='flex flex-col items-end'>
+          <p class='text-[12px] leading-[14px] text-gray-200 line-through' *ngIf='false'>$22</p>
+          <p class='text-primary text-[18px] leading-[21px] font-bold'>{{ offerByIdData.amount }}</p>
+        </div>
+      </div>
+
+      <div class='mt-[4px] text-[14px] leading-[17px] font-medium text-gray'
+           *ngIf='offerByIdData?.city'>{{ offerByIdData.city.name }}</div>
+      <div class='mt-[8px] flex'>
+        <span class='icon icon-star-full ml-[4px] w-[16px]'></span>
+        <span class='icon icon-star-full ml-[4px] w-[16px]'></span>
+        <span class='icon icon-star-full ml-[4px] w-[16px]'></span>
+        <span class='icon icon-star-full ml-[4px] w-[16px]'></span>
+        <span class='icon icon-star ml-[4px] w-[16px]'></span>
+      </div>
+
+      <div class='mt-[5px] text-[14px] leading-[24px] text-primary'>На постоянной основе</div>
+
+      <div class='mt-[22px] flex items-start' *ngIf='offerByIdData?.user'>
+        <div class='relative'>
+          <img class='min-w-[27px]' src='./assets/img/avatar.svg' alt=''>
+          <span class='absolute top-0 right-0 w-[7px] h-[7px] rounded-full bg-primary z-10'></span>
+        </div>
+        <div>
+          <div class='text-[20px] leading-[24px] text-bold text-primary ml-[12px]'>
+            {{ offerByIdData.user.name }}
+            <span class='ml-[8px] icon icon-check w-[12px] h-[11px]'></span>
+          </div>
+          <div class='flex ml-[8px] items-center'>
+            <span class='icon icon-star-full bg-orange-100 w-[16px] mr-[6px]'></span>
+            <span class='mr-[8px] text-[14px] leading-[24px] text-black'>{{ offerByIdData.user.rating }}</span>
+            <span
+              class='text-[14px] leading-[17px] text-gray-200'>На Plastic market с {{ offerByIdData.user.created_at | date: 'dd.MM.yyy' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <div class='flex mt-[28px] mb-[32px]'>
+        <button class='btn btn-outline-primary mr-[31px] btn-sm'>Написать</button>
+        <a [href]="'tel:' + offerByIdData.user.phone" class='btn btn-primary btn-sm'>Позвонить</a>
+      </div>
+
+      <div class='w-full rounded-[12px] flex bg-primary-100 items-center'>
+        <div
+          *ngFor="let i of ['Описание', 'Доставка и оплата']; let idx = index"
+          class='text-[14px] leading-[18px] font-semibold rounded-[12px] px-[15px] py-[13px] transition-all	text-gray-700'
+          [class.active]='active === idx' (click)='active = idx'>{{i}}</div>
+      </div>
+
+      <ng-container [ngSwitch]='active'>
+        <div *ngSwitchCase='0' class='text-[14px] leading-[23px] text-gray-300 mt-[24px]'>
+          {{ offerByIdData.description }}
+        </div>
+        <div *ngSwitchCase='1' class='text-[14px] leading-[23px] text-gray-300 mt-[24px]'>
+
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf='false'>
+        <div class='text-[16px] font-semibold text-black mt-[40px] mb-[25px]'>Характеристики</div>
+
+        <div class='flex justify-between mb-[14px]'>
+          <div class='text-[14px] leading-[20px] font-semibold text-gray-300 opacity-[.7] flex-[40%]'>Материал</div>
+          <div class='text-[14px] leading-[20px] font-semibold text-gray-300'>ПНД/ПВД/ПП/ПВХ/ПА/ПЭТФ/ПК/АБС/</div>
+        </div>
+        <div class='flex justify-between mb-[14px]'>
+          <div class='text-[14px] leading-[20px] font-semibold text-gray-300 opacity-[.7] flex-[40%]'>Материал</div>
+          <div class='text-[14px] leading-[20px] font-semibold text-gray-300'>ПНД/ПВД/ПП/ПВХ/ПА/ПЭТФ/ПК/АБС/</div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</ion-content>

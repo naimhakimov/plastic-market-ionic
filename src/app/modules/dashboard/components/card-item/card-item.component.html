@@ -1,0 +1,28 @@
+<div class='relative'>
+  <div class='flex items-center absolute top-[6px] left-[6px]' *ngIf='false'>
+    <span
+      class='text-[12px] mr-[6px] leading-[14px] px-[4px] py-[2.5px] text-white rounded-[24px] bg-primary'>ТОП</span>
+    <span class='text-[12px] leading-[14px] px-[4px] py-[2.5px] text-white rounded-[24px] bg-blue'>10%</span>
+  </div>
+  <span class='icon w-[14px] h-[12px] bg-primary absolute top-[10px] right-[7px]'
+        [class.icon-heart]='!isFavourite(offer.id)'
+        [class.icon-star-full]='isFavourite(offer.id)'
+        (click)='addOrFavourite($event, offer.id)'
+  ></span>
+  <img class='rounded-t-[8px] w-full' src='/assets/01.png' alt=''>
+</div>
+
+<div class='py-[7px] px-[12px]' *ngIf='offer'>
+  <p class='font-medium	text-gray-strong text-[12px] leading-[14px]'>{{ offer.name }}</p>
+  <div class='flex items-center mt-[5px]'>
+    <span class='text-[14px] leading-[17px] font-semibold text-primary mr-[8px]'>{{ offer.amount}}</span>
+    <span class='text-[10px] leading-[12px] text-gray-strong line-through' *ngIf='false'>$25</span>
+  </div>
+  <div class='flex items-center justify-between'>
+    <p class='text-[12px] leading-[14px] font-medium text-gray'>{{ offer.city.name }}</p>
+    <span class='flex items-center'>
+      <span class='icon icon-user w-[9px] bg-gray'></span>
+      <span class='text-[12px] leading-[14px] font-medium text-gray ml-[3px]'>{{ 5 }}</span>
+    </span>
+  </div>
+</div>

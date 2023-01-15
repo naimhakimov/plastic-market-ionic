@@ -1,0 +1,9 @@
+ion-checkbox {
+  --background-checked: #8BCD50;
+  --border-color-checked: #8BCD50;
+}
+
+
+::ng-deep .input {
+  @apply pb-[7px] border-[#EBEBED];
+}

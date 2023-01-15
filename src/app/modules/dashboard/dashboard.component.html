@@ -4,9 +4,35 @@
 
 <ion-tabs>
   <ion-tab-bar slot="bottom">
-    <ion-tab-button *ngFor="let nav of navigation">
-      <span class="icon {{ nav.icon }}"></span>
-      <ion-label>{{ nav.name }}</ion-label>
+    <ion-tab-button tab='home'>
+      <span class="icon icon-home"></span>
+      <ion-label class='text-[10px] leading-[12px] text-gray'>Главная</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab='favourite'>
+      <span class="icon icon-favourite"></span>
+      <ion-label class='text-[10px] leading-[12px] text-gray'>Избранное</ion-label>
+    </ion-tab-button>
+    <ion-tab-button (click)='createModal()'>
+      <span class="icon icon-create"></span>
+      <ion-label class='text-[10px] leading-[12px] text-gray'>Создать</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab='message'>
+      <span class="icon icon-message-icon"></span>
+      <ion-label class='text-[10px] leading-[12px] text-gray'>Сообщения</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab='profile'>
+      <span class="icon icon-user"></span>
+      <ion-label class='text-[10px] leading-[12px] text-gray'>Профиль</ion-label>
     </ion-tab-button>
   </ion-tab-bar>
 </ion-tabs>
+
+<ion-menu contentId="main-content">
+  <div class='mt-[20px]'>
+    <div class='flex items-center px-[25px] py-[10px]' *ngFor='let i of [1,2,3,4,5]'>
+      <span class='mr-[17px] icon icon-catalog w-[22px] h-[22px] bg-black-200'></span>
+      <p class='mr-[17px] text-[14px] leading-[17px] text-black-100'>Полимерные отходы</p>
+      <span class='icon icon-arrow-right w-[13px] h-[13px] bg-black-100'></span>
+    </div>
+  </div>
+</ion-menu>

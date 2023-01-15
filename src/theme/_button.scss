@@ -10,4 +10,16 @@
   &-default {
     @apply text-primary;
   }
+
+  &-outline-primary {
+    @apply text-gray-strong border-2 border-primary border-solid;
+  }
+
+  &:disabled {
+    @apply opacity-[.5];
+  }
+
+  &-sm {
+    @apply py-[10.5px];
+  }
 }
