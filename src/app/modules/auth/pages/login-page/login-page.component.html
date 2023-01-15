@@ -3,6 +3,8 @@
     Вход
   </h1>
 
+  <div *ngIf='errorMessage' class='text-red-300'>{{ errorMessage }}</div>
+
   <form class='mt-[87px]' [formGroup]='form'>
     <div>
       <app-input
@@ -13,14 +15,19 @@
     </div>
 
     <div class='mt-[32px]'>
-      <app-input formControlName='password' placeholder='Пароль*' icon='icon-lock'></app-input>
+      <app-input formControlName='password' placeholder='Пароль*' icon='icon-lock' type='password'></app-input>
     </div>
 
     <p class='text-[12px] leading-[17px] text-primary text-right mt-[15px]'>
       Забыли пароль ?
     </p>
 
-    <button class='btn btn-primary mt-[48px]' type='button' (click)='onSubmit()' [disabled]='form.invalid'>Вход</button>
+    <button class='btn btn-primary mt-[48px] flex items-center justify-center'
+            type='button' (click)='onSubmit()'
+            [disabled]='form.invalid'>
+      Вход
+      <ion-spinner class='ml-[8px] h-[20px]' *ngIf='loading'></ion-spinner>
+    </button>
   </form>
 
   <p class='text-[12px] leading-[17px] text-primary text-center'>

@@ -15,6 +15,8 @@ export class CreateComponent implements OnInit {
   form!: FormGroup
   categories: any[] = []
   cities: any[] = []
+  images: File[] = []
+  loading = false
 
   constructor(
     private offerService: OfferService,
@@ -45,10 +47,14 @@ export class CreateComponent implements OnInit {
       })
   }
 
+  changeInputFile(event: any) {
+    console.log(event.target.files)
+  }
+
   private initForm(): void {
     this.form = this.fb.group({
       name: [null, Validators.required],
-      description: ['', [Validators.required, Validators.min(1), Validators.maxLength(8000)]],
+      description: ['', [Validators.min(1), Validators.maxLength(8000)]],
       amount: [null, Validators.required],
       category_id: [null, Validators.required],
       city_id: [null, Validators.required]
@@ -64,7 +70,24 @@ export class CreateComponent implements OnInit {
     await alert.present()
 
     const { data } = await alert.onWillDismiss()
+  }
 
-    console.log(data)
+  async cancel() {
+    await this.modalCtrl.dismiss()
+  }
+
+  onSubmit(): void {
+    this.loading = true
+
+    this.offerService.createOffer({
+      ...this.form.value,
+      city_id: this.form.value.city_id.id,
+      category_id: this.form.value.category_id.id,
+    }).subscribe(res => {
+      this.loading = false
+      if (res.error_code === 0) {
+        this.cancel()
+      }
+    })
   }
 }

@@ -1,13 +1,26 @@
 <ion-content>
   <form [formGroup]='form' class='py-[30px] px-[22px] bg-white'>
-    <h1 class='text-[20px] leading-[24px] text-primary font-bold mb-[37px]'>Создайте объявление</h1>
-
-    <div class='mb-[18px]'>
-      <app-input formControlName='name' icon='icon-title' placeholder='Название'></app-input>
+    <div class='flex justify-between items-center mb-[37px]'>
+      <h1 class='text-[20px] leading-[24px] text-primary font-bold'>Создайте объявление</h1>
+      <div (click)='cancel()' class='bg-primary flex justify-center items-center rounded-full p-[15px]'>
+        <span class='icon icon-close bg-white w-[14px] h-[14px]'></span>
+      </div>
     </div>
 
     <div class='mb-[18px]'>
-      <app-custom-select icon='icon-category' [items]='categories' label='Категория'></app-custom-select>
+      <app-input
+        formControlName='name'
+        icon='icon-title'
+        placeholder='Название'></app-input>
+    </div>
+
+    <div class='mb-[18px]'>
+      <app-custom-select
+        icon='icon-category'
+        [items]='categories'
+        label='Категория'
+        formControlName='category_id'
+      ></app-custom-select>
     </div>
 
     <div class='mb-[18px] border-b-[1px] border-gray-50 pb-[12px]'>
@@ -17,19 +30,8 @@
       </div>
 
       <div class='flex flex-wrap mx-[-4px] pt-[14px] mb-[18px]'>
-        <div class='p-[4px]'><img src='./assets/img/img.png' alt=''></div>
-        <div class='p-[4px]'><img src='./assets/img/img.png' alt=''></div>
-        <div class='p-[4px]'><img src='./assets/img/img.png' alt=''></div>
-        <div class='p-[4px]'><img src='./assets/img/img.png' alt=''></div>
-        <div class='p-[4px]'><img src='./assets/img/img.png' alt=''></div>
-        <div class='p-[4px]'><img src='./assets/img/img.png' alt=''></div>
-
-        <div class='p-[4px]'><img src='./assets/img/img.png' alt=''></div>
-        <div class='p-[4px]'><img src='./assets/img/img.png' alt=''></div>
-        <div class='p-[4px]'><img src='./assets/img/img.png' alt=''></div>
-        <div class='p-[4px]'><img src='./assets/img/img.png' alt=''></div>
-        <div class='p-[4px]'><img src='./assets/img/img.png' alt=''></div>
-        <div class='p-[4px]'><img src='./assets/img/img.png' alt=''></div>
+        <input #inputElement type='file' class='hidden' (change)='changeInputFile($event)'>
+        <div class='p-[4px]' (click)='inputElement.click()'><img src='./assets/img/img.png' alt=''></div>
       </div>
     </div>
 
@@ -44,17 +46,24 @@
 
     <div class='mb-[18px]'>
       <app-custom-select
+        formControlName='city_id'
         label='Местонахождение'
         icon='icon-location'
         [items]='cities'
       ></app-custom-select>
     </div>
 
-    <div class='mb-[18px] border-b-[1px] border-gray-50 pb-[16px] flex items-center'>
-
+    <div class='relative w-full'>
+      <app-input formControlName='amount'
+                 type='number'
+                 icon='icon-wallet'
+                 placeholder='Стоимость'>
+      </app-input>
     </div>
 
 
-    <button class='btn btn-primary'>Опубликовать</button>
+    <button [disabled]='loading || form.invalid' class='btn btn-primary mt-[26px] flex items-center justify-center' (click)='onSubmit()'>
+      Опубликовать  <ion-spinner color="light" class='ml-[8px] h-[20px]' *ngIf='loading'></ion-spinner>
+    </button>
   </form>
 </ion-content>

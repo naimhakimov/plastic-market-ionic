@@ -10,6 +10,8 @@ import { Router } from '@angular/router'
 })
 export class RegisterPageComponent implements OnInit {
   form!: FormGroup
+  errorMessage = ''
+  loading = false
 
   constructor(
     private authService: AuthService,
@@ -33,12 +35,19 @@ export class RegisterPageComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.loading = true
+    this.errorMessage = ''
     this.authService.register(this.form.value)
       .subscribe({
         next: (res) => {
-          this.form.reset()
-          localStorage.setItem('token', res.data.token)
-          this.router.navigate(['/dashboard'])
+          this.loading = false
+          if (res.error_code === 0) {
+            this.form.reset()
+            localStorage.setItem('token', res.data.token)
+            this.router.navigate(['/dashboard'])
+            return
+          }
+          this.errorMessage = res.message
         }
       })
   }

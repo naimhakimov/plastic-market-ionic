@@ -6,8 +6,7 @@ export class AuthGuard
   implements CanActivate, CanActivateChild {
   constructor(
     private router: Router
-  ) {
-  }
+  ) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,

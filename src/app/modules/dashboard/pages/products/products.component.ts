@@ -22,9 +22,16 @@ export class ProductsComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.getOffers(null);
+  }
+
+  getOffers(event: any): void {
     this.offerService.getOffers()
       .pipe(untilDestroyed(this))
-      .subscribe(res => this.offers = res.data.offers)
+      .subscribe(res => {
+        this.offers = res.data.offers
+        event?.target?.complete();
+      })
   }
 
   async openModal() {

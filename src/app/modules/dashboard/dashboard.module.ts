@@ -17,11 +17,13 @@ import { ProductsComponent } from './pages/products/products.component'
 import { SelectModule } from '../../shared/controls/select/select.module'
 import { CustomSelectModule, InputModule } from '../../shared'
 import { CreateComponent } from './components/create/create.component'
+import { AuthGuard } from '../../guards/auth.guard'
 
 const routes: Routes = [
   {
     path: '',
     component: DashboardComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',
@@ -30,19 +32,23 @@ const routes: Routes = [
       },
       {
         path: 'home',
-        component: HomePageComponent
+        component: HomePageComponent,
+        canActivateChild: [AuthGuard]
       },
       {
         path: 'favourite',
-        component: FavouritePageComponent
+        component: FavouritePageComponent,
+        canActivateChild: [AuthGuard]
       },
       {
         path: 'message',
-        component: MessageComponent
+        component: MessageComponent,
+        canActivateChild: [AuthGuard]
       },
       {
         path: 'profile',
-        component: ProfilePageComponent
+        component: ProfilePageComponent,
+        canActivateChild: [AuthGuard]
       }
     ]
   }

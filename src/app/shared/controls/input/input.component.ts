@@ -8,6 +8,8 @@ import {
 } from '@angular/core'
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms'
 
+type Type = 'text' | 'email' | 'password' | 'number'
+
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
@@ -23,7 +25,7 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms'
 export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder!: string
   @Input() icon!: string
-  @Input() type = 'text'
+  @Input() type: Type = 'text'
   @Output() changed = new EventEmitter<string>()
 
   value: string | null = null

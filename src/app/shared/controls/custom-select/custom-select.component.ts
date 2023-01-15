@@ -2,12 +2,6 @@ import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@ang
 import { NG_VALUE_ACCESSOR } from '@angular/forms'
 import { AlertController } from '@ionic/angular'
 
-export interface Item {
-  label: string;
-  type: 'radio',
-  value: string | number
-}
-
 @Component({
   selector: 'app-custom-select',
   templateUrl: './custom-select.component.html',
@@ -23,7 +17,7 @@ export interface Item {
 export class CustomSelectComponent implements OnInit {
   @Input() icon!: string
   @Input() label!: string
-  @Input() items: Item[] = []
+  @Input() items: any[] = []
   @Output() changed = new EventEmitter<any>()
 
   value: any
@@ -60,6 +54,12 @@ export class CustomSelectComponent implements OnInit {
     this.value = value
     this.propagateChange(value)
     this.changed.emit(value)
+    this.items = this.items.map((item: any) => {
+      return {
+        ...item,
+        checked: item?.value?.id === value?.id
+      }
+    })
   }
 
   async openSelect() {
@@ -72,7 +72,7 @@ export class CustomSelectComponent implements OnInit {
 
     const { data } = await alert.onWillDismiss()
 
-    this.onSelect(data.values)
+    this.onSelect(data?.values)
   }
 
   onBlur(): void {

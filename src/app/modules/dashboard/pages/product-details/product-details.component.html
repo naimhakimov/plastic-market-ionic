@@ -2,13 +2,7 @@
   <div class='relative'>
     <swiper [autoplay]='true' [keyboard]='true' [pagination]='true' [zoom]='true' [loop]='true'>
       <ng-template swiperSlide>
-        <img class='w-full' src='./assets/02.png' alt=''>
-      </ng-template>
-      <ng-template swiperSlide>
-        <img class='w-full' src='./assets/02.png' alt=''>
-      </ng-template>
-      <ng-template swiperSlide>
-        <img class='w-full' src='./assets/02.png' alt=''>
+        <img class='w-full' [src]="offerByIdData?.image ? offerByIdData.image : '/assets/02.png'" alt=''>
       </ng-template>
     </swiper>
 

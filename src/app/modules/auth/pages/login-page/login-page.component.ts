@@ -9,7 +9,9 @@ import { Router } from '@angular/router'
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
-  form!: FormGroup
+  public form!: FormGroup
+  public loading = false
+  public errorMessage = ''
 
   constructor(
     private authService: AuthService,
@@ -31,12 +33,20 @@ export class LoginPageComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.loading = true
+    this.errorMessage = ''
     this.authService.login(this.form.value)
       .subscribe(res => {
-        this.form.reset()
-        localStorage.setItem('user', JSON.stringify(res.data))
-        localStorage.setItem('token', res.data.token)
-        this.router.navigate(['/dashboard'])
+        this.loading = false
+
+        if (res.error_code === 0) {
+          this.form.reset()
+          localStorage.setItem('user', JSON.stringify(res.data))
+          localStorage.setItem('token', res.data.token)
+          this.router.navigate(['/dashboard'])
+          return
+        }
+        this.errorMessage = res.message
       })
   }
 }

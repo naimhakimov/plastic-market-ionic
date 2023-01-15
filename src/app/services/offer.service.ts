@@ -12,7 +12,7 @@ import { CityInterface } from '../models/city.interface'
   providedIn: 'root'
 })
 export class OfferService {
-  constructor(private _http: HttpClient) {
+  constructor(private readonly _http: HttpClient) {
   }
 
   offerId: BehaviorSubject<string> = new BehaviorSubject<string>('')
@@ -43,5 +43,13 @@ export class OfferService {
     return this._http
       .get<iResponse<{ cities: CityInterface[] }>>('/get_cities')
       .pipe(map(res => res.data.cities))
+  }
+
+  getOwnOffers(): Observable<iResponse<{ offers: Offer[] }>> {
+    return this._http.post<iResponse<{ offers: Offer[] }>>('/get_own_offers', {})
+  }
+
+  createOffer(offer: Offer): Observable<iResponse<Offer>> {
+    return this._http.post<iResponse<Offer>>('/create_offer', offer);
   }
 }

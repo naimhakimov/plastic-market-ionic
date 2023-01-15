@@ -20,15 +20,20 @@ export class DashboardComponent implements OnInit {
   }
 
   async createModal() {
-   const modal = await  this.modalCtrl.create({
+    const modal = await this.modalCtrl.create({
       component: CreateComponent
     })
-    modal.present();
+    await modal.present()
 
-    const { data, role } = await modal.onWillDismiss();
+    const { data, role } = await modal.onWillDismiss()
 
     if (role === 'confirm') {
       // this.message = `Hello, ${data}!`;
     }
+  }
+
+  logout(): void {
+    localStorage.clear();
+    this.router.navigate(['/auth/login'])
   }
 }
