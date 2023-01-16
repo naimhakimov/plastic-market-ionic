@@ -1,0 +1,32 @@
+<div class='bg-white'>
+  <div class='p-[22px] flex items-center justify-between'>
+      <span routerDirection='back' routerLink='/chat/list'
+            class='icon icon-arrow-right rotate-180 w-[5px] h-[13px] bg-gray-600 mr-[25px]'></span>
+    <img src='./assets/img/avatar.svg' alt=''>
+    <div class='flex-1 ml-[12px] text-[20px] leading-[24px] text-primary'>Фетисова Дарья</div>
+    <span class='icon icon-burger bg-black'></span>
+  </div>
+</div>
+
+
+<ion-content>
+  <div class='p-[22px] message-list'>
+    <div class='flex w-full mb-[16px]' *ngFor='let message of messages; let odd = odd' [class.justify-end]='odd'>
+      <div class="bg-primary py-[8px] pl-[16px] pr-[20px] rounded-[11px] {{ !odd && 'bg-primary-100' }}">
+        <div class='text-[14px] leading-[20px] font-medium text-black-300'>{{ message }}</div>
+        <div class='mt-[3px] text-[12px] leading-[16px] text-blue-900'>14:43</div>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<div class='bg-primary-50 h-[54] fixed bottom-0 w-full'>
+  <div class='px-[22px] flex items-center min-w-full'>
+        <textarea [(ngModel)]='message'
+                  class='bg-transparent h-[54px] resize-none outline-none border-none text-gray-strong mr-[12px] w-full py-[15px]'
+                  placeholder='Напишите сообщение'>
+        </textarea>
+    <span class='icon icon-send bg-black' (click)='sendMessage()'></span>
+  </div>
+</div>
+

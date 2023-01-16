@@ -35,13 +35,13 @@
       </div>
     </div>
 
-    <div class=' mb-[18px]'>
+    <div class='mb-[18px]'>
       <div class='relative border-b-[1px] border-gray-50 pb-[16px]'>
         <ion-textarea formControlName='description' class='custom-textarea' placeholder='Описание'></ion-textarea>
 
         <span class='icon icon-description absolute top-0 left-0 z-10 w-[20px] h-[20px]'></span>
       </div>
-      <div class='text-[12px] leading-[17px] text-gray-600 mt-[3px]'>{{ form.controls['description'].value.length }}/8000</div>
+      <div class='text-[12px] leading-[17px] text-gray-600 mt-[3px]'>{{ form.get('description')?.value?.length }}/8000</div>
     </div>
 
     <div class='mb-[18px]'>

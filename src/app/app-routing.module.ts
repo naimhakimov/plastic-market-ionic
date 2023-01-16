@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () =>
-      import('./modules/auth/auth.module').then((m) => m.AuthModule),
+      import('./modules/auth/auth.module').then((m) => m.AuthModule)
   },
   {
     path: 'dashboard',
@@ -14,13 +14,18 @@ const routes: Routes = [
     loadChildren: () =>
       import('./modules/dashboard/dashboard.module').then(
         (m) => m.DashboardModule
-      ),
+      )
+  },
+  {
+    path: 'chat',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./modules/chat/chat.module').then(m => m.ChatModule)
   },
   {
     path: '',
     redirectTo: 'dashboard',
-    pathMatch: 'full',
-  },
+    pathMatch: 'full'
+  }
   // {
   //   path: '*',
   //   redirectTo: 'dashboard',
@@ -30,6 +35,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}

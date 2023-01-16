@@ -179,4 +179,9 @@
     height: 9px;
   }
 
+  &-send {
+    -webkit-mask: url('../assets/icon/send.svg') no-repeat 50% 50%;
+    mask: url('../assets/icon/send.svg') no-repeat 50% 50%;
+  }
+
 }

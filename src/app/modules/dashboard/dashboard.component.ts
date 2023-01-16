@@ -9,6 +9,7 @@ import { Router } from '@angular/router'
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
+  accordions: string[] = ['Полимерные отходы', 'Полуфабрикаты (полимер)','Готовая продукция', 'Макулатура', 'Оборудование', 'Услуги', 'Рынок труда']
 
   constructor(private modalCtrl: ModalController, private router: Router) {
   }
