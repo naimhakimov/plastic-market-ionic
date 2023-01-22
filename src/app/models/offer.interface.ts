@@ -18,10 +18,21 @@ export interface Offer {
   name: string;
   amount: string;
   description: string;
-  image: string;
+  image: string[];
   disabled: string;
   city: CityInterface;
   category: Category;
   favorite: number;
 }
 
+export interface Type {
+  id: string | number
+  name: string
+}
+
+export interface OfferManual {
+  types: Type[]
+  meterial_types: Type[]
+  sort_types: Type[]
+  size_types: Type[]
+}

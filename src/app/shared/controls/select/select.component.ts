@@ -1,10 +1,6 @@
 import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core'
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
-
-export interface Items {
-  id: string;
-  name: string;
-}
+import { Type } from '../../../models/offer.interface'
 
 @Component({
   selector: 'app-select',
@@ -29,7 +25,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
 
   private propagateChange: any = () => {}
   private propagateTouched: any = () => {}
-  @Input() items: Items[] = []
+  @Input() items: Type[] = []
 
   constructor() { }
 

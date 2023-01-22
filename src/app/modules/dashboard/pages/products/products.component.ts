@@ -3,7 +3,7 @@ import { ModalController } from '@ionic/angular'
 import { FilterComponent } from '../../components/filter/filter.component'
 import { ProductDetailsComponent } from '../product-details/product-details.component'
 import { OfferService } from '../../../../services/offer.service'
-import { Offer } from '../../../../models/product.interface'
+import { Offer } from '../../../../models/offer.interface'
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy'
 
 @UntilDestroy()

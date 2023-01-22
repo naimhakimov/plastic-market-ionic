@@ -1,9 +1,11 @@
 <ion-content>
   <div class='relative'>
     <swiper [autoplay]='true' [keyboard]='true' [pagination]='true' [zoom]='true' [loop]='true'>
-      <ng-template swiperSlide>
-        <img class='w-full' [src]="offerByIdData?.image ? offerByIdData.image : '/assets/02.png'" alt=''>
-      </ng-template>
+      <ng-container *ngFor='let img of offerByIdData.image'>
+        <ng-template swiperSlide>
+          <img class='w-full' [src]="img" alt=''>
+        </ng-template>
+      </ng-container>
     </swiper>
 
     <div class='z-10 absolute top-[20px] left-[23px] right-[23px] flex justify-between items-center'>

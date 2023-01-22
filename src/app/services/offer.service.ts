@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http'
 import { BehaviorSubject, map, Observable } from 'rxjs'
 
 import { iResponse } from '../models/auth.interface'
-import { Offer } from '../models/product.interface'
+import { Offer, OfferManual } from '../models/offer.interface'
 import { UserInterface } from '../models/user.interface'
 import { CategoryInterface } from '../models/category.interface'
 import { CityInterface } from '../models/city.interface'
@@ -51,5 +51,9 @@ export class OfferService {
 
   createOffer(offer: Offer): Observable<iResponse<Offer>> {
     return this._http.post<iResponse<Offer>>('/create_offer', offer);
+  }
+
+  getOfferManuals(): Observable<iResponse<OfferManual>> {
+    return this._http.get<iResponse<OfferManual>>('/get_offer_manuals')
   }
 }

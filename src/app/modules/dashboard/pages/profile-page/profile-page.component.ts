@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core'
 import { OfferService } from '../../../../services/offer.service'
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy'
-import { Offer } from '../../../../models/product.interface'
+import { Offer } from '../../../../models/offer.interface'
 
 @UntilDestroy()
 @Component({

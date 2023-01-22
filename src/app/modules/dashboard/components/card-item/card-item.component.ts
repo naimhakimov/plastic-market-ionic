@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core'
-import { Offer } from '../../../../models/product.interface'
+import { Offer } from '../../../../models/offer.interface'
 import { OfferService } from '../../../../services/offer.service'
 import { first } from 'rxjs'
 
