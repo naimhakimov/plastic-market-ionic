@@ -4,9 +4,9 @@
   </ion-label>
   <ion-select (ionChange)="onChange($event)" [placeholder]='placeholder'>
     <ion-select-option
-      [value]='item.id'
+      [value]='item?.id'
       *ngFor='let item of items'>
-      {{ item.name }}
+      {{ item?.name }}
     </ion-select-option>
   </ion-select>
 </div>

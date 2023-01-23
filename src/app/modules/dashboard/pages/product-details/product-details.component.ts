@@ -3,7 +3,7 @@ import SwiperCore, { Autoplay, Keyboard, Pagination, Zoom } from 'swiper'
 import { ProductsComponent } from '../products/products.component'
 import { OfferService } from '../../../../services/offer.service'
 import { first, switchMap } from 'rxjs'
-import { Offer } from '../../../../models/product.interface'
+import { Offer } from '../../../../models/offer.interface'
 import { UserInterface } from '../../../../models/user.interface'
 
 SwiperCore.use([Autoplay, Keyboard, Pagination, Zoom])

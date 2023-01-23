@@ -12,12 +12,12 @@
       Фильтры
     </div>
 
-    <form class='mt-[38px]'>
+    <form [formGroup]='form' class='mt-[38px]'>
       <div class='mb-[22px]'>
         <app-select
-          placeholder='Самые дешевые '
+          formControlName='size_type_id'
           label='Сортировка'
-          [items]="[{id: '1', name: 'Самые дешевые'}]"
+          [items]="offerManuals.sort_types"
           (changed)='change($event)'>
         </app-select>
       </div>
@@ -42,27 +42,24 @@
 
       <div class='mb-[22px]'>
         <app-select
-          placeholder='Навалом'
           label='Тип'
-          [items]="[{id: '1', name: 'Навалом'}]"
+          [items]="offerManuals.types"
           (changed)='change($event)'>
         </app-select>
       </div>
 
       <div class='mb-[22px]'>
         <app-select
-          placeholder='20 тонн'
           label='Объем'
-          [items]="[{id: '1', name: '20 тонн'}]"
+          [items]="offerManuals.size_types"
           (changed)='change($event)'>
         </app-select>
       </div>
 
       <div class='mb-[22px]'>
         <app-select
-          placeholder='ПНД'
           label='Материал'
-          [items]="[{id: '1', name: 'ПНД'}]"
+          [items]="offerManuals.meterial_types"
           (changed)='change($event)'>
         </app-select>
       </div>
@@ -93,3 +90,4 @@
     </form>
   </div>
 </ion-content>
+
