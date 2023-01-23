@@ -50,6 +50,14 @@ export class OfferService {
   }
 
   createOffer(offer: Offer): Observable<iResponse<Offer>> {
-    return this._http.post<iResponse<Offer>>('/create_offer', offer);
+    return this._http.post<iResponse<Offer>>('/create_offer', offer)
+  }
+
+  uploadFile(formData: any) {
+    return this._http.post(`/upload?token=${localStorage.getItem('token')}`, formData)
+  }
+
+  uploadFileByUrl(body: { image: string }): Observable<{ image: string }> {
+    return this._http.post<{ image: string }>('/uploadimage', body)
   }
 }

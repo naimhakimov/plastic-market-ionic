@@ -48,7 +48,16 @@ export class CreateComponent implements OnInit {
   }
 
   changeInputFile(event: any) {
-    console.log(event.target.files)
+    const file = event.target.files[0]
+    let formData: any = new FormData()
+
+    formData.append('file', file, file.name)
+    formData.append("reportProgress", true)
+
+    console.log(formData)
+
+    this.offerService.uploadFile(formData)
+      .subscribe(console.warn)
   }
 
   private initForm(): void {
@@ -82,7 +91,7 @@ export class CreateComponent implements OnInit {
     this.offerService.createOffer({
       ...this.form.value,
       city_id: this.form.value.city_id.id,
-      category_id: this.form.value.category_id.id,
+      category_id: this.form.value.category_id.id
     }).subscribe(res => {
       this.loading = false
       if (res.error_code === 0) {

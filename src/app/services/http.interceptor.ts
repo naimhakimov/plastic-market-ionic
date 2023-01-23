@@ -17,7 +17,10 @@ export class HttpInterceptorCustom implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    const request = req.clone({
+
+    const request = req.body instanceof FormData ? req.clone({
+      url: environment.apiUrl + req.url
+    }) : req.clone({
       url: environment.apiUrl + req.url,
       body: {
         ...req.body,
