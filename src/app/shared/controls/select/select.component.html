@@ -2,11 +2,13 @@
   <ion-label position='stacked' class='text-[11px] leading-[13px] font-medium text-gray-400'>
     {{ label }}
   </ion-label>
-  <ion-select (ionChange)="onChange($event)" [placeholder]='placeholder'>
+  <ion-select (ionChange)="onChange($event)"
+              [value]='value'
+              [placeholder]='placeholder' (ionBlur)='onBlur()'>
     <ion-select-option
       [value]='item?.id'
       *ngFor='let item of items'>
-      {{ item?.name }}
+      {{ item?.name }} {{item?.id}}
     </ion-select-option>
   </ion-select>
 </div>

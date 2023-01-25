@@ -1,7 +1,7 @@
 <ion-content>
   <div class='relative'>
     <swiper [autoplay]='true' [keyboard]='true' [pagination]='true' [zoom]='true' [loop]='true'>
-      <ng-container *ngFor='let img of offerByIdData.image'>
+      <ng-container *ngFor='let img of offerByIdData?.image || []'>
         <ng-template swiperSlide>
           <img class='w-full' [src]="img" alt=''>
         </ng-template>
@@ -9,7 +9,7 @@
     </swiper>
 
     <div class='z-10 absolute top-[20px] left-[23px] right-[23px] flex justify-between items-center'>
-      <ion-nav-link router-direction='back' [component]='component'
+      <ion-nav-link router-direction='back' routerLink='/dashboard/home'
                     class='rotate-180 flex items-center justify-center bg-primary w-[44px] h-[44px] rounded-full hover:opacity-[.8]'>
         <span class='icon icon-arrow-right bg-white w-[7px] h-[15px]'></span>
       </ion-nav-link>

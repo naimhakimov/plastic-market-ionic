@@ -1,4 +1,14 @@
-import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core'
+import {
+  AfterViewChecked,
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  forwardRef,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core'
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
 import { Type } from '../../../models/offer.interface'
 
@@ -13,6 +23,7 @@ import { Type } from '../../../models/offer.interface'
       multi: true,
     },
   ],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SelectComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder!: string
@@ -20,19 +31,20 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   @Input() icon!: string
   @Output() changed = new EventEmitter<any>()
 
-  value: string | null = null
+  value = ''
   isDisabled!: boolean
 
   private propagateChange: any = () => {}
   private propagateTouched: any = () => {}
   @Input() items: Type[] = []
 
-  constructor() { }
+  constructor(private cd: ChangeDetectorRef) { }
 
   ngOnInit() {}
 
   writeValue(value: string): void {
     this.value = value
+    this.cd.detectChanges();
   }
 
   registerOnChange(fn: any): void {
@@ -51,6 +63,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     this.value = value.target?.value
     this.propagateChange(value.target?.value)
     this.changed.emit(value.target?.value)
+    this.cd.detectChanges();
   }
 
   onBlur(): void {

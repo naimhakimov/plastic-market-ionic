@@ -1,5 +1,5 @@
 <ion-content>
-  <ion-refresher slot="fixed" (ionRefresh)="getOffers($event)">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
@@ -22,18 +22,16 @@
 
     <div>
       <p class='text-primary text-[20px] leading-[24px] font-bold mt-[32px] mb-[27px]'>Полимерное сырье</p>
-      <ion-nav-link
-        router-direction='forward'
-        [component]='component'
-        *ngIf='offers.length; else loading'
+      <div
+        *ngIf='offers; else loading'
         class='grid grid-cols-2 grid-flow mx-[-5px]'>
         <app-card-item
           class='border-[1px] border-gray-light rounded-[10px] flex-1 m-[5px]'
           [offer]='item'
-          (click)='offerService.offerId.next(item.id)'
+          (click)='navigate(item)'
           *ngFor='let item of offers'>
         </app-card-item>
-      </ion-nav-link>
+      </div>
       <ng-template #loading>
         <ion-spinner class='text-center w-full'></ion-spinner>
       </ng-template>

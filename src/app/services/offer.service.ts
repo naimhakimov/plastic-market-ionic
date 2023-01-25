@@ -17,8 +17,8 @@ export class OfferService {
 
   offerId: BehaviorSubject<string> = new BehaviorSubject<string>('')
 
-  getOffers(): Observable<iResponse<{ offers: Offer[] }>> {
-    return this._http.post<iResponse<{ offers: Offer[] }>>('/get_offers', {})
+  getOffers(body?: any): Observable<iResponse<{ offers: Offer[] }>> {
+    return this._http.post<iResponse<{ offers: Offer[] }>>('/get_offers', body)
   }
 
   addToFavourite(offerId: string): Observable<any> {

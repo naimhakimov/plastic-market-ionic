@@ -9,7 +9,7 @@
         [class.icon-star-full]='isFavourite(offer.id)'
         (click)='addOrFavourite($event, offer.id)'
   ></span>
-  <img class='rounded-t-[8px] w-full max-h-[130px]' [src]="offer?.image ? offer.image[0] : '/assets/01.png'" alt=''>
+  <img *ngIf='offer?.image' class='rounded-t-[8px] w-full max-h-[130px]' [src]="offer.image ? offer.image[0] : '/assets/01.png'" alt=''>
 </div>
 
 <div class='py-[7px] px-[12px]' *ngIf='offer'>

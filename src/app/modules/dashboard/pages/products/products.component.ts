@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular'
+import { ModalController, NavController } from '@ionic/angular'
 import { FilterComponent } from '../../components/filter/filter.component'
-import { ProductDetailsComponent } from '../product-details/product-details.component'
 import { OfferService } from '../../../../services/offer.service'
 import { Offer } from '../../../../models/offer.interface'
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy'
+import { BehaviorSubject, switchMap } from 'rxjs'
 
 @UntilDestroy()
 @Component({
@@ -13,12 +13,13 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy'
   styleUrls: ['./products.component.scss'],
 })
 export class ProductsComponent implements OnInit {
-  component = ProductDetailsComponent;
-  offers: Offer[] = []
+  offers!: Offer[]
+  filter$ = new BehaviorSubject(null)
 
   constructor(
     private modalCtrl: ModalController,
-    public offerService: OfferService
+    public offerService: OfferService,
+    private navCtrl: NavController
   ) {}
 
   ngOnInit() {
@@ -26,10 +27,15 @@ export class ProductsComponent implements OnInit {
   }
 
   getOffers(event: any): void {
-    this.offerService.getOffers()
-      .pipe(untilDestroyed(this))
+    this.filter$
+      .pipe(
+        switchMap((filter) => {
+          return this.offerService.getOffers(filter)
+        }),
+        untilDestroyed(this)
+      )
       .subscribe(res => {
-        this.offers = res.data.offers
+        this.offers = res.data?.offers || [];
         event?.target?.complete();
       })
   }
@@ -43,8 +49,17 @@ export class ProductsComponent implements OnInit {
     const { data, role } = await modal.onWillDismiss();
 
     if (role === 'confirm') {
-      // this.message = `Hello, ${data}!`;
+      this.filter$.next(data)
     }
   }
 
+  refresh(event: any) {
+    this.filter$.next(null)
+    event?.target?.complete();
+  }
+
+  navigate(item: any) {
+    this.navCtrl.navigateBack('/dashboard/product-details')
+    this.offerService.offerId.next(item.id)
+  }
 }

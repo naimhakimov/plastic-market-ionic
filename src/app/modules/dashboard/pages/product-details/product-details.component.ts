@@ -14,7 +14,6 @@ SwiperCore.use([Autoplay, Keyboard, Pagination, Zoom])
   styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
-  component = ProductsComponent
   offerByIdData!: Offer & { user: UserInterface }
   active = 0
 

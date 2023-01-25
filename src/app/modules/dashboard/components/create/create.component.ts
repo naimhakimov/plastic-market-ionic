@@ -27,6 +27,7 @@ export class CreateComponent implements OnInit {
 
   ngOnInit() {
     this.initForm()
+
     forkJoin([
       this.offerService.getCategories(),
       this.offerService.getCountries()
@@ -68,17 +69,6 @@ export class CreateComponent implements OnInit {
       category_id: [null, Validators.required],
       city_id: [null, Validators.required]
     })
-  }
-
-  async openSelect() {
-    const alert = await this.alertController.create({
-      buttons: ['OK'],
-      inputs: this.categories
-    })
-
-    await alert.present()
-
-    const { data } = await alert.onWillDismiss()
   }
 
   async cancel() {
