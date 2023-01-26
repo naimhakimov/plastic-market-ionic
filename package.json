@@ -10,7 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "android": "ionic capacitor run android",
+    "android": "ionic capacitor build android",
     "prepare": "husky install"
   },
   "private": true,
@@ -45,6 +45,8 @@
     "@angular/compiler": "^15.0.0",
     "@angular/compiler-cli": "^15.0.0",
     "@angular/language-service": "^15.0.0",
+    "@awesome-cordova-plugins/http": "^6.3.0",
+    "@awesome-cordova-plugins/core": "^6.3.0",
     "@capacitor/cli": "4.6.1",
     "@ionic/angular-toolkit": "^6.0.0",
     "@types/jasmine": "~4.0.0",

@@ -13,7 +13,7 @@
         [class.active]='active === idx' (click)='active = idx'>{{i}}</div>
     </div>
 
-    <div class='mt-[34px]' *ngIf='ownOffers.length; else loading'>
+    <div class='mt-[34px]' *ngIf='ownOffers?.length; else loading'>
       <div class='mb-[14px]' *ngFor='let offer of ownOffers'>
         <div class='bg-green-100 rounded-[12px] flex items-center justify-center'>
           <img class='max-w-[330px] max-h-[170px] object-cover' [src]="offer?.image ? offer.image : './assets/03.png'"

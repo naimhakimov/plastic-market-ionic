@@ -10,6 +10,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { HttpInterceptorCustom } from './services/http.interceptor'
 import { AuthGuard } from './guards/auth.guard'
 import { AuthService } from './services/auth.service'
+import { HTTP } from '@awesome-cordova-plugins/http/ngx'
 
 @NgModule({
   declarations: [AppComponent],
@@ -30,7 +31,8 @@ import { AuthService } from './services/auth.service'
       multi: true
     },
     AuthGuard,
-    AuthService
+    AuthService,
+    HTTP
   ],
   bootstrap: [AppComponent]
 })

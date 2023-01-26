@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core'
-import { HttpClient } from '@angular/common/http'
 import { BehaviorSubject, map, Observable } from 'rxjs'
 
 import { iResponse } from '../models/auth.interface'
@@ -7,18 +6,19 @@ import { Offer, OfferManual } from '../models/offer.interface'
 import { UserInterface } from '../models/user.interface'
 import { CategoryInterface } from '../models/category.interface'
 import { CityInterface } from '../models/city.interface'
+import { HttpService } from './http.service'
 
 @Injectable({
   providedIn: 'root'
 })
 export class OfferService {
-  constructor(private readonly _http: HttpClient) {
+  constructor(private readonly _http: HttpService) {
   }
 
   offerId: BehaviorSubject<string> = new BehaviorSubject<string>('')
 
   getOffers(body?: any): Observable<iResponse<{ offers: Offer[] }>> {
-    return this._http.post<iResponse<{ offers: Offer[] }>>('/get_offers', body)
+    return this._http.post('/get_offers', body)
   }
 
   addToFavourite(offerId: string): Observable<any> {
@@ -30,27 +30,27 @@ export class OfferService {
   }
 
   getOffer(offerId: string): Observable<iResponse<{ offer: Offer & { user: UserInterface } }>> {
-    return this._http.post<iResponse<{ offer: Offer & { user: UserInterface } }>>('/get_offer', { id: offerId })
+    return this._http.post('/get_offer', { id: offerId })
   }
 
   getCategories(): Observable<CategoryInterface[]> {
     return this._http
-      .get<iResponse<{ categories: CategoryInterface[] }>>('/get_categories')
+      .get('/get_categories')
       .pipe(map(res => res.data.categories))
   }
 
   getCountries(): Observable<CityInterface[]> {
     return this._http
-      .get<iResponse<{ cities: CityInterface[] }>>('/get_cities')
+      .get('/get_cities')
       .pipe(map(res => res.data.cities))
   }
 
   getOwnOffers(): Observable<iResponse<{ offers: Offer[] }>> {
-    return this._http.post<iResponse<{ offers: Offer[] }>>('/get_own_offers', {})
+    return this._http.post('/get_own_offers', {})
   }
 
   createOffer(offer: Offer): Observable<iResponse<Offer>> {
-    return this._http.post<iResponse<Offer>>('/create_offer', offer)
+    return this._http.post('/create_offer', offer)
   }
 
   uploadFile(formData: any) {
@@ -58,10 +58,10 @@ export class OfferService {
   }
 
   uploadFileByUrl(body: { image: string }): Observable<{ image: string }> {
-    return this._http.post<{ image: string }>('/uploadimage', body)
+    return this._http.post('/uploadimage', body)
   }
 
   getOfferManuals(): Observable<iResponse<OfferManual>> {
-    return this._http.get<iResponse<OfferManual>>('/get_offer_manuals')
+    return this._http.get('/get_offer_manuals')
   }
 }
