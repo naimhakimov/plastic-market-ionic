@@ -1,11 +1,10 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import { ModalController } from '@ionic/angular'
 import { OfferService } from '../../../../services/offer.service'
-import { delay, first, forkJoin } from 'rxjs'
+import { first, forkJoin } from 'rxjs'
 import { OfferManual } from '../../../../models/offer.interface'
 import { FormBuilder, FormGroup } from '@angular/forms'
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy'
-import { DEBUG } from '@angular/compiler-cli/src/ngtsc/logging/src/console_logger'
 
 @UntilDestroy()
 @Component({
@@ -30,7 +29,6 @@ export class FilterComponent implements OnInit {
     private readonly modalCtrl: ModalController,
     private readonly offerService: OfferService,
     private fb: FormBuilder,
-    private cd: ChangeDetectorRef
   ) {}
 
   cancel() {
@@ -52,9 +50,9 @@ export class FilterComponent implements OnInit {
       })
   }
 
-  async getOfferManuals() {
+  getOfferManuals() {
     this.offerService.getOfferManuals()
-      .pipe(delay(3000), first())
+      .pipe(first())
       .subscribe(res => {
         this.offerManuals = res.data
       })

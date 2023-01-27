@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 import { ModalController, NavController } from '@ionic/angular'
 import { FilterComponent } from '../../components/filter/filter.component'
 import { OfferService } from '../../../../services/offer.service'
@@ -10,7 +10,7 @@ import { BehaviorSubject, switchMap } from 'rxjs'
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.scss'],
+  styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
   offers!: Offer[]
@@ -20,10 +20,11 @@ export class ProductsComponent implements OnInit {
     private modalCtrl: ModalController,
     public offerService: OfferService,
     private navCtrl: NavController
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
-    this.getOffers(null);
+    this.getOffers(null)
   }
 
   getOffers(event: any): void {
@@ -35,18 +36,18 @@ export class ProductsComponent implements OnInit {
         untilDestroyed(this)
       )
       .subscribe(res => {
-        this.offers = res.data?.offers || [];
-        event?.target?.complete();
+        this.offers = res.data?.offers || []
+        event?.target?.complete()
       })
   }
 
   async openModal() {
     const modal = await this.modalCtrl.create({
-      component: FilterComponent,
-    });
-    modal.present();
+      component: FilterComponent
+    })
+    modal.present()
 
-    const { data, role } = await modal.onWillDismiss();
+    const { data, role } = await modal.onWillDismiss()
 
     if (role === 'confirm') {
       this.filter$.next(data)
@@ -55,11 +56,13 @@ export class ProductsComponent implements OnInit {
 
   refresh(event: any) {
     this.filter$.next(null)
-    event?.target?.complete();
+    event?.target?.complete()
   }
 
   navigate(item: any) {
-    this.navCtrl.navigateBack('/dashboard/product-details')
     this.offerService.offerId.next(item.id)
+    this.navCtrl.navigateBack('/dashboard/product-details', {
+      animationDirection: 'back'
+    })
   }
 }

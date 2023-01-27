@@ -30,8 +30,14 @@
       </div>
 
       <div class='flex flex-wrap mx-[-4px] pt-[14px] mb-[18px]'>
+        <div class='p-[4px]' *ngFor='let image of images'>
+          <img class='rounded-[10px] w-[48px] h-[48px] object-cover'
+               [src]="'https://plastic-market-app.ru/img/' + image" alt=''>
+        </div>
         <input #inputElement type='file' class='hidden' (change)='changeInputFile($event)'>
-        <div class='p-[4px]' (click)='inputElement.click()'><img src='./assets/img/img.png' alt=''></div>
+        <div class='p-[4px]' (click)='inputElement.click()'>
+          <img src='./assets/img/img.png' alt=''>
+        </div>
       </div>
     </div>
 
@@ -53,11 +59,43 @@
       ></app-custom-select>
     </div>
 
-    <div class='relative w-full'>
+    <div class='relative w-full mb-[18px]'>
       <app-input formControlName='amount'
                  type='number'
                  icon='icon-wallet'
                  placeholder='Стоимость'>
+      </app-input>
+    </div>
+
+    <div class='mb-[18px]'>
+      <app-custom-select
+        formControlName='meterial_type_id'
+        label='Материал'
+        [items]='offerManuals.meterial_types'
+      ></app-custom-select>
+    </div>
+
+    <div class='mb-[18px]'>
+      <app-custom-select
+        formControlName='type_id'
+        label='Тип'
+        [items]='offerManuals.types'
+      ></app-custom-select>
+    </div>
+
+    <div class='mb-[18px]'>
+      <app-custom-select
+        formControlName='size_type_id'
+        label='Объем'
+        [items]='offerManuals.types'
+      ></app-custom-select>
+    </div>
+
+    <div>
+      <app-input
+        icon='icon-w'
+        formControlName='size'
+        placeholder='Размер'>
       </app-input>
     </div>
 
