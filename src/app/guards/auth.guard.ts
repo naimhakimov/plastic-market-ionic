@@ -15,7 +15,7 @@ export class AuthGuard
     if (localStorage.getItem('token')) {
       return true
     }
-    this.router.navigate(['/auth/login'])
+    this.router.navigate(['/auth/welcome'])
     return false
   }
 

@@ -16,7 +16,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     if (!localStorage.getItem('token')) {
-      this.router.navigate(['/auth/login'])
+      this.router.navigate(['/auth/welcome'])
     }
   }
 
@@ -35,6 +35,6 @@ export class DashboardComponent implements OnInit {
 
   logout(): void {
     localStorage.clear();
-    this.router.navigate(['/auth/login'])
+    this.router.navigate(['/auth/welcome'])
   }
 }
