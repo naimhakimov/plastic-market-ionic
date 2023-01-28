@@ -3,7 +3,7 @@ import { AlertController, ModalController } from '@ionic/angular'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { OfferService } from '../../../../services/offer.service'
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy'
-import { forkJoin } from 'rxjs'
+import { first, forkJoin } from 'rxjs'
 
 @UntilDestroy()
 @Component({
@@ -15,8 +15,13 @@ export class CreateComponent implements OnInit {
   form!: FormGroup
   categories: any[] = []
   cities: any[] = []
-  images: File[] = []
+  images: string[] = []
   loading = false
+  offerManuals: any = {
+    types: [],
+    size_types: [] ,
+    meterial_types: [],
+  }
 
   constructor(
     private offerService: OfferService,
@@ -27,6 +32,7 @@ export class CreateComponent implements OnInit {
 
   ngOnInit() {
     this.initForm()
+    this.getOfferManuals()
 
     forkJoin([
       this.offerService.getCategories(),
@@ -48,6 +54,30 @@ export class CreateComponent implements OnInit {
       })
   }
 
+  getOfferManuals() {
+    this.offerService.getOfferManuals()
+      .pipe(first())
+      .subscribe(({ data }) => {
+        this.offerManuals.types = data.types.map(item => ({
+          label: item.name,
+          value: item,
+          type: 'radio'
+        }))
+
+        this.offerManuals.size_types = data.size_types.map(item => ({
+          label: item.name,
+          value: item,
+          type: 'radio'
+        }))
+
+        this.offerManuals.meterial_types = data.meterial_types.map(item => ({
+          label: item.name,
+          value: item,
+          type: 'radio'
+        }))
+      })
+  }
+
   changeInputFile(event: any) {
     const file = event.target.files[0]
     let formData: any = new FormData()
@@ -55,10 +85,11 @@ export class CreateComponent implements OnInit {
     formData.append('file', file, file.name)
     formData.append("reportProgress", true)
 
-    console.log(formData)
-
     this.offerService.uploadFile(formData)
-      .subscribe(console.warn)
+      .pipe(first())
+      .subscribe((res: any) => {
+        this.images.push(res?.image)
+      })
   }
 
   private initForm(): void {
@@ -67,7 +98,11 @@ export class CreateComponent implements OnInit {
       description: ['', [Validators.min(1), Validators.maxLength(8000)]],
       amount: [null, Validators.required],
       category_id: [null, Validators.required],
-      city_id: [null, Validators.required]
+      city_id: [null, Validators.required],
+      type_id: [null, Validators.required],
+      size_type_id: [null, Validators.required],
+      size: [null, Validators.required],
+      meterial_type_id: [null, Validators.required]
     })
   }
 
@@ -76,12 +111,14 @@ export class CreateComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.loading = true
-
     this.offerService.createOffer({
       ...this.form.value,
+      image: this.images,
       city_id: this.form.value.city_id.id,
-      category_id: this.form.value.category_id.id
+      category_id: this.form.value.category_id.id,
+      type_id: this.form.value.type_id.id,
+      size_type_id: this.form.value.size_type_id.id,
+      meterial_type_id: this.form.value .meterial_type_id.id
     }).subscribe(res => {
       this.loading = false
       if (res.error_code === 0) {

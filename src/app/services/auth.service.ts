@@ -9,8 +9,7 @@ import { UserInterface } from '../models/user.interface'
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private _http: HttpClient) {
-  }
+  constructor(private _http: HttpClient) {}
 
   login(body: LoginInterface): Observable<iResponse<UserInterface>> {
     return this._http.post<iResponse<UserInterface>>('/login', body)

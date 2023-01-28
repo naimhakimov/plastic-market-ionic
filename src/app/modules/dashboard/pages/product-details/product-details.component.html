@@ -1,9 +1,9 @@
 <ion-content>
   <div class='relative'>
     <swiper [autoplay]='true' [keyboard]='true' [pagination]='true' [zoom]='true' [loop]='true'>
-      <ng-container *ngFor='let img of offerByIdData?.image || []'>
+      <ng-container *ngFor='let img of offerByIdData?.image'>
         <ng-template swiperSlide>
-          <img class='w-full' [src]="img" alt=''>
+          <img class='w-full' [src]="'https://plastic-market-app.ru/img/' + img" alt=''>
         </ng-template>
       </ng-container>
     </swiper>
