@@ -1,7 +1,9 @@
 <ion-content>
   <div class='p-[22px]'>
+    <h1 class='text-primary text-[20px] leading-[24px] font-bold'>Избранное</h1>
     <ng-container *ngIf='favourites?.length'>
       <app-card-item
+        (click)='navigate(item)'
         class='border-[1px] border-gray-light rounded-[10px] flex-1 m-[5px]'
         *ngFor='let item of favourites'
         [offer]='item'>
