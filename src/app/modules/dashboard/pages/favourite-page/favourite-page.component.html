@@ -1,3 +1,11 @@
-<p>
-  favourite-page works!
-</p>
+<ion-content>
+  <div class='p-[22px]'>
+    <ng-container *ngIf='favourites?.length'>
+      <app-card-item
+        class='border-[1px] border-gray-light rounded-[10px] flex-1 m-[5px]'
+        *ngFor='let item of favourites'
+        [offer]='item'>
+      </app-card-item>
+    </ng-container>
+  </div>
+</ion-content>

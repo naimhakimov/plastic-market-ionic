@@ -60,7 +60,8 @@ const routes: Routes = [
     ProfilePageComponent,
     ProductDetailsComponent,
     FilterComponent,
-    ProductsComponent
+    ProductsComponent,
+    FavouritePageComponent
   ],
   imports: [
     CommonModule,

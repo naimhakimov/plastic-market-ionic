@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core'
 import SwiperCore, { Autoplay, Keyboard, Pagination, Zoom } from 'swiper'
-import { ProductsComponent } from '../products/products.component'
 import { OfferService } from '../../../../services/offer.service'
-import { first, of, switchMap } from 'rxjs'
+import { of, switchMap } from 'rxjs'
 import { Offer } from '../../../../models/offer.interface'
 import { UserInterface } from '../../../../models/user.interface'
-import { Router } from '@angular/router'
 import { NavController } from '@ionic/angular'
+import { FavouriteService } from '../../../../services/favourite.service'
 
 SwiperCore.use([Autoplay, Keyboard, Pagination, Zoom])
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.scss']
+  styleUrls: ['./product-details.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductDetailsComponent implements OnInit {
   offerByIdData!: Offer & { user: UserInterface }
@@ -21,8 +21,9 @@ export class ProductDetailsComponent implements OnInit {
 
   constructor(
     private offerService: OfferService,
-    private navCtrl: NavController
-
+    private navCtrl: NavController,
+    public readonly favouriteService: FavouriteService,
+    private cd: ChangeDetectorRef
   ) {
   }
 
@@ -38,10 +39,21 @@ export class ProductDetailsComponent implements OnInit {
     ).subscribe(res => {
       if (res?.data.offer) {
         this.offerByIdData = res.data.offer
+        this.cd.detectChanges();
       } else {
         this.navCtrl.navigateBack('/dashboard/home')
       }
     })
   }
 
+  generateRatingArray(rating: number): string[] {
+    const ratings = ['icon-star', 'icon-star', 'icon-star', 'icon-star', 'icon-star']
+    ratings.length = 5 - rating
+    for (let i = 0; i < rating; i++) {
+      ratings
+        .unshift('icon-star-full')
+    }
+
+    return ratings
+  }
 }

@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http'
 import { Injectable } from '@angular/core'
 import { BehaviorSubject, map, Observable } from 'rxjs'
 
@@ -65,5 +65,10 @@ export class OfferService {
 
   getOfferManuals(): Observable<iResponse<OfferManual>> {
     return this._http.get<any>('/get_offer_manuals')
+  }
+
+  getFavoriteOffers(): Observable<Offer[]> {
+    return this._http.post<iResponse<{ offers: Offer[] }>>('/get_favorite_offers', {})
+      .pipe(map(res => res.data.offers))
   }
 }

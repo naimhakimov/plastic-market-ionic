@@ -80,6 +80,11 @@
     mask: url('../assets/icons/heart.svg') no-repeat 50% 50%;
   }
 
+  &-heart-full {
+    -webkit-mask: url('../assets/icons/heart-full.svg') no-repeat 50% 50%;
+    mask: url('../assets/icons/heart-full.svg') no-repeat 50% 50%;
+  }
+
   &-catalog {
     -webkit-mask: url('../assets/icons/catalog.svg') no-repeat 50% 50%;
     mask: url('../assets/icons/catalog.svg') no-repeat 50% 50%;

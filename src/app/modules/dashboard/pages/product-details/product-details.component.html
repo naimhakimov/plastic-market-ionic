@@ -1,5 +1,5 @@
 <ion-content>
-  <div class='relative'>
+  <div class='relative' *ngIf='offerByIdData'>
     <swiper [autoplay]='true' [keyboard]='true' [pagination]='true' [zoom]='true' [loop]='true'>
       <ng-container *ngFor='let img of offerByIdData?.image'>
         <ng-template swiperSlide>
@@ -13,7 +13,11 @@
                     class='rotate-180 flex items-center justify-center bg-primary w-[44px] h-[44px] rounded-full hover:opacity-[.8]'>
         <span class='icon icon-arrow-right bg-white w-[7px] h-[15px]'></span>
       </ion-nav-link>
-      <span class='icon icon-heart bg-primary'></span>
+      <span
+        [class.icon-heart]='!favouriteService.isFavourite(offerByIdData.id)'
+        [class.icon-heart-full]='favouriteService.isFavourite(offerByIdData.id)'
+        (click)='favouriteService.addOrFavourite($event, offerByIdData.id)'
+        class='icon bg-primary'></span>
     </div>
 
     <div class='px-[22px] pt-[25px] pb-[15px]' *ngIf='offerByIdData'>
@@ -28,11 +32,9 @@
       <div class='mt-[4px] text-[14px] leading-[17px] font-medium text-gray'
            *ngIf='offerByIdData?.city'>{{ offerByIdData.city.name }}</div>
       <div class='mt-[8px] flex'>
-        <span class='icon icon-star-full ml-[4px] w-[16px]'></span>
-        <span class='icon icon-star-full ml-[4px] w-[16px]'></span>
-        <span class='icon icon-star-full ml-[4px] w-[16px]'></span>
-        <span class='icon icon-star-full ml-[4px] w-[16px]'></span>
-        <span class='icon icon-star ml-[4px] w-[16px]'></span>
+        <span class='icon {{ rating }} ml-[4px] w-[16px]'
+              *ngFor='let rating of generateRatingArray(offerByIdData.user.rating)'>
+        </span>
       </div>
 
       <div class='mt-[5px] text-[14px] leading-[24px] text-primary'>На постоянной основе</div>
@@ -49,7 +51,7 @@
           </div>
           <div class='flex ml-[8px] items-center'>
             <span class='icon icon-star-full bg-orange-100 w-[16px] mr-[6px]'></span>
-            <span class='mr-[8px] text-[14px] leading-[24px] text-black'>{{ offerByIdData.user.rating }}</span>
+            <span class='mr-[8px] text-[14px] leading-[24px] text-black'>{{ offerByIdData.user?.rating }}</span>
             <span
               class='text-[14px] leading-[17px] text-gray-200'>На Plastic market с {{ offerByIdData.user.created_at | date: 'dd.MM.yyy' }}</span>
           </div>

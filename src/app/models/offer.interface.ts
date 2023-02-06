@@ -1,4 +1,5 @@
 import { CityInterface } from './city.interface'
+import { UserInterface } from './user.interface'
 
 export interface Category {
   id: string;
@@ -11,6 +12,7 @@ export interface Category {
 export interface Offer {
   id: string;
   user_id: string;
+  user?: UserInterface;
   category_id: string;
   city_id: string;
   region_id: string;
