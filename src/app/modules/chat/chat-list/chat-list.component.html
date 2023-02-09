@@ -1,6 +1,26 @@
 <ion-content>
   <div class='bg-white p-[22px]'>
-    <p>chat list is works</p>
-    <button class='btn btn-primary' routerLink='/chat/12'>Go to random chat</button>
+    <div class='flex items-center'>
+      <div routerLink='/dashboard' class='bg-primary flex justify-center items-center rounded-full p-[10px] mr-[16px]'>
+        <span class='icon icon-arrow-right rotate-180 bg-white w-[14px] h-[14px]'></span>
+      </div>
+      <h1 class='text-primary text-[20px] leading-[24px] font-bold'>Список чатов</h1>
+    </div>
+    <ng-container *ngIf='chats$ | async as chats'>
+      <div class='mt-[20px] mx-[-22px]'>
+        <div *ngFor='let chat of chats'
+            (click)='navigate(chat)'
+             class='border-b-[1px] first:border-t-[1px] border-gray-50 py-[10px] px-[22px] flex'>
+          <img class='w-[30px] h-[30px] rounded-full object-cover' src='./assets/img/no-avatar.webp' alt=''>
+          <div class='ml-[10px] w-full'>
+            <div class='text-[16px] leading-[20px] font-bold text-gray-300'>{{ chat?.user?.name }}</div>
+            <div class='flex justify-between'>
+              <span class='mt-[4px] text-[14px] leading-[17px] font-medium text-gray'>{{ chat?.last_message?.message }}</span>
+              <span class='text-[14px] leading-[17px] text-gray-200'>{{ chat?.last_message?.created_at | date:'dd.MM.YYYY' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </ion-content>

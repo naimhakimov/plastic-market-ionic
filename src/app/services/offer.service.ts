@@ -8,15 +8,16 @@ import { UserInterface } from '../models/user.interface'
 import { CategoryInterface } from '../models/category.interface'
 import { CityInterface } from '../models/city.interface'
 import { HttpService } from './http.service'
+import { Chat, Data, Message } from '../models/chat.interface'
 
 @Injectable({
   providedIn: 'root'
 })
 export class OfferService {
-  constructor(private readonly _http: HttpClient) {
-  }
+  constructor(private readonly _http: HttpClient) {}
 
   offerId: BehaviorSubject<string> = new BehaviorSubject<string>('')
+  currentChat$: BehaviorSubject<UserInterface | null> = new BehaviorSubject<UserInterface | null>(null)
   isCreated = false
 
   getOffers(body?: any): Observable<iResponse<{ offers: Offer[] }>> {
@@ -70,5 +71,25 @@ export class OfferService {
   getFavoriteOffers(): Observable<Offer[]> {
     return this._http.post<iResponse<{ offers: Offer[] }>>('/get_favorite_offers', {})
       .pipe(map(res => res.data.offers))
+  }
+
+  getChats(): Observable<Chat[]> {
+    return this._http.post<iResponse<Data>>('/get_chats', {}).pipe(map(res => res.data.chats))
+  }
+
+  getMessages(chat_id: string): Observable<Message[]> {
+    return this._http.post<iResponse<{ messages: Message[] }>>('/get_messages', { chat_id })
+      .pipe(map(res => res.data.messages.sort((a, b) => {
+        // @ts-ignore
+        return new Date(a.created_at) - new Date(b.created_at)
+      })))
+  }
+
+  sendProp(): Observable<any> {
+    return this._http.post('/send_prop', {})
+  }
+
+  sendMessage(body: { chat_id: string, message: string }): Observable<iResponse<any>> {
+    return this._http.post<iResponse<any>>('/send_message', body)
   }
 }
