@@ -1,3 +1,9 @@
 .message-list {
-  height: calc(100vh - 125px);
+  //height: calc(100vh - 125px);
+}
+
+:host {
+  ion-content {
+    padding-bottom: 25px;
+  }
 }

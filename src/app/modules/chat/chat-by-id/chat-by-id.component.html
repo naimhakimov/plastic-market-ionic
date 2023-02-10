@@ -10,11 +10,12 @@
 
 
 <ion-content>
-  <div class='p-[22px] message-list'>
-    <div class='flex w-full mb-[16px]' *ngFor='let message of messages' [class.justify-end]="message?.direction === 'to'">
-      <div class="bg-primary py-[8px] pl-[16px] pr-[20px] rounded-[11px] {{ 'bg-primary-100' }}">
+  <div class='p-[22px] pb-[50px] message-list'>
+    <div class='flex w-full mb-[16px]' *ngFor='let message of messages'
+         [class.justify-end]="message?.author_id === currentUser.id">
+      <div class="py-[8px] pl-[16px] pr-[20px] rounded-[11px] bg-primary-100">
         <div class='text-[14px] leading-[20px] font-medium text-black-300'>{{ message?.message }}</div>
-        <div class='mt-[3px] text-[12px] leading-[16px] text-blue-900'>{{ message?.created_at | date:'HH:mm' }}</div>
+        <div class='mt-[3px] text-[12px] leading-[16px] text-blue-900 flex justify-end w-full'>{{ message?.created_at | date:'HH:mm' }}</div>
         </div>
       </div>
     </div>

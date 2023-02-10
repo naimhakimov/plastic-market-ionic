@@ -56,4 +56,9 @@ export class ProductDetailsComponent implements OnInit {
 
     return ratings
   }
+
+  goToChat(offerByIdData: Offer & { user: UserInterface }): void {
+    this.offerService.currentChat$.next(offerByIdData.user)
+    this.navCtrl.navigateForward('/chat/new')
+  }
 }

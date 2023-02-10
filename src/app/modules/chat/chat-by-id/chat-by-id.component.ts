@@ -1,26 +1,29 @@
-import { Component, ViewChild } from '@angular/core'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewChild } from '@angular/core'
 import { OfferService } from '../../../services/offer.service'
 import { ActivatedRoute } from '@angular/router'
 import { first } from 'rxjs'
 import { Message } from '../../../models/chat.interface'
 import { IonContent } from '@ionic/angular'
+import { UserInterface } from '../../../models/user.interface'
 
 @Component({
   selector: 'app-chat-by-id',
   templateUrl: './chat-by-id.component.html',
-  styleUrls: ['./chat-by-id.component.scss']
+  styleUrls: ['./chat-by-id.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatByIdComponent {
   messages: Message[] = []
   message: string = ''
   chatId!: string
-
-  @ViewChild(IonContent) content!: IonContent;
+  currentUser: UserInterface = JSON.parse(localStorage.getItem('user') || '')
+  @ViewChild(IonContent) content!: IonContent
 
 
   constructor(
     public readonly offerService: OfferService,
-    private readonly route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    private cdf: ChangeDetectorRef
   ) {
   }
 
@@ -30,8 +33,8 @@ export class ChatByIdComponent {
       .pipe(first())
       .subscribe(messages => {
         this.messages = messages
-        console.log(this.content)
-        this.content.scrollToBottom(500)
+        this.content.scrollToBottom(10)
+        this.cdf.detectChanges()
       })
   }
 
@@ -48,13 +51,15 @@ export class ChatByIdComponent {
           created_at.setHours(created_at.getHours() - 2)
           const message: Message = {
             created_at: created_at.toISOString(),
-            message: this.message
+            direction: 'to',
+            message: this.message,
+            author_id: this.currentUser.id
           }
           this.messages.push(message)
           this.message = ''
           this.content.scrollToBottom(500)
+          this.cdf.detectChanges()
         }
       })
-
   }
 }

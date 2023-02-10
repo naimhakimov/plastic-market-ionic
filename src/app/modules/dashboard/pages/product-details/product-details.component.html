@@ -1,6 +1,6 @@
 <ion-content>
   <div class='relative' *ngIf='offerByIdData'>
-    <swiper [autoplay]='true' [keyboard]='true' [pagination]='true' [zoom]='true' [loop]='true'>
+    <swiper [keyboard]='true' [pagination]='true' [zoom]='true'>
       <ng-container *ngFor='let img of offerByIdData?.image'>
         <ng-template swiperSlide>
           <img class='w-full' [src]="'https://plastic-market-app.ru/img/' + img" alt=''>
@@ -51,7 +51,7 @@
           </div>
           <div class='flex ml-[8px] items-center'>
             <span class='icon icon-star-full bg-orange-100 w-[16px] mr-[6px]'></span>
-            <span class='mr-[8px] text-[14px] leading-[24px] text-black'>{{ offerByIdData.user?.rating }}</span>
+            <span *ngIf='offerByIdData?.user?.rating' class='mr-[8px] text-[14px] leading-[24px] text-black'>{{ offerByIdData.user.rating }}</span>
             <span
               class='text-[14px] leading-[17px] text-gray-200'>На Plastic market с {{ offerByIdData.user.created_at | date: 'dd.MM.yyy' }}</span>
           </div>
@@ -59,7 +59,7 @@
       </div>
 
       <div class='flex mt-[28px] mb-[32px]'>
-        <button class='btn btn-outline-primary mr-[31px] btn-sm'>Написать</button>
+        <button (click)='goToChat(offerByIdData)' class='btn btn-outline-primary mr-[31px] btn-sm'>Написать</button>
         <a [href]="'tel:' + offerByIdData.user.phone" class='btn btn-primary btn-sm'>Позвонить</a>
       </div>
 
