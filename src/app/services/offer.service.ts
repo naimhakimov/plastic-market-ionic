@@ -74,7 +74,10 @@ export class OfferService {
   }
 
   getChats(): Observable<Chat[]> {
-    return this._http.post<iResponse<Data>>('/get_chats', {}).pipe(map(res => res.data.chats))
+    return this._http.post<iResponse<Data>>('/get_chats', {}).pipe(map(res => res.data.chats.sort((a, b) => {
+      // @ts-ignore
+      return new Date(b.created_at) - new Date(a.created_at)
+    })))
   }
 
   getMessages(chat_id: string): Observable<Message[]> {
@@ -85,8 +88,8 @@ export class OfferService {
       })))
   }
 
-  sendProp(): Observable<any> {
-    return this._http.post('/send_prop', {})
+  sendProp(body: {id: string, comment: string}): Observable<any> {
+    return this._http.post('/send_porp', body)
   }
 
   sendMessage(body: { chat_id: string, message: string }): Observable<iResponse<any>> {

@@ -18,6 +18,7 @@ SwiperCore.use([Autoplay, Keyboard, Pagination, Zoom])
 export class ProductDetailsComponent implements OnInit {
   offerByIdData!: Offer & { user: UserInterface }
   active = 0
+  currentUser = JSON.parse(localStorage.getItem('user') || '')
 
   constructor(
     private offerService: OfferService,
@@ -39,7 +40,7 @@ export class ProductDetailsComponent implements OnInit {
     ).subscribe(res => {
       if (res?.data.offer) {
         this.offerByIdData = res.data.offer
-        this.cd.detectChanges();
+        this.cd.detectChanges()
       } else {
         this.navCtrl.navigateBack('/dashboard/home')
       }
@@ -59,6 +60,14 @@ export class ProductDetailsComponent implements OnInit {
 
   goToChat(offerByIdData: Offer & { user: UserInterface }): void {
     this.offerService.currentChat$.next(offerByIdData.user)
-    this.navCtrl.navigateForward('/chat/new')
+    this.offerService.getChats()
+      .subscribe(chats => {
+        const find = chats.find(item => item.offer_id === offerByIdData.id)
+        if (find) {
+          this.navCtrl.navigateForward('/chat/' + find.id)
+        } else {
+          this.navCtrl.navigateForward('/chat/new', { queryParams: { offer_id: offerByIdData.id } })
+        }
+      })
   }
 }

@@ -13,6 +13,7 @@ import { NavController } from '@ionic/angular'
 export class ProfilePageComponent implements OnInit {
   active: number = 0
   public ownOffers: Offer[] = []
+  loading = false
 
   constructor(
     private readonly offerService: OfferService,
@@ -21,16 +22,18 @@ export class ProfilePageComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getOwnOffers(null);
+    this.getOwnOffers(null)
   }
 
   getOwnOffers(event: any): void {
+    this.loading = true
     this.offerService.getOwnOffers()
       .pipe(untilDestroyed(this))
       .subscribe(res => {
         this.ownOffers = res.data.offers
-        event?.target?.complete();
-      });
+        event?.target?.complete()
+        this.loading = false
+      }, error => this.loading = false)
   }
 
   navigate(id: string): void {

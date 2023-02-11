@@ -22,6 +22,10 @@ const routes: Routes = [
         component: ChatByIdComponent
       },
       {
+        path: 'new',
+        component: ChatByIdComponent
+      },
+      {
         path: '',
         redirectTo: 'list',
         pathMatch: 'full'

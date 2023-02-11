@@ -7,10 +7,11 @@ export interface UserInterface {
   email: string;
   password: string;
   created_at: string;
+  image: string[];
   token: string;
   online: string;
   active: string;
   tarif_id: string;
   push_token: string;
-  rating: number;
+  rating?: any;
 }

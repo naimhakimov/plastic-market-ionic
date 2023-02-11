@@ -23,7 +23,7 @@
     <div>
       <p class='text-primary text-[20px] leading-[24px] font-bold mt-[32px] mb-[27px]'>Полимерное сырье</p>
       <div
-        *ngIf='offers; else loading'
+        *ngIf='offers?.length'
         class='grid grid-cols-2 grid-flow mx-[-5px]'>
         <app-card-item
           [offer]='item'
@@ -31,9 +31,13 @@
           *ngFor='let item of offers'>
         </app-card-item>
       </div>
-      <ng-template #loading>
+
+      <ng-container *ngIf='!loading && offers?.length === 0'>
+          <div class='text-center'>Нет объявление</div>
+      </ng-container>
+      <ng-container *ngIf='loading'>
         <ion-spinner class='text-center w-full'></ion-spinner>
-      </ng-template>
+      </ng-container>
 
     </div>
 

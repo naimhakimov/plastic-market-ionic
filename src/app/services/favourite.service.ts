@@ -9,7 +9,7 @@ export class FavouriteService {
 
   constructor(private readonly offerService: OfferService) {}
 
-  addOrFavourite(event: any, offerId: string): void {
+  addFavourite(event: any, offerId: string): void {
     event.preventDefault()
     event.stopPropagation()
     let favourites: string[] = JSON.parse(localStorage.getItem('favourites') ?? '[]')

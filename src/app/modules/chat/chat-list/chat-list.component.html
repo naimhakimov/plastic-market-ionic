@@ -6,21 +6,33 @@
       </div>
       <h1 class='text-primary text-[20px] leading-[24px] font-bold'>Список чатов</h1>
     </div>
-    <ng-container *ngIf='chats$ | async as chats'>
-      <div class='mt-[20px] mx-[-22px]'>
-        <div *ngFor='let chat of chats'
-            (click)='navigate(chat)'
-             class='border-b-[1px] first:border-t-[1px] border-gray-50 py-[10px] px-[22px] flex'>
-          <img class='w-[30px] h-[30px] rounded-full object-cover' src='./assets/img/no-avatar.webp' alt=''>
-          <div class='ml-[10px] w-full'>
-            <div class='text-[16px] leading-[20px] font-bold text-gray-300'>{{ chat?.user?.name }}</div>
-            <div class='flex justify-between'>
-              <span class='mt-[4px] text-[14px] leading-[17px] font-medium text-gray'>{{ chat?.last_message?.message }}</span>
-              <span class='text-[14px] leading-[17px] text-gray-200'>{{ chat?.last_message?.created_at | date:'dd.MM.YYYY' }}</span>
+    <div class='mt-[20px]'>
+      <ng-container *ngIf='chats.length'>
+        <div class='mx-[-22px]'>
+          <div *ngFor='let chat of chats'
+               (click)='navigate(chat)'
+               class='border-b-[1px] first:border-t-[1px] border-gray-50 py-[10px] px-[22px] flex'>
+            <img class='w-[30px] h-[30px] rounded-full object-cover' src='./assets/img/no-avatar.webp' alt=''>
+            <div class='ml-[10px] w-full'>
+              <div class='text-[16px] leading-[20px] font-bold text-gray-300'>{{ chat?.user?.name }}</div>
+              <div class='flex justify-between items-center'>
+              <span class='mt-[4px] text-[14px] leading-[17px] font-medium text-gray truncate'
+                    style='width: 160px'>{{ chat?.last_message?.message }}</span>
+                <span
+                  class='text-[14px] leading-[17px] text-gray-200'>{{ chat?.last_message?.created_at | date:'dd.MM.YYYY' }}</span>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </ng-container>
+      </ng-container>
+
+      <ng-container *ngIf='loading'>
+        <ion-spinner class='text-center w-full'></ion-spinner>
+      </ng-container>
+
+      <ng-container *ngIf='chats.length === 0 && !loading'>
+        <div class='text-center'>Нет чатов</div>
+      </ng-container>
+    </div>
   </div>
 </ion-content>

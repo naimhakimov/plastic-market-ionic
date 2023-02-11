@@ -118,7 +118,7 @@ export class CreateComponent implements OnInit {
       category_id: this.form.value.category_id.id,
       type_id: this.form.value.type_id.id,
       size_type_id: this.form.value.size_type_id.id,
-      meterial_type_id: this.form.value .meterial_type_id.id
+      meterial_type_id: this.form.value.meterial_type_id.id
     }).subscribe(res => {
       this.loading = false
       if (res.error_code === 0) {

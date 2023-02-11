@@ -8,9 +8,9 @@
     <span class='icon w-[14px] h-[12px] bg-primary absolute top-[10px] right-[7px]'
           [class.icon-heart]='!favouriteService.isFavourite(offer.id)'
           [class.icon-heart-full]='favouriteService.isFavourite(offer.id)'
-          (click)='favouriteService.addOrFavourite($event, offer.id)'
+          (click)='favouriteService.addFavourite($event, offer.id)'
     ></span>
-    <img *ngIf='offer?.image; else noImage' class='card-img rounded-t-[8px] w-full max-h-[130px]'
+    <img *ngIf='offer?.image; else noImage' class='card-img rounded-t-[8px] w-full h-[130px] object-contain'
          [src]="'https://plastic-market-app.ru/img/' + offer.image[0]" alt=''>
 
     <ng-template #noImage>
@@ -28,7 +28,8 @@
       <p class='text-[12px] leading-[14px] font-medium text-gray'>{{ offer.city.name }}</p>
       <span class='flex items-center'>
       <span class='icon icon-user w-[9px] bg-gray'></span>
-      <span class='text-[12px] leading-[14px] font-medium text-gray ml-[3px]'>{{ offer.user?.rating }}</span>
+      <span
+        class='text-[12px] leading-[14px] font-medium text-gray ml-[3px]'>{{ offer?.user?.rating === 0 ? '0' : offer?.user?.rating  }}</span>
     </span>
     </div>
   </div>

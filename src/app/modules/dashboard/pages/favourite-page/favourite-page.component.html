@@ -1,12 +1,18 @@
 <ion-content>
-  <div class='p-[22px]'>
-    <h1 class='text-primary text-[20px] leading-[24px] font-bold'>Избранное</h1>
-    <div *ngIf='favourites?.length' class='mt-[10px]'>
+  <div class='p-[18px]'>
+    <h1 class=' pl-[4px] text-primary text-[20px] leading-[24px] font-bold mb-[10px]'>Избранное</h1>
+    <div *ngIf='favourites?.length'>
       <app-card-item
         (click)='navigate(item)'
         *ngFor='let item of favourites'
         [offer]='item'>
       </app-card-item>
     </div>
+    <ng-container *ngIf='loading'>
+      <ion-spinner class='text-center w-full'></ion-spinner>
+    </ng-container>
+    <ng-container *ngIf='!loading && favourites?.length === 0'>
+      <div class='text-center'>Нет избранное</div>
+    </ng-container>
   </div>
 </ion-content>

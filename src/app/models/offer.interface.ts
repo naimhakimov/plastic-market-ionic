@@ -12,7 +12,7 @@ export interface Category {
 export interface Offer {
   id: string;
   user_id: string;
-  user?: UserInterface;
+  user: UserInterface;
   category_id: string;
   city_id: string;
   region_id: string;

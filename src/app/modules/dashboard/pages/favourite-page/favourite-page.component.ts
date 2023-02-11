@@ -12,18 +12,22 @@ import { NavController } from '@ionic/angular'
 export class FavouritePageComponent {
 
   favourites: Offer[] = []
+  loading = false
 
   constructor(
     private readonly offerService: OfferService,
     private readonly navCtrl: NavController
-  ) {}
+  ) {
+  }
 
   ionViewDidEnter(): void {
+    this.loading = true
     this.offerService.getFavoriteOffers()
       .pipe(first())
       .subscribe(res => {
         this.favourites = res
-      })
+        this.loading = false
+      }, error => this.loading = false)
   }
 
   navigate(item: any) {

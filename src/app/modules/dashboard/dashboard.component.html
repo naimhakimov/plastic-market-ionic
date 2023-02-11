@@ -28,16 +28,18 @@
 </ion-tabs>
 
 <ion-menu contentId='main-content'>
-  <div class='mt-[20px]'>
-    <ion-menu-toggle class='flex items-center px-[25px] py-[10px]' *ngFor='let accordion of accordions'>
-      <span class='mr-[17px] icon icon-catalog w-[22px] h-[22px] bg-black-200'></span>
-      <p class='mr-[17px] text-[14px] leading-[17px] text-black-100'>{{ accordion }}</p>
-      <span class='icon icon-arrow-right w-[13px] h-[13px] bg-black-100'></span>
-    </ion-menu-toggle>
-    <ion-menu-toggle class='flex items-center px-[25px] py-[10px]' (click)='logout()'>
-      <span class='mr-[17px] icon icon-catalog w-[22px] h-[22px] bg-black-200'></span>
-      <p class='mr-[17px] text-[14px] leading-[17px] text-black-100'>Logout</p>
-      <span class='icon icon-arrow-right w-[13px] h-[13px] bg-black-100'></span>
-    </ion-menu-toggle>
-  </div>
+  <ion-content>
+    <div class='mt-[20px]'>
+      <ion-menu-toggle class='flex items-center px-[25px] py-[10px]' *ngFor='let category of categories'>
+        <span class='mr-[17px] icon icon-catalog w-[22px] h-[22px] bg-black-200'></span>
+        <p class='mr-[17px] text-[14px] leading-[17px] text-black-100'>{{ category.name }}</p>
+        <span class='icon icon-arrow-right w-[13px] h-[13px] bg-black-100'></span>
+      </ion-menu-toggle>
+      <ion-menu-toggle class='flex items-center px-[25px] py-[10px]' (click)='logout()'>
+        <span class='mr-[17px] icon icon-catalog w-[22px] h-[22px] bg-black-200'></span>
+        <p class='mr-[17px] text-[14px] leading-[17px] text-black-100'>Выйти</p>
+        <span class='icon icon-arrow-right w-[13px] h-[13px] bg-black-100'></span>
+      </ion-menu-toggle>
+    </div>
+  </ion-content>
 </ion-menu>

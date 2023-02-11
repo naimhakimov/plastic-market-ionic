@@ -3,7 +3,7 @@
     <swiper [keyboard]='true' [pagination]='true' [zoom]='true'>
       <ng-container *ngFor='let img of offerByIdData?.image'>
         <ng-template swiperSlide>
-          <img class='w-full' [src]="'https://plastic-market-app.ru/img/' + img" alt=''>
+          <img [src]="'https://plastic-market-app.ru/img/' + img" alt=''>
         </ng-template>
       </ng-container>
     </swiper>
@@ -16,7 +16,7 @@
       <span
         [class.icon-heart]='!favouriteService.isFavourite(offerByIdData.id)'
         [class.icon-heart-full]='favouriteService.isFavourite(offerByIdData.id)'
-        (click)='favouriteService.addOrFavourite($event, offerByIdData.id)'
+        (click)='favouriteService.addFavourite($event, offerByIdData.id)'
         class='icon bg-primary'></span>
     </div>
 
@@ -41,8 +41,11 @@
 
       <div class='mt-[22px] flex items-start' *ngIf='offerByIdData?.user'>
         <div class='relative'>
-          <img class='min-w-[27px]' src='./assets/img/avatar.svg' alt=''>
-          <span class='absolute top-0 right-0 w-[7px] h-[7px] rounded-full bg-primary z-10'></span>
+          <img class='min-w-[27px] w-[27px] h-[27px] rounded-full'
+               [src]='offerByIdData.user.image
+                ?  offerByIdData.user.image
+                : "./assets/img/no-avatar.webp"' alt=''>
+          <!--          <span class='absolute top-0 right-0 w-[7px] h-[7px] rounded-full bg-primary z-10'></span>-->
         </div>
         <div>
           <div class='text-[20px] leading-[24px] text-bold text-primary ml-[12px]'>
@@ -51,19 +54,20 @@
           </div>
           <div class='flex ml-[8px] items-center'>
             <span class='icon icon-star-full bg-orange-100 w-[16px] mr-[6px]'></span>
-            <span *ngIf='offerByIdData?.user?.rating' class='mr-[8px] text-[14px] leading-[24px] text-black'>{{ offerByIdData.user.rating }}</span>
+            <span *ngIf='offerByIdData?.user?.rating'
+                  class='mr-[8px] text-[14px] leading-[24px] text-black'>{{ offerByIdData.user.rating }}</span>
             <span
               class='text-[14px] leading-[17px] text-gray-200'>На Plastic market с {{ offerByIdData.user.created_at | date: 'dd.MM.yyy' }}</span>
           </div>
         </div>
       </div>
 
-      <div class='flex mt-[28px] mb-[32px]'>
+      <div class='flex mt-[28px]' *ngIf='offerByIdData.user.id !== currentUser.id'>
         <button (click)='goToChat(offerByIdData)' class='btn btn-outline-primary mr-[31px] btn-sm'>Написать</button>
         <a [href]="'tel:' + offerByIdData.user.phone" class='btn btn-primary btn-sm'>Позвонить</a>
       </div>
 
-      <div class='w-full rounded-[12px] flex bg-primary-100 items-center'>
+      <div class='w-full rounded-[12px] flex bg-primary-100 items-center mt-[32px]'>
         <div
           *ngFor="let i of ['Описание', 'Доставка и оплата']; let idx = index"
           class='text-[14px] leading-[18px] font-semibold rounded-[12px] px-[15px] py-[13px] transition-all	text-gray-700'

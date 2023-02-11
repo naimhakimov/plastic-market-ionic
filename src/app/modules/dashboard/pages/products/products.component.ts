@@ -15,6 +15,7 @@ import { BehaviorSubject, switchMap } from 'rxjs'
 export class ProductsComponent implements OnInit {
   offers!: Offer[]
   filter$ = new BehaviorSubject(null)
+  loading = false
 
   constructor(
     private modalCtrl: ModalController,
@@ -28,6 +29,7 @@ export class ProductsComponent implements OnInit {
   }
 
   getOffers(event: any): void {
+    this.loading = true
     this.filter$
       .pipe(
         switchMap((filter) => {
@@ -38,7 +40,8 @@ export class ProductsComponent implements OnInit {
       .subscribe(res => {
         this.offers = res.data?.offers || []
         event?.target?.complete()
-      })
+        this.loading = false
+      }, error => this.loading = false)
   }
 
   async openModal() {

@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core'
 import { ModalController } from '@ionic/angular'
 import { CreateComponent } from './components/create/create.component'
 import { Router } from '@angular/router'
+import { OfferService } from '../../services/offer.service'
+import { Category } from '../../models/offer.interface'
+import { first, forkJoin } from 'rxjs'
 
 @Component({
   selector: 'app-dashboard',
@@ -9,15 +12,27 @@ import { Router } from '@angular/router'
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  accordions: string[] = ['Полимерные отходы', 'Полуфабрикаты (полимер)','Готовая продукция', 'Макулатура', 'Оборудование', 'Услуги', 'Рынок труда']
+  categories: Category[] = []
 
-  constructor(private modalCtrl: ModalController, private router: Router) {
-  }
+  constructor(
+    private readonly offerService: OfferService,
+    private modalCtrl: ModalController,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     if (!localStorage.getItem('token')) {
       this.router.navigate(['/auth/welcome'])
     }
+
+    forkJoin([
+      this.offerService.getCategories(),
+      this.offerService.getFavoriteOffers()
+    ]).pipe(first())
+      .subscribe(([categories, favorites]) => {
+        this.categories = categories
+        localStorage.setItem('favourites', JSON.stringify(favorites.map(item => item.id) || '[]'))
+      })
   }
 
   async createModal() {
@@ -34,7 +49,7 @@ export class DashboardComponent implements OnInit {
   }
 
   logout(): void {
-    localStorage.clear();
+    localStorage.clear()
     this.router.navigate(['/auth/welcome'])
   }
 }
