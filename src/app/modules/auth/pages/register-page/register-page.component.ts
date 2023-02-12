@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { AuthService } from '../../../../services/auth.service'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
+import { ToastService } from '../../../../services/toast.service'
 
 @Component({
   selector: 'app-register-page',
@@ -16,7 +17,8 @@ export class RegisterPageComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private toastService: ToastService
   ) {
   }
 
@@ -47,7 +49,7 @@ export class RegisterPageComponent implements OnInit {
             this.router.navigate(['/dashboard'])
             return
           }
-          this.errorMessage = res.message
+          this.toastService.presentToast('top', res.message)
         }
       })
   }
