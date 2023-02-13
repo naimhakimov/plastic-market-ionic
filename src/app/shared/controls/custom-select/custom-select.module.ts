@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { CustomSelectComponent } from './custom-select.component'
-  import { FormsModule } from '@angular/forms'
+  import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { SelectModalComponent } from './select-modal/select-modal.component'
+import { IonicModule } from '@ionic/angular'
 
 @NgModule({
   declarations: [
@@ -11,7 +12,9 @@ import { SelectModalComponent } from './select-modal/select-modal.component'
   ],
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
+    IonicModule
   ],
   exports: [
     CustomSelectComponent,

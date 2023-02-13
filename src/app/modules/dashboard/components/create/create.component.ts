@@ -14,13 +14,15 @@ import { first, forkJoin } from 'rxjs'
 export class CreateComponent implements OnInit {
   form!: FormGroup
   categories: any[] = []
-  cities: any[] = []
+  regions: any[] = []
+  subCategories: any[] = []
+  cloneCategories: any[] = []
   images: string[] = []
   loading = false
   offerManuals: any = {
     types: [],
-    size_types: [] ,
-    meterial_types: [],
+    size_types: [],
+    meterial_types: []
   }
 
   constructor(
@@ -28,29 +30,20 @@ export class CreateComponent implements OnInit {
     private modalCtrl: ModalController,
     private alertController: AlertController,
     private fb: FormBuilder
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.initForm()
     this.getOfferManuals()
+    this.categories = this.cloneCategories = JSON.parse(localStorage.getItem('categories') || '[]')
+    this.categories = this.cloneCategories.filter(item => item.parent_id === '0')
+    this.regions = JSON.parse(localStorage.getItem('regions') || '[]')
 
-    forkJoin([
-      this.offerService.getCategories(),
-      this.offerService.getCountries()
-    ])
-      .pipe(untilDestroyed(this))
-      .subscribe(([categories, cities]) => {
-        this.categories = categories.map(item => ({
-          label: item.name,
-          value: item,
-          type: 'radio'
-        }))
-
-        this.cities = cities.map(item => ({
-          label: item.name,
-          value: item,
-          type: 'radio'
-        }))
+    this.form.controls['category_id'].valueChanges
+      .subscribe(category_id => {
+        this.form.controls['subcategory_id'].setValue(null)
+        this.subCategories = this.cloneCategories.filter(item => item.parent_id === category_id)
       })
   }
 
@@ -58,23 +51,9 @@ export class CreateComponent implements OnInit {
     this.offerService.getOfferManuals()
       .pipe(first())
       .subscribe(({ data }) => {
-        this.offerManuals.types = data.types.map(item => ({
-          label: item.name,
-          value: item,
-          type: 'radio'
-        }))
-
-        this.offerManuals.size_types = data.size_types.map(item => ({
-          label: item.name,
-          value: item,
-          type: 'radio'
-        }))
-
-        this.offerManuals.meterial_types = data.meterial_types.map(item => ({
-          label: item.name,
-          value: item,
-          type: 'radio'
-        }))
+        this.offerManuals.types = data.types
+        this.offerManuals.size_types = data.size_types
+        this.offerManuals.meterial_types = data.meterial_types
       })
   }
 
@@ -83,7 +62,7 @@ export class CreateComponent implements OnInit {
     let formData: any = new FormData()
 
     formData.append('file', file, file.name)
-    formData.append("reportProgress", true)
+    formData.append('reportProgress', true)
 
     this.offerService.uploadFile(formData)
       .pipe(first())
@@ -98,6 +77,7 @@ export class CreateComponent implements OnInit {
       description: ['', [Validators.min(1), Validators.maxLength(8000)]],
       amount: [null, Validators.required],
       category_id: [null, Validators.required],
+      subcategory_id: [null],
       city_id: [null, Validators.required],
       type_id: [null, Validators.required],
       size_type_id: [null, Validators.required],
@@ -114,11 +94,7 @@ export class CreateComponent implements OnInit {
     this.offerService.createOffer({
       ...this.form.value,
       image: this.images,
-      city_id: this.form.value.city_id.id,
-      category_id: this.form.value.category_id.id,
-      type_id: this.form.value.type_id.id,
-      size_type_id: this.form.value.size_type_id.id,
-      meterial_type_id: this.form.value.meterial_type_id.id
+      category_id: this.form.value.subcategory_id ? this.form.value.subcategory_id : this.form.value.category_id
     }).subscribe(res => {
       this.loading = false
       if (res.error_code === 0) {

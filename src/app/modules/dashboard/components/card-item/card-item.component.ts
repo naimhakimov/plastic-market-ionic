@@ -1,7 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core'
+import { Component, Input, Output, EventEmitter } from '@angular/core'
 import { Offer } from '../../../../models/offer.interface'
-import { OfferService } from '../../../../services/offer.service'
-import { first } from 'rxjs'
 import { FavouriteService } from '../../../../services/favourite.service'
 
 @Component({
@@ -12,9 +10,15 @@ import { FavouriteService } from '../../../../services/favourite.service'
 export class CardItemComponent {
 
   @Input() offer!: Offer
+  @Output() removeOffer = new EventEmitter<string>()
 
   constructor(
     public readonly favouriteService: FavouriteService
   ) {
+  }
+
+  addOrRemove(event: any, offer: Offer) {
+    this.favouriteService.addFavourite(event, offer.id)
+    this.removeOffer.emit(offer.id)
   }
 }

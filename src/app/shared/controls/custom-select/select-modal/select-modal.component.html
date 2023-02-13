@@ -1,1 +1,29 @@
-<div></div>
+<ion-content>
+  <div class='p-[22px]'>
+
+    <div class='flex justify-end mb-[10px]'>
+      <div (click)='cancel()' class='bg-primary flex justify-center items-center rounded-full p-[15px]'>
+        <span class='icon icon-close bg-white w-[14px] h-[14px]'></span>
+      </div>
+    </div>
+
+    <div class='flex w-full bg-light-gray rounded-[10px] p-[4px]'>
+      <span class='icon icon-search'></span>
+      <input [ngModel]='value' (ngModelChange)='filter($event)' placeholder='Поиск' type='search' class='outline-none ml-[8px] w-full bg-transparent'>
+    </div>
+
+    <div class='mx-[-20px] mt-[8px]'>
+      <ng-container *ngIf='items?.length; else noData'>
+        <ion-item class='flex py-[8px]' *ngFor='let item of items;' (click)='select(item)'>
+          <ion-checkbox [checked]='item.checked' [id]='item.id' slot='start' class='mr-[8px]'></ion-checkbox>
+          <ion-label>{{ item?.name }}</ion-label>
+        </ion-item>
+      </ng-container>
+
+      <ng-template #noData>
+        <div class='text-gray-200 text-center'>Элементы не найдены</div>
+      </ng-template>
+    </div>
+
+  </div>
+</ion-content>

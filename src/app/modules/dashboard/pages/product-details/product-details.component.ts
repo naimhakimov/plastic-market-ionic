@@ -59,12 +59,16 @@ export class ProductDetailsComponent implements OnInit {
     this.offerService.currentChat$.next(offerByIdData.user)
     this.offerService.getChats()
       .subscribe(chats => {
-        const find = chats.find(item => item.offer_id === offerByIdData.id)
+        const find = chats.find(item => item.user_1 === offerByIdData.user.id || item.user_1 === offerByIdData.user.id)
         if (find) {
           this.navCtrl.navigateForward('/chat/' + find.id)
         } else {
           this.navCtrl.navigateForward('/chat/new', { queryParams: { offer_id: offerByIdData.id } })
         }
       })
+  }
+
+  editOffer(id: string): void {
+    console.log(id)
   }
 }

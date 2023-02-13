@@ -1,6 +1,7 @@
 import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core'
-import { NG_VALUE_ACCESSOR } from '@angular/forms'
-import { AlertController } from '@ionic/angular'
+import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
+import { ModalController } from '@ionic/angular'
+import { SelectModalComponent } from './select-modal/select-modal.component'
 
 @Component({
   selector: 'app-custom-select',
@@ -14,9 +15,10 @@ import { AlertController } from '@ionic/angular'
     }
   ]
 })
-export class CustomSelectComponent implements OnInit {
+export class CustomSelectComponent implements OnInit, ControlValueAccessor {
   @Input() icon!: string
   @Input() label!: string
+  @Input() placeholder!: string
   @Input() items: any[] = []
   @Output() changed = new EventEmitter<any>()
 
@@ -28,7 +30,7 @@ export class CustomSelectComponent implements OnInit {
   private propagateTouched: any = () => {
   }
 
-  constructor(private alertController: AlertController) {
+  constructor(private modalCtrl: ModalController) {
   }
 
   ngOnInit() {
@@ -52,27 +54,24 @@ export class CustomSelectComponent implements OnInit {
 
   onSelect(value: any): void {
     this.value = value
-    this.propagateChange(value)
-    this.changed.emit(value)
-    this.items = this.items.map((item: any) => {
-      return {
-        ...item,
-        checked: item?.value?.id === value?.id
-      }
-    })
+    this.propagateChange(value?.id)
+    this.changed.emit(value?.id)
   }
 
   async openSelect() {
-    const alert = await this.alertController.create({
-      buttons: ['OK'],
-      inputs: this.items
+    const modal = await this.modalCtrl.create({
+      component: SelectModalComponent,
+      componentProps: {
+        defaultValue: this.value,
+        items: this.items
+      }
     })
 
-    await alert.present()
+    await modal.present()
 
-    const { data } = await alert.onWillDismiss()
+    const { data } = await modal.onWillDismiss()
 
-    this.onSelect(data?.values)
+    this.onSelect(data)
   }
 
   onBlur(): void {

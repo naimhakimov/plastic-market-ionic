@@ -27,11 +27,16 @@ export class DashboardComponent implements OnInit {
 
     forkJoin([
       this.offerService.getCategories(),
-      this.offerService.getFavoriteOffers()
+      this.offerService.getFavoriteOffers(),
+      this.offerService.getCountries(),
+      this.offerService.getRegions()
     ]).pipe(first())
-      .subscribe(([categories, favorites]) => {
-        this.categories = categories
+      .subscribe(([categories, favorites, cities, regions]) => {
+        this.categories = categories.filter(item => item.parent_id === "0")
         localStorage.setItem('favourites', JSON.stringify(favorites.map(item => item.id) || '[]'))
+        localStorage.setItem('categories', JSON.stringify(categories) || '[]')
+        localStorage.setItem('cities', JSON.stringify(cities) || '[]')
+        localStorage.setItem('regions', JSON.stringify(regions) || '[]')
       })
   }
 
@@ -51,5 +56,9 @@ export class DashboardComponent implements OnInit {
   logout(): void {
     localStorage.clear()
     this.router.navigate(['/auth/welcome'])
+  }
+
+  selectCategory(id: string) {
+    this.offerService.categoryId.next(id)
   }
 }

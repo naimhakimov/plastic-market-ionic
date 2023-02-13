@@ -14,51 +14,68 @@
 
     <form [formGroup]='form' class='mt-[38px]'>
       <div class='mb-[22px]'>
-        <app-select
+        <app-custom-select
           formControlName='sort_type_id'
           label='Сортировка'
           [items]="offerManuals.sort_types">
-        </app-select>
+
+        </app-custom-select>
       </div>
 
       <div class='mb-[22px]'>
-        <app-select
+        <app-custom-select
           label='Категория'
           formControlName='category_id'
           [items]="categories">
-        </app-select>
+        </app-custom-select>
       </div>
 
       <div class='mb-[22px]'>
-        <app-select
-          label='Местоположение'
+        <app-custom-select
+          label='Под категория'
+          formControlName='subcategory_id'
+          [items]="subCategories">
+        </app-custom-select>
+      </div>
+
+      <div class='mb-[22px]'>
+        <app-custom-select
+          label='Район'
+          formControlName='region_id'
+          [items]="regions">
+        </app-custom-select>
+      </div>
+
+      <div class='mb-[22px]'>
+        <app-custom-select
+          label='Город'
           formControlName='city_id'
           [items]="cities">
-        </app-select>
+        </app-custom-select>
       </div>
 
       <div class='mb-[22px]'>
-        <app-select
+        <app-custom-select
           label='Тип'
           formControlName='type_id'
           [items]="offerManuals.types">
-        </app-select>
+        </app-custom-select>
       </div>
 
       <div class='mb-[22px]'>
-        <app-select
+        <app-custom-select
           label='Объем'
           formControlName='size_type_id'
           [items]="offerManuals.size_types">
-        </app-select>
+        </app-custom-select>
       </div>
 
       <div class='mb-[22px]'>
-        <app-select
+        <app-custom-select
           label='Материал'
           formControlName='meterial_type_id'
           [items]="offerManuals.meterial_types">
-        </app-select>
+        </app-custom-select>
       </div>
 
       <div class='mb-[22px] border-b-[1px] border-[#EBEBED] pb-[7px]'>

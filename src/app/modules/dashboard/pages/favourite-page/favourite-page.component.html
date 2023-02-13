@@ -3,6 +3,7 @@
     <h1 class=' pl-[4px] text-primary text-[20px] leading-[24px] font-bold mb-[10px]'>Избранное</h1>
     <div *ngIf='favourites?.length'>
       <app-card-item
+        (removeOffer)='removeOffer($event)'
         (click)='navigate(item)'
         *ngFor='let item of favourites'
         [offer]='item'>
@@ -12,7 +13,7 @@
       <ion-spinner class='text-center w-full'></ion-spinner>
     </ng-container>
     <ng-container *ngIf='!loading && favourites?.length === 0'>
-      <div class='text-center'>"У вас пока нет избранных товаров</div>
+      <div class='text-center text-gray-200'>У вас пока нет избранных товаров</div>
     </ng-container>
   </div>
 </ion-content>

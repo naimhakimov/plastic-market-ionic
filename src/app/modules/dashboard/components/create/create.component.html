@@ -11,15 +11,25 @@
       <app-input
         formControlName='name'
         icon='icon-title'
-        placeholder='Название'></app-input>
+        placeholder='Название'>
+      </app-input>
     </div>
 
     <div class='mb-[18px]'>
       <app-custom-select
         icon='icon-category'
         [items]='categories'
-        label='Категория'
+        placeholder='Категория'
         formControlName='category_id'
+      ></app-custom-select>
+    </div>
+
+    <div class='mb-[18px]'>
+      <app-custom-select
+        icon='icon-category'
+        [items]='subCategories'
+        placeholder='Под категория'
+        formControlName='subcategory_id'
       ></app-custom-select>
     </div>
 
@@ -53,9 +63,9 @@
     <div class='mb-[18px]'>
       <app-custom-select
         formControlName='city_id'
-        label='Местонахождение'
+        placeholder='Местонахождение'
         icon='icon-location'
-        [items]='cities'
+        [items]='regions'
       ></app-custom-select>
     </div>
 
@@ -70,30 +80,33 @@
     <div class='mb-[18px]'>
       <app-custom-select
         formControlName='meterial_type_id'
-        label='Материал'
+        icon='icon-material'
+        placeholder='Материал'
         [items]='offerManuals.meterial_types'
       ></app-custom-select>
     </div>
 
     <div class='mb-[18px]'>
       <app-custom-select
+        icon='icon-ticket'
         formControlName='type_id'
-        label='Тип'
+        placeholder='Тип'
         [items]='offerManuals.types'
       ></app-custom-select>
     </div>
 
     <div class='mb-[18px]'>
       <app-custom-select
+        icon='icon-cube'
         formControlName='size_type_id'
-        label='Объем'
+        placeholder='Объем'
         [items]='offerManuals.size_types'
       ></app-custom-select>
     </div>
 
     <div>
       <app-input
-        icon='icon-w'
+        icon='icon-size'
         formControlName='size'
         placeholder='Размер'>
       </app-input>

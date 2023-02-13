@@ -6,7 +6,7 @@ import { iResponse } from '../models/auth.interface'
 import { Offer, OfferManual } from '../models/offer.interface'
 import { UserInterface } from '../models/user.interface'
 import { CategoryInterface } from '../models/category.interface'
-import { CityInterface } from '../models/city.interface'
+import { CityInterface, RegionInterface } from '../models/city.interface'
 import { HttpService } from './http.service'
 import { Chat, Data, Message } from '../models/chat.interface'
 
@@ -19,6 +19,7 @@ export class OfferService {
   offerId: BehaviorSubject<string> = new BehaviorSubject<string>('')
   currentChat$: BehaviorSubject<UserInterface | null> = new BehaviorSubject<UserInterface | null>(null)
   isCreated = false
+  categoryId = new BehaviorSubject<string | null>(null)
 
   getOffers(body?: any): Observable<iResponse<{ offers: Offer[] }>> {
     return this._http.post<any>('/get_offers', body)
@@ -46,6 +47,12 @@ export class OfferService {
     return this._http
       .get<any>('/get_cities')
       .pipe(map(res => res.data.cities))
+  }
+
+  getRegions(): Observable<RegionInterface[]> {
+    return this._http
+      .get<any>('/get_regions')
+      .pipe(map(res => res.data.regions))
   }
 
   getOwnOffers(): Observable<iResponse<{ offers: Offer[] }>> {

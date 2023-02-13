@@ -62,10 +62,14 @@
         </div>
       </div>
 
-      <div class='flex mt-[28px]' *ngIf='offerByIdData.user.id !== currentUser.id'>
+      <div class='flex mt-[28px]' *ngIf='offerByIdData.user.id !== currentUser.id; else edit'>
         <button (click)='goToChat(offerByIdData)' class='btn btn-outline-primary mr-[31px] btn-sm'>Написать</button>
         <a [href]="'tel:' + offerByIdData.user.phone" class='btn btn-primary btn-sm'>Позвонить</a>
       </div>
+
+      <ng-template #edit>
+        <button class='btn btn-primary mt-[28px]' (click)='editOffer(offerByIdData.id)'>Редактировать</button>
+      </ng-template>
 
       <div class='w-full rounded-[12px] flex bg-primary-100 items-center mt-[32px]'>
         <div

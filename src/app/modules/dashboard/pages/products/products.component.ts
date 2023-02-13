@@ -4,7 +4,7 @@ import { FilterComponent } from '../../components/filter/filter.component'
 import { OfferService } from '../../../../services/offer.service'
 import { Offer } from '../../../../models/offer.interface'
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy'
-import { BehaviorSubject, switchMap } from 'rxjs'
+import { BehaviorSubject, filter, switchMap } from 'rxjs'
 
 @UntilDestroy()
 @Component({
@@ -14,7 +14,7 @@ import { BehaviorSubject, switchMap } from 'rxjs'
 })
 export class ProductsComponent implements OnInit {
   offers!: Offer[]
-  filter$ = new BehaviorSubject(null)
+  filter$ = new BehaviorSubject<any>(null)
   loading = false
 
   constructor(
@@ -26,6 +26,12 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.getOffers(null)
+    this.offerService.categoryId
+      .pipe(filter(categoryId => !!categoryId))
+      .subscribe(res => {
+        this.filter$.next({ category_id: res })
+        // this.offerService.categoryId.next(null)
+      })
   }
 
   getOffers(event: any): void {

@@ -36,4 +36,8 @@ export class FavouritePageComponent {
       animationDirection: 'back'
     })
   }
+
+  removeOffer(event: string) {
+    this.favourites = this.favourites.filter(item => item.id !== event)
+  }
 }
