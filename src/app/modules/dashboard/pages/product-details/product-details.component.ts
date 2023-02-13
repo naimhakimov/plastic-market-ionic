@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core'
+import { Component, OnInit } from '@angular/core'
 import SwiperCore, { Autoplay, Keyboard, Pagination, Zoom } from 'swiper'
 import { OfferService } from '../../../../services/offer.service'
 import { of, switchMap } from 'rxjs'
@@ -12,8 +12,7 @@ SwiperCore.use([Autoplay, Keyboard, Pagination, Zoom])
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
-  styleUrls: ['./product-details.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./product-details.component.scss']
 })
 export class ProductDetailsComponent implements OnInit {
   offerByIdData!: Offer & { user: UserInterface }
@@ -23,8 +22,7 @@ export class ProductDetailsComponent implements OnInit {
   constructor(
     private offerService: OfferService,
     private navCtrl: NavController,
-    public readonly favouriteService: FavouriteService,
-    private cd: ChangeDetectorRef
+    public readonly favouriteService: FavouriteService
   ) {
   }
 
@@ -40,7 +38,6 @@ export class ProductDetailsComponent implements OnInit {
     ).subscribe(res => {
       if (res?.data.offer) {
         this.offerByIdData = res.data.offer
-        this.cd.detectChanges()
       } else {
         this.navCtrl.navigateBack('/dashboard/home')
       }

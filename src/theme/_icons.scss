@@ -189,4 +189,24 @@
     mask: url('../assets/icons/send.svg') no-repeat 50% 50%;
   }
 
+  &-material {
+    -webkit-mask: url('../assets/icons/layers-outline.svg') no-repeat 50% 50%;
+    mask: url('../assets/icons/layers-outline.svg') no-repeat 50% 50%;
+  }
+
+  &-cube {
+    -webkit-mask: url('../assets/icons/cube-outline.svg') no-repeat 50% 50%;
+    mask: url('../assets/icons/cube-outline.svg') no-repeat 50% 50%;
+  }
+
+  &-ticket {
+    -webkit-mask: url('../assets/icons/ticket-outline.svg') no-repeat 50% 50%;
+    mask: url('../assets/icons/ticket-outline.svg') no-repeat 50% 50%;
+  }
+
+  &-size {
+    -webkit-mask: url('../assets/icons/expand-outline.svg') no-repeat 50% 50%;
+    mask: url('../assets/icons/expand-outline.svg') no-repeat 50% 50%;
+  }
+
 }

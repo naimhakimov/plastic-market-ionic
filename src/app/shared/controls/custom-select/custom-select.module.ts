@@ -1,16 +1,21 @@
 import { NgModule } from '@angular/core'
 import { CommonModule } from '@angular/common'
 import { CustomSelectComponent } from './custom-select.component'
+  import { FormsModule } from '@angular/forms'
+import { SelectModalComponent } from './select-modal/select-modal.component'
 
 @NgModule({
   declarations: [
-    CustomSelectComponent
+    CustomSelectComponent,
+    SelectModalComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule
   ],
   exports: [
-    CustomSelectComponent
+    CustomSelectComponent,
+    SelectModalComponent
   ]
 })
 export class CustomSelectModule {}

@@ -16,7 +16,6 @@ import { ProductsComponent } from './pages/products/products.component'
 import { CustomSelectModule, InputModule, SelectModule } from '../../shared'
 import { CreateComponent } from './components/create/create.component'
 import { AuthGuard } from '../../guards/auth.guard'
-
 const routes: Routes = [
   {
     path: '',
@@ -72,7 +71,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     SelectModule,
     InputModule,
-    CustomSelectModule
+    CustomSelectModule,
   ]
 })
 export class DashboardModule {

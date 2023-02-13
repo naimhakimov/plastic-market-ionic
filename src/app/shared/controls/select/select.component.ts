@@ -1,6 +1,4 @@
 import {
-  AfterViewChecked,
-  ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
   EventEmitter,
@@ -22,8 +20,7 @@ import { Type } from '../../../models/offer.interface'
       useExisting: forwardRef(() => SelectComponent),
       multi: true,
     },
-  ],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  ]
 })
 export class SelectComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder!: string
@@ -63,7 +60,6 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     this.value = value.target?.value
     this.propagateChange(value.target?.value)
     this.changed.emit(value.target?.value)
-    this.cd.detectChanges();
   }
 
   onBlur(): void {

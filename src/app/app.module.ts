@@ -11,6 +11,8 @@ import { HttpInterceptorCustom } from './services/http.interceptor'
 import { AuthGuard } from './guards/auth.guard'
 import { AuthService } from './services/auth.service'
 import { HTTP } from '@awesome-cordova-plugins/http/ngx'
+import { ControlsModule } from './shared/controls/controls.module'
+import { CustomSelectModule } from './shared'
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +20,9 @@ import { HTTP } from '@awesome-cordova-plugins/http/ngx'
     BrowserModule,
     HttpClientModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    ControlsModule,
+    CustomSelectModule
   ],
   providers: [
     {
