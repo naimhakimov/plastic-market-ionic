@@ -71,9 +71,9 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       .subscribe(chats => {
         const find = chats.find(item => item.user_1 === offerByIdData.user.id || item.user_1 === offerByIdData.user.id)
         if (find) {
-          this.navCtrl.navigateForward('/chat/' + find.id)
+          this.navCtrl.navigateForward('/dashboard/chat/' + find.id)
         } else {
-          this.navCtrl.navigateForward('/chat/new', { queryParams: { offer_id: offerByIdData.id } })
+          this.navCtrl.navigateForward('/dashboard/chat/new', { queryParams: { offer_id: offerByIdData.id } })
         }
       })
   }

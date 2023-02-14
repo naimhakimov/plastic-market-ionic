@@ -12,7 +12,7 @@
 <ion-content>
   <div class='p-[22px] pb-[50px] message-list' *ngIf='messages.length'>
     <div class='flex w-full mb-[16px]' *ngFor='let message of messages'
-         [class.justify-end]="message?.author_id === currentUser.id">
+         [class.my-message]="message?.author_id === currentUser.id">
       <div class="py-[8px] pl-[16px] pr-[20px] rounded-[11px] bg-primary-100">
         <div class='text-[14px] leading-[20px] font-medium text-black-300 break-all'>{{ message?.message }}</div>
         <div class='mt-[3px] text-[12px] leading-[16px] text-blue-900 flex justify-end w-full'>{{ message?.created_at | date:'HH:mm' }}</div>

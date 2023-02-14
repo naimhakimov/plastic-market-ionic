@@ -19,6 +19,7 @@ export class OfferService {
   filter$ = new BehaviorSubject<any>(null)
   offerId: BehaviorSubject<string> = new BehaviorSubject<string>('')
   currentChat$: BehaviorSubject<UserInterface | null> = new BehaviorSubject<UserInterface | null>(null)
+  chatList$: BehaviorSubject<any | null> = new BehaviorSubject<any | null>(null)
   category = new BehaviorSubject<{ id: string, isParent: boolean }>({ id: '', isParent: false })
 
   getOffers(body?: any): Observable<iResponse<{ offers: Offer[] }>> {
@@ -103,7 +104,7 @@ export class OfferService {
     return this._http.post('/send_porp', body)
   }
 
-  sendMessage(body: { chat_id: string, message: string }): Observable<iResponse<any>> {
+  sendMessage(body: { chat_id: string, message: string, user_id: string }): Observable<iResponse<any>> {
     return this._http.post<iResponse<any>>('/send_message', body)
   }
 }

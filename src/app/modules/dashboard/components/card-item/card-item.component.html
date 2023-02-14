@@ -10,11 +10,11 @@
           [class.icon-heart-full]='favouriteService.isFavourite(offer.id)'
           (click)='addOrRemove($event, offer)'
     ></span>
-    <img *ngIf='offer?.image; else noImage' class='card-img rounded-t-[8px] w-full h-[130px] object-contain'
-         [src]="offer.image[0] ? ('https://plastic-market-app.ru/img/' + offer.image[0]) : './assets/no-photo.png'" alt=''>
+    <img *ngIf='offer?.image; else noImage' class='card-img rounded-t-[8px] w-full h-[130px]'
+         [src]="'https://plastic-market-app.ru/img/' + offer.image[0]" alt=''>
 
     <ng-template #noImage>
-      <img src='/assets/02.png' alt='' class='rounded-t-[8px] w-full max-h-[130px]'>
+      <img src='/assets/no-photo.png' alt='' class='rounded-t-[8px] w-full max-h-[130px]'>
     </ng-template>
   </div>
 

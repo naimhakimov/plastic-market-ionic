@@ -2,8 +2,9 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component } from '@angular/
 import { OfferService } from '../../../services/offer.service'
 import { Chat } from '../../../models/chat.interface'
 import { Router } from '@angular/router'
-import { first } from 'rxjs'
-
+import { first, switchMap, timer } from 'rxjs'
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy'
+@UntilDestroy()
 @Component({
   selector: 'app-chat-list',
   templateUrl: './chat-list.component.html',
@@ -21,10 +22,13 @@ export class ChatListComponent {
 
   ionViewDidEnter() {
     this.loading = true
-    this.offerService.getChats()
-      .pipe(first())
+    timer(0, 3000)
+      .pipe(switchMap(() => {
+        return this.offerService.getChats();
+      }), untilDestroyed(this))
       .subscribe(res => {
         this.chats = res
+        this.offerService.chatList$.next(res)
         this.loading = false
       }, () => {
         this.loading = false
