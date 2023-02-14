@@ -7,6 +7,7 @@ import { ChatComponent } from './chat.component'
 import { ChatByIdComponent } from './chat-by-id/chat-by-id.component'
 import { ChatListComponent } from './chat-list/chat-list.component'
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { TooltipModule } from '../../shared/components/tooltip/tooltip.module'
 
 const routes: Routes = [
   {
@@ -14,7 +15,7 @@ const routes: Routes = [
     component: ChatComponent,
     children: [
       {
-        path: 'list',
+        path: '',
         component: ChatListComponent
       },
       {
@@ -24,11 +25,6 @@ const routes: Routes = [
       {
         path: 'new',
         component: ChatByIdComponent
-      },
-      {
-        path: '',
-        redirectTo: 'list',
-        pathMatch: 'full'
       }
     ]
   }
@@ -45,7 +41,8 @@ const routes: Routes = [
     IonicModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    TooltipModule
   ]
 })
 export class ChatModule {

@@ -3,7 +3,7 @@
     <swiper [keyboard]='true' [pagination]='true' [zoom]='true'>
       <ng-container *ngFor='let img of offerByIdData?.image'>
         <ng-template swiperSlide>
-          <img [src]="'https://plastic-market-app.ru/img/' + img" alt=''>
+          <img [src]="img ? ('https://plastic-market-app.ru/img/' + img) : './assets/no-photo.png'" alt=''>
         </ng-template>
       </ng-container>
     </swiper>
@@ -14,9 +14,9 @@
         <span class='icon icon-arrow-right bg-white w-[7px] h-[15px]'></span>
       </ion-nav-link>
       <span
-        [class.icon-heart]='!favouriteService.isFavourite(offerByIdData.id)'
-        [class.icon-heart-full]='favouriteService.isFavourite(offerByIdData.id)'
-        (click)='favouriteService.addFavourite($event, offerByIdData.id)'
+        [class.icon-heart]='!offerByIdData.favorite'
+        [class.icon-heart-full]='offerByIdData.favorite'
+        (click)='addFavourite($event)'
         class='icon bg-primary'></span>
     </div>
 
@@ -68,7 +68,7 @@
       </div>
 
       <ng-template #edit>
-        <button class='btn btn-primary mt-[28px]' (click)='editOffer(offerByIdData.id)'>Редактировать</button>
+        <button class='btn btn-primary mt-[28px]' (click)='editOffer(offerByIdData)'>Редактировать</button>
       </ng-template>
 
       <div class='w-full rounded-[12px] flex bg-primary-100 items-center mt-[32px]'>

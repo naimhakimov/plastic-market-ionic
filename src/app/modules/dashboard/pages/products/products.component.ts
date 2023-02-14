@@ -4,7 +4,7 @@ import { FilterComponent } from '../../components/filter/filter.component'
 import { OfferService } from '../../../../services/offer.service'
 import { Offer } from '../../../../models/offer.interface'
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy'
-import { BehaviorSubject, filter, switchMap } from 'rxjs'
+import { filter, switchMap } from 'rxjs'
 
 @UntilDestroy()
 @Component({
@@ -13,8 +13,8 @@ import { BehaviorSubject, filter, switchMap } from 'rxjs'
   styleUrls: ['./products.component.scss']
 })
 export class ProductsComponent implements OnInit {
-  offers!: Offer[]
-  filter$ = new BehaviorSubject<any>(null)
+  offers: Offer[] = []
+  cloneOffers: Offer[] = []
   loading = false
 
   constructor(
@@ -26,17 +26,22 @@ export class ProductsComponent implements OnInit {
 
   ngOnInit() {
     this.getOffers(null)
-    this.offerService.categoryId
-      .pipe(filter(categoryId => !!categoryId))
-      .subscribe(res => {
-        this.filter$.next({ category_id: res })
-        // this.offerService.categoryId.next(null)
+    this.offerService.category
+      .pipe(filter(category => !!category.id))
+      .subscribe(({ id, isParent }) => {
+        this.offers = this.cloneOffers.filter(item => {
+          if (item.category) {
+            const productId = item.category[isParent ? 'parent_id' : 'id']
+            return productId === id
+          }
+          return
+        })
       })
   }
 
   getOffers(event: any): void {
     this.loading = true
-    this.filter$
+    this.offerService.filter$
       .pipe(
         switchMap((filter) => {
           return this.offerService.getOffers(filter)
@@ -44,7 +49,7 @@ export class ProductsComponent implements OnInit {
         untilDestroyed(this)
       )
       .subscribe(res => {
-        this.offers = res.data?.offers || []
+        this.offers = this.cloneOffers = res.data?.offers || []
         event?.target?.complete()
         this.loading = false
       }, error => this.loading = false)
@@ -59,12 +64,12 @@ export class ProductsComponent implements OnInit {
     const { data, role } = await modal.onWillDismiss()
 
     if (role === 'confirm') {
-      this.filter$.next(data)
+      this.offerService.filter$.next(data)
     }
   }
 
   refresh(event: any) {
-    this.filter$.next(null)
+    this.offerService.filter$.next(null)
     event?.target?.complete()
   }
 
@@ -73,5 +78,13 @@ export class ProductsComponent implements OnInit {
     this.navCtrl.navigateBack('/dashboard/product-details', {
       animationDirection: 'back'
     })
+  }
+
+  changeSearch(event: any) {
+    if (event) {
+      this.offers = this.cloneOffers.filter(item => item.name.toLowerCase().includes(event.toLowerCase()))
+    } else {
+      this.offers = this.cloneOffers
+    }
   }
 }

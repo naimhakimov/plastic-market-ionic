@@ -16,6 +16,9 @@ import { ProductsComponent } from './pages/products/products.component'
 import { CustomSelectModule, InputModule, SelectModule } from '../../shared'
 import { CreateComponent } from './components/create/create.component'
 import { AuthGuard } from '../../guards/auth.guard'
+import { TooltipComponent } from '../../shared/components/tooltip/tooltip.component'
+import { TooltipModule } from '../../shared/components/tooltip/tooltip.module'
+
 const routes: Routes = [
   {
     path: '',
@@ -44,7 +47,12 @@ const routes: Routes = [
       },
       {
         path: 'product-details',
-        component: ProductDetailsComponent,
+        component: ProductDetailsComponent
+      },
+      {
+        path: 'chat',
+        canActivate: [AuthGuard],
+        loadChildren: () => import('../../modules/chat/chat.module').then(m => m.ChatModule)
       }
     ]
   }
@@ -72,6 +80,7 @@ const routes: Routes = [
     SelectModule,
     InputModule,
     CustomSelectModule,
+    TooltipModule
   ]
 })
 export class DashboardModule {

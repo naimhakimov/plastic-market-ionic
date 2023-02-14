@@ -1,4 +1,4 @@
-import { Component, EventEmitter, forwardRef, Input, OnInit, Output } from '@angular/core'
+import { Component, EventEmitter, forwardRef, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core'
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms'
 import { ModalController } from '@ionic/angular'
 import { SelectModalComponent } from './select-modal/select-modal.component'
@@ -15,7 +15,7 @@ import { SelectModalComponent } from './select-modal/select-modal.component'
     }
   ]
 })
-export class CustomSelectComponent implements OnInit, ControlValueAccessor {
+export class CustomSelectComponent implements OnInit, ControlValueAccessor, OnChanges {
   @Input() icon!: string
   @Input() label!: string
   @Input() placeholder!: string
@@ -23,6 +23,7 @@ export class CustomSelectComponent implements OnInit, ControlValueAccessor {
   @Output() changed = new EventEmitter<any>()
 
   value: any
+  name: any
   isDisabled!: boolean
 
   private propagateChange: any = () => {
@@ -33,11 +34,27 @@ export class CustomSelectComponent implements OnInit, ControlValueAccessor {
   constructor(private modalCtrl: ModalController) {
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.hasOwnProperty('items')) {
+      this.setName()
+    }
+
+  }
+
   ngOnInit() {
   }
 
   writeValue(value: string): void {
     this.value = value
+    this.setName()
+  }
+
+  setName(): void {
+    if (this.value && this.items.length) {
+      this.name = this.items.find(x => +x.id === +this.value)?.name
+    } else {
+      this.name = null
+    }
   }
 
   registerOnChange(fn: any): void {
@@ -53,9 +70,12 @@ export class CustomSelectComponent implements OnInit, ControlValueAccessor {
   }
 
   onSelect(value: any): void {
-    this.value = value
-    this.propagateChange(value?.id)
-    this.changed.emit(value?.id)
+    if (value) {
+      this.writeValue(value.id)
+      this.name = value.name
+      this.propagateChange(value?.id)
+      this.changed.emit(value?.id)
+    }
   }
 
   async openSelect() {

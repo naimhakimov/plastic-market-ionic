@@ -1,6 +1,6 @@
 <div class='bg-white'>
   <div class='p-[22px] flex items-center justify-between' *ngIf='offerService.currentChat$ | async as user'>
-      <span routerDirection='back' routerLink='/chat/list'
+      <span routerDirection='back' routerLink='/dashboard/chat'
             class='icon icon-arrow-right rotate-180 w-[5px] h-[13px] bg-gray-600 mr-[25px]'></span>
     <img src='./assets/img/avatar.svg' alt=''>
     <div class='flex-1 ml-[12px] text-[20px] leading-[24px] text-primary'>{{user.name}}</div>

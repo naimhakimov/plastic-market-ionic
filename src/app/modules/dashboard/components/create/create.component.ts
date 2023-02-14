@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 import { AlertController, ModalController } from '@ionic/angular'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { OfferService } from '../../../../services/offer.service'
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy'
-import { first, forkJoin } from 'rxjs'
+import { UntilDestroy } from '@ngneat/until-destroy'
+import { first } from 'rxjs'
+import { Offer } from '../../../../models/offer.interface'
 
 @UntilDestroy()
 @Component({
@@ -12,6 +13,8 @@ import { first, forkJoin } from 'rxjs'
   styleUrls: ['./create.component.scss']
 })
 export class CreateComponent implements OnInit {
+  @Input() offer!: Offer
+
   form!: FormGroup
   categories: any[] = []
   regions: any[] = []
@@ -45,6 +48,19 @@ export class CreateComponent implements OnInit {
         this.form.controls['subcategory_id'].setValue(null)
         this.subCategories = this.cloneCategories.filter(item => item.parent_id === category_id)
       })
+
+    if (this.offer) {
+      const offer = JSON.parse(JSON.stringify(this.offer))
+      if (offer.category) {
+        offer.category_id = offer.category.parent_id
+        offer.subcategory_id = offer.category.id
+      } else {
+        offer.category_id = null
+        offer.subcategory_id = null
+      }
+      this.form.patchValue(offer)
+      this.images = this.offer.image
+    }
   }
 
   getOfferManuals() {
@@ -86,20 +102,34 @@ export class CreateComponent implements OnInit {
     })
   }
 
-  async cancel() {
-    await this.modalCtrl.dismiss()
+  async cancel(data = null) {
+    await this.modalCtrl.dismiss(data)
   }
 
   onSubmit(): void {
-    this.offerService.createOffer({
-      ...this.form.value,
-      image: this.images,
-      category_id: this.form.value.subcategory_id ? this.form.value.subcategory_id : this.form.value.category_id
-    }).subscribe(res => {
-      this.loading = false
-      if (res.error_code === 0) {
-        this.cancel()
-      }
-    })
+    if (this.offer?.id) {
+      this.offerService.updateOffer({
+        id: this.offer.id,
+        ...this.form.value,
+        category_id: this.form.value.subcategory_id,
+        image: this.images
+      }).subscribe(res => {
+        this.loading = false
+        if (res.error_code === 0) {
+          this.cancel(res.post_data)
+        }
+      })
+    } else {
+      this.offerService.createOffer({
+        ...this.form.value,
+        category_id: this.form.value.subcategory_id,
+        image: this.images
+      }).subscribe(res => {
+        this.loading = false
+        if (res.error_code === 0) {
+          this.cancel()
+        }
+      })
+    }
   }
 }

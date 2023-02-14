@@ -16,10 +16,10 @@ import { Chat, Data, Message } from '../models/chat.interface'
 export class OfferService {
   constructor(private readonly _http: HttpClient) {}
 
+  filter$ = new BehaviorSubject<any>(null)
   offerId: BehaviorSubject<string> = new BehaviorSubject<string>('')
   currentChat$: BehaviorSubject<UserInterface | null> = new BehaviorSubject<UserInterface | null>(null)
-  isCreated = false
-  categoryId = new BehaviorSubject<string | null>(null)
+  category = new BehaviorSubject<{ id: string, isParent: boolean }>({ id: '', isParent: false })
 
   getOffers(body?: any): Observable<iResponse<{ offers: Offer[] }>> {
     return this._http.post<any>('/get_offers', body)
@@ -63,6 +63,10 @@ export class OfferService {
     return this._http.post<any>('/create_offer', offer)
   }
 
+  updateOffer(offer: Offer): Observable<iResponse<Offer>> {
+    return this._http.post<any>('/save_offer', offer)
+  }
+
   uploadFile(formData: any) {
     return this._http.post(`/upload?token=${localStorage.getItem('token')}`, formData)
   }
@@ -95,7 +99,7 @@ export class OfferService {
       })))
   }
 
-  sendProp(body: {id: string, comment: string}): Observable<any> {
+  sendProp(body: { id: string, comment: string }): Observable<any> {
     return this._http.post('/send_porp', body)
   }
 

@@ -1,7 +1,7 @@
 <ion-content>
   <form [formGroup]='form' class='py-[30px] px-[22px] bg-white'>
     <div class='flex justify-between items-center mb-[37px]'>
-      <h1 class='text-[20px] leading-[24px] text-primary font-bold'>Создайте объявление</h1>
+      <h1 class='text-[20px] leading-[24px] text-primary font-bold'>{{ offer?.id ? 'Редактировать' : 'Создать' }} объявление</h1>
       <div (click)='cancel()' class='bg-primary flex justify-center items-center rounded-full p-[15px]'>
         <span class='icon icon-close bg-white w-[14px] h-[14px]'></span>
       </div>
@@ -114,7 +114,8 @@
 
 
     <button [disabled]='loading || form.invalid' class='btn btn-primary mt-[26px] flex items-center justify-center' (click)='onSubmit()'>
-      Опубликовать  <ion-spinner color="light" class='ml-[8px] h-[20px]' *ngIf='loading'></ion-spinner>
+      {{ offer?.id ? 'Сохранить' : 'Опубликовать' }}
+      <ion-spinner color="light" class='ml-[8px] h-[20px]' *ngIf='loading'></ion-spinner>
     </button>
   </form>
 </ion-content>

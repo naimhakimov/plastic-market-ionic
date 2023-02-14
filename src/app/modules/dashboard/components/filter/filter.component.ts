@@ -11,7 +11,7 @@ import { CityInterface } from '../../../../models/city.interface'
 @Component({
   selector: 'app-filter',
   templateUrl: './filter.component.html',
-  styleUrls: ['./filter.component.scss']
+  styleUrls: ['./filter.component.scss'],
 })
 export class FilterComponent implements OnInit {
   name!: string
@@ -34,7 +34,7 @@ export class FilterComponent implements OnInit {
   constructor(
     private readonly modalCtrl: ModalController,
     private readonly offerService: OfferService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
   ) {
   }
 
@@ -53,10 +53,26 @@ export class FilterComponent implements OnInit {
     this.form.controls['region_id'].valueChanges
       .pipe(untilDestroyed(this))
       .subscribe(region_id => {
-        console.log('werwe', region_id)
         this.form.controls['city_id'].setValue(null)
         this.cities = this.cloneCities.filter(item => item.region_id === region_id)
       })
+
+    const filter = this.offerService.filter$.getValue()
+    const category = this.offerService.category.getValue()
+    if (filter) {
+      this.form.patchValue(filter)
+      this.form.controls['category_id'].setValue(filter.category_id)
+    }
+    if (category.isParent) {
+      this.form.controls['category_id'].setValue(category.id)
+    } else {
+      const item = this.cloneCategories.find(item => item.id === category.id)
+      if (item?.parent_id) {
+        this.form.controls['category_id'].setValue(item.parent_id)
+        this.form.controls['subcategory_id'].setValue(item.id)
+      }
+
+    }
   }
 
   getOfferManuals() {

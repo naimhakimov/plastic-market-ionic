@@ -33,6 +33,6 @@ export class ChatListComponent {
 
   navigate(chat: Chat): void {
     this.offerService.currentChat$.next(chat.user)
-    this.router.navigate(['/chat/' + chat.id])
+    this.router.navigate(['/dashboard/chat/' + chat.id])
   }
 }

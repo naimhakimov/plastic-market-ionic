@@ -11,7 +11,7 @@
           (click)='addOrRemove($event, offer)'
     ></span>
     <img *ngIf='offer?.image; else noImage' class='card-img rounded-t-[8px] w-full h-[130px] object-contain'
-         [src]="'https://plastic-market-app.ru/img/' + offer.image[0]" alt=''>
+         [src]="offer.image[0] ? ('https://plastic-market-app.ru/img/' + offer.image[0]) : './assets/no-photo.png'" alt=''>
 
     <ng-template #noImage>
       <img src='/assets/02.png' alt='' class='rounded-t-[8px] w-full max-h-[130px]'>

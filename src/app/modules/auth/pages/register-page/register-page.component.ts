@@ -3,6 +3,7 @@ import { AuthService } from '../../../../services/auth.service'
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { ToastService } from '../../../../services/toast.service'
+import { delay, switchMap } from 'rxjs'
 
 @Component({
   selector: 'app-register-page',
@@ -40,11 +41,22 @@ export class RegisterPageComponent implements OnInit {
     this.loading = true
     this.errorMessage = ''
     this.authService.register(this.form.value)
+      .pipe(
+        switchMap((res) => {
+          return this.authService.login({
+            login: this.form.value.email,
+            password: this.form.value.password
+          })
+        }),
+        delay(1000)
+      )
       .subscribe({
         next: (res) => {
           this.loading = false
+
           if (res.error_code === 0) {
             this.form.reset()
+            localStorage.setItem('user', JSON.stringify(res.data))
             localStorage.setItem('token', res.data.token)
             this.router.navigate(['/dashboard'])
             return

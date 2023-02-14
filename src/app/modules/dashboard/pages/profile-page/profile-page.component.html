@@ -3,16 +3,18 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div class='p-[22px] bg-white'>
-    <h1 class='text-primary font-bold text-[20px] leading-[24px] mb-[37px]'>Список продаж</h1>
+  <div class='px-[22px] bg-white'>
+    <div class='sticky top-0 bg-white z-40 pt-[22px] pb-[10px]'>
+      <h1 class='text-primary font-bold text-[20px] leading-[24px] mb-[37px]'>Список продаж</h1>
 
-    <div class='w-full rounded-[12px] flex bg-primary-100 items-center'>
-      <div
-        *ngFor="let i of ['Активные', 'Неактивные', 'На модерации']; let idx = index"
-        class='truncate text-[12px] leading-[16px] font-semibold rounded-[12px] px-[15px] py-[13px] transition-all whitespace-nowrap	text-gray-700'
-        [class.active]='active === idx' (click)='active = idx'>{{i}}</div>
+      <div class='w-full rounded-[12px] flex bg-primary-100 items-center'>
+        <div
+          *ngFor="let i of ['Активные', 'Неактивные', 'На модерации']; let idx = index"
+          class='truncate text-[12px] leading-[16px] font-semibold rounded-[12px] px-[15px] py-[13px] transition-all whitespace-nowrap	text-gray-700'
+          [class.active]='active === idx' (click)='active = idx'>{{i}}</div>
+      </div>
     </div>
-    <div class='mt-[34px]'>
+    <div class='h-full mt-[14px]'>
 
       <ng-container [ngSwitch]='active'>
         <ng-container *ngSwitchCase='0'>
@@ -61,7 +63,7 @@
       </ng-container>
 
       <ng-container *ngIf='!loading && ownOffers?.length === 0'>
-        <div class='text-center text-gray-200'>
+        <div class='text-center text-gray-200  h-full flex justify-center items-center mt-[35vh]'>
           {{ active === 0
           ? 'У вас пока нет активных товаров' : active === 1
             ? 'У вас пока нет неактивных товаров' : active === 2

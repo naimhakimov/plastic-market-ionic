@@ -10,7 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "android": "ionic capacitor run android",
+    "android": "ionic capacitor build android",
     "prepare": "husky install"
   },
   "private": true,

@@ -3,7 +3,7 @@
   <div class='flex items-center'>
     <span *ngIf='icon' class='icon {{ icon }} w-[18px] h-[18px]'></span>
     <span [class.ml-[15px]]='icon' class='flex-1 text-[16px] leading-[17px] text-gray-600'>
-    {{ value?.name ? value.name : placeholder }}
+    {{ name ?? placeholder }}
   </span>
     <span class='icon icon-arrow-right w-[7px] h-[13px] bg-purple-900'></span>
   </div>

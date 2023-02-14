@@ -1,9 +1,9 @@
-<div>
+<div id='main-content'>
   <ion-router-outlet></ion-router-outlet>
 </div>
 
 <ion-tabs>
-  <ion-tab-bar slot='bottom'>
+  <ion-tab-bar [hidden]='isChat' slot='bottom'>
     <ion-tab-button tab='home'>
       <span class='icon icon-home'></span>
       <ion-label class='text-[10px] leading-[12px] text-gray'>Главная</ion-label>
@@ -16,7 +16,7 @@
       <span class='icon icon-create'></span>
       <ion-label class='text-[10px] leading-[12px] text-gray'>Создать</ion-label>
     </ion-tab-button>
-    <ion-tab-button routerLink='/chat'>
+    <ion-tab-button tab='chat'>
       <span class='icon icon-message-icon'></span>
       <ion-label class='text-[10px] leading-[12px] text-gray'>Сообщения</ion-label>
     </ion-tab-button>
@@ -30,17 +30,27 @@
 <ion-menu contentId='main-content'>
   <ion-content>
     <div class='mt-[20px]'>
-      <ion-menu-toggle class='flex items-center px-[25px] py-[10px]'
-                       *ngFor='let category of categories'
-                       (click)='selectCategory(category.id)'>
-        <span class='mr-[17px] icon icon-catalog w-[22px] h-[22px] bg-black-200'></span>
-        <p class='mr-[17px] text-[14px] leading-[17px] text-black-100'>{{ category.name }}</p>
-        <span class='icon icon-arrow-right w-[13px] h-[13px] bg-black-100'></span>
-      </ion-menu-toggle>
+      <ng-container *ngFor='let category of categories'>
+        <div class='flex items-center px-[25px] py-[10px]'
+             (click)='selectCategory(category.id)'>
+          <span class='mr-[17px] icon icon-material min-w-[22px] h-[22px] bg-black-200'></span>
+          <p class='mr-[17px] text-[14px] leading-[17px] text-black-100 font-bold'>{{ category.name }}</p>
+          <span class='icon icon-arrow-right min-w-[13px] h-[13px] bg-black-100 ml-auto'
+                [class.rotate-90]='active === category.id'></span>
+        </div>
+
+        <ng-container *ngIf='active === category.id'>
+          <div class='flex flex-col pl-[40px]'>
+            <ion-menu-toggle class='px-[25px] py-[10px]'
+                             *ngFor='let item of category.subcategories; let first = first'
+                             (click)='next(item.id, first)'>{{ item.name }}</ion-menu-toggle>
+          </div>
+        </ng-container>
+      </ng-container>
+
       <ion-menu-toggle class='flex items-center px-[25px] py-[10px]' (click)='logout()'>
-        <span class='mr-[17px] icon icon-catalog w-[22px] h-[22px] bg-black-200'></span>
-        <p class='mr-[17px] text-[14px] leading-[17px] text-black-100'>Выйти</p>
-        <span class='icon icon-arrow-right w-[13px] h-[13px] bg-black-100'></span>
+        <span class='mr-[17px] icon icon-logout w-[22px] h-[22px] bg-black-200'></span>
+        <p class='mr-[17px] text-[14px] leading-[17px] font-bold text-black-100'>Выйти</p>
       </ion-menu-toggle>
     </div>
   </ion-content>

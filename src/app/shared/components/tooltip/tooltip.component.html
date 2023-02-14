@@ -1,0 +1,16 @@
+<div class='flex items-center justify-between p-[22px] sticky top-0 z-40 bg-white pb-[10px] h-[76px]'>
+  <ion-menu-toggle class='mr-[12px]'>
+    <span class='icon icon-menu w-[16px]'></span>
+  </ion-menu-toggle>
+
+  <div *ngIf='showSearch' class='flex items-center justify-between rounded-[10px] bg-light-gray py-[10px] px-[13px] flex-1 mr-[12px]'>
+    <span class='mr-[8px] icon icon-search w-[20px]'></span>
+    <input (input)='change($event)' type='text' class='mr-[8px] bg-transparent outline-none border-none flex-1'>
+    <span class='icon icon-filter w-[18px]' (click)='openModal()'></span>
+  </div>
+
+  <div class='relative'>
+    <span class='icon icon-notice w-[18px]'></span>
+    <span class='absolute top-0 r-0 rounded-full w-[5px] h-[5px] bg-orange'></span>
+  </div>
+</div>

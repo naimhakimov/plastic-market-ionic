@@ -1,11 +1,8 @@
 <ion-content>
-  <div class='bg-white p-[22px]'>
-    <div class='flex items-center'>
-      <div routerLink='/dashboard' class='bg-primary flex justify-center items-center rounded-full p-[10px] mr-[16px]'>
-        <span class='icon icon-arrow-right rotate-180 bg-white w-[14px] h-[14px]'></span>
-      </div>
-      <h1 class='text-primary text-[20px] leading-[24px] font-bold'>Список чатов</h1>
-    </div>
+  <app-tooltip [showSearch]='false'></app-tooltip>
+
+  <div class='bg-white px-[22px] pb-[22px] flex flex-col'>
+    <h1 class='text-primary text-[20px] leading-[24px] font-bold'>Список чатов</h1>
     <div class='mt-[20px]'>
       <ng-container *ngIf='chats.length'>
         <div class='mx-[-22px]'>
@@ -31,7 +28,7 @@
       </ng-container>
 
       <ng-container *ngIf='chats.length === 0 && !loading'>
-        <div class='text-center text-gray-200'>Нет чатов</div>
+        <div class='text-center text-gray-200 flex-1 flex justify-center items-center mt-[35vh]'>Нет чатов</div>
       </ng-container>
     </div>
   </div>

@@ -18,7 +18,7 @@ export class SelectModalComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.items = this.cloneItems = this.items.map(item => ({ ...item, checked: item.id === this.defaultValue?.id }))
+    this.items = this.cloneItems = this.items.map(item => ({ ...item, checked: item.id === this.defaultValue }))
   }
 
   async cancel() {

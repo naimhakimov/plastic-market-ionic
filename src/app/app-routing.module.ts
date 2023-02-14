@@ -17,11 +17,6 @@ const routes: Routes = [
       )
   },
   {
-    path: 'chat',
-    canActivate: [AuthGuard],
-    loadChildren: () => import('./modules/chat/chat.module').then(m => m.ChatModule)
-  },
-  {
     path: '',
     redirectTo: 'dashboard',
     pathMatch: 'full'

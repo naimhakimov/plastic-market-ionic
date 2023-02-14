@@ -12,6 +12,7 @@ import { NavController } from '@ionic/angular'
 export class FavouritePageComponent {
 
   favourites: Offer[] = []
+  cloneFavourites: Offer[] = []
   loading = false
 
   constructor(
@@ -25,7 +26,7 @@ export class FavouritePageComponent {
     this.offerService.getFavoriteOffers()
       .pipe(first())
       .subscribe(res => {
-        this.favourites = res
+        this.favourites = this.cloneFavourites = res
         this.loading = false
       }, error => this.loading = false)
   }
@@ -39,5 +40,13 @@ export class FavouritePageComponent {
 
   removeOffer(event: string) {
     this.favourites = this.favourites.filter(item => item.id !== event)
+  }
+
+  changeSearch(event: any) {
+    if (event) {
+      this.favourites = this.cloneFavourites.filter(item => item.name.toLowerCase().includes(event.toLowerCase()))
+    } else {
+      this.favourites = this.cloneFavourites
+    }
   }
 }

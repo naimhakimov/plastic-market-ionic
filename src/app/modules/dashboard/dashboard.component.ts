@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core'
 import { ModalController } from '@ionic/angular'
 import { CreateComponent } from './components/create/create.component'
-import { Router } from '@angular/router'
+import { NavigationEnd, Router } from '@angular/router'
 import { OfferService } from '../../services/offer.service'
-import { Category } from '../../models/offer.interface'
 import { first, forkJoin } from 'rxjs'
 
 @Component({
@@ -12,10 +11,12 @@ import { first, forkJoin } from 'rxjs'
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  categories: Category[] = []
+  categories: any[] = []
+  active: any
+  isChat = false
 
   constructor(
-    private readonly offerService: OfferService,
+    public readonly offerService: OfferService,
     private modalCtrl: ModalController,
     private router: Router
   ) {}
@@ -32,12 +33,25 @@ export class DashboardComponent implements OnInit {
       this.offerService.getRegions()
     ]).pipe(first())
       .subscribe(([categories, favorites, cities, regions]) => {
-        this.categories = categories.filter(item => item.parent_id === "0")
+        this.categories = categories.filter(item => item.parent_id === '0').map(item => ({
+          ...item,
+          subcategories: [{
+            ...item,
+            name: 'Все'
+          }, ...categories.filter(i => item.id === i.parent_id)]
+        }))
         localStorage.setItem('favourites', JSON.stringify(favorites.map(item => item.id) || '[]'))
         localStorage.setItem('categories', JSON.stringify(categories) || '[]')
         localStorage.setItem('cities', JSON.stringify(cities) || '[]')
         localStorage.setItem('regions', JSON.stringify(regions) || '[]')
       })
+
+    this.router.events.subscribe(res => {
+      if (res  instanceof NavigationEnd) {
+        this.isChat = res.url.includes('/dashboard/chat/')
+      }
+    })
+
   }
 
   async createModal() {
@@ -59,6 +73,16 @@ export class DashboardComponent implements OnInit {
   }
 
   selectCategory(id: string) {
-    this.offerService.categoryId.next(id)
+    if (this.active === id) {
+      this.active = null
+    } else {
+      this.active = id
+    }
+  }
+
+  next(id: string, first: boolean): void {
+    this.router.navigate(['/dashboard']).finally(() => {
+      this.offerService.category.next({ id, isParent: first })
+    })
   }
 }
