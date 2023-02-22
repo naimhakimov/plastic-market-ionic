@@ -1,7 +1,7 @@
 import { AfterViewInit, ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core'
 import SwiperCore, { Autoplay, Keyboard, Pagination, Zoom } from 'swiper'
 import { OfferService } from '../../../../services/offer.service'
-import { of, switchMap } from 'rxjs'
+import { first, of, switchMap } from 'rxjs'
 import { Offer } from '../../../../models/offer.interface'
 import { UserInterface } from '../../../../models/user.interface'
 import { ModalController, NavController } from '@ionic/angular'
@@ -97,5 +97,13 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     this.favouriteService.addFavourite(event, this.offerByIdData.id)
     this.offerByIdData.favorite = this.offerByIdData.favorite ? 0 : 1;
     this.cdf.detectChanges()
+  }
+
+  deleteOffer(id: string): void {
+    this.offerService.deleteOfferById(id)
+      .pipe(first())
+      .subscribe(() => {
+        this.navCtrl.navigateForward('/dashboard')
+      })
   }
 }

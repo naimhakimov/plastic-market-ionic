@@ -9,7 +9,7 @@
 
       <div class='w-full rounded-[12px] flex bg-primary-100 items-center'>
         <div
-          *ngFor="let i of ['Активные', 'Неактивные', 'На модерации']; let idx = index"
+          *ngFor="let i of ['Активные', 'Неактивные']; let idx = index"
           class='truncate text-[12px] leading-[16px] font-semibold rounded-[12px] px-[15px] py-[13px] transition-all whitespace-nowrap	text-gray-700'
           [class.active]='active === idx' (click)='active = idx'>{{i}}</div>
       </div>
@@ -35,7 +35,7 @@
 
               <div>
             <span
-              class='text-[14px] leading-[17px] font-semibold text-primary mr-[10px]'>{{ '$' + offer.amount  }}</span>
+              class='text-[14px] leading-[17px] font-semibold text-primary mr-[10px]'>{{ offer.amount + ' руб'   }}</span>
                 <!--          <span class='text-gray-strong text-[10px] leading-[12px] line-through'>$35</span>-->
               </div>
 

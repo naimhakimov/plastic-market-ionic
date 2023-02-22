@@ -107,4 +107,8 @@ export class OfferService {
   sendMessage(body: { chat_id: string, message: string, user_id: string }): Observable<iResponse<any>> {
     return this._http.post<iResponse<any>>('/send_message', body)
   }
+
+  deleteOfferById(offer_id: string): Observable<any> {
+    return this._http.post<any>('/remove_offer', { offer_id })
+  }
 }
