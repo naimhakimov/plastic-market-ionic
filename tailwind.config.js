@@ -26,6 +26,7 @@ module.exports = {
       'gray-400': '#777777',
       'gray-500': '#434343',
       'gray-600': '#4F4F4F',
+      'gray-800': '#6A6A6A',
       'gray-700': '#2F2F2F',
       'green-100': '#F4F4F4',
       'transparent': 'transparent',
@@ -33,7 +34,8 @@ module.exports = {
       'orange-100': '#EEA86C',
       'yellow': '#FFBF2C',
       'purple-900': '#2D264B',
-      'red-300': 'rgb(239 68 68)'
+      'red-300': 'rgb(239 68 68)',
+      'red-200': '#FF5757'
     }
   },
   plugins: []

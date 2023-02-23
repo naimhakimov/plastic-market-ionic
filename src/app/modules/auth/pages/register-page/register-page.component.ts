@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router'
 import { ToastService } from '../../../../services/toast.service'
 import { delay, switchMap } from 'rxjs'
+import { createMask } from '@ngneat/input-mask'
 
 @Component({
   selector: 'app-register-page',
@@ -14,6 +15,7 @@ export class RegisterPageComponent implements OnInit {
   form!: FormGroup
   errorMessage = ''
   loading = false
+  inputMask = createMask('+[9 ]999 999 999')
 
   constructor(
     private authService: AuthService,

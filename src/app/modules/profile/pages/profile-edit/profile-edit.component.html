@@ -1,0 +1,57 @@
+<ion-content>
+  <div class='p-[22px] bg-white' *ngIf='currentUser'>
+    <img class='w-[80px] h-[80px] rounded-full mt-[10px]'
+         [src]='currentUser.photo'
+         (error)='errorAvatar($event)'
+         alt=''>
+    <div class='mt-[20px] mb-[10px] text-[30px] leading-[30px] font-medium'>{{ currentUser.name  }}</div>
+    <div class='mb-[10px] text-[14px] leading-[14px] text-gray-800'>{{ currentUser.email }}</div>
+    <div class='text-[14px] leading-[14px] text-gray-800 mb-[36px]'>Редактирование профиля</div>
+
+    <form [formGroup]='form'>
+      <div class='mb-[20px]'>
+        <app-input
+          icon='icon-message'
+          formControlName='name'
+          placeholder='Введите имя'>
+        </app-input>
+      </div>
+
+      <div class='mb-[20px]'>
+        <app-input
+          formControlName='email'
+          icon='icon-email'
+          placeholder='Введите email'>
+        </app-input>
+      </div>
+
+      <div class='mb-[20px]'>
+        <app-input
+          [inputMask]='inputMask'
+          formControlName='phone'
+          icon='icon-phone'
+          placeholder='Введите телефон'>
+        </app-input>
+      </div>
+
+      <div class='mb-[20px]'>
+        <app-input
+          formControlName='password'
+          type='password'
+          icon='icon-lock'
+          placeholder='Введите новый пароль'>
+        </app-input>
+      </div>
+
+      <div class='mb-[20px]'>
+        <textarea
+          formControlName='description'
+          placeholder='Введите краткое описание'
+          class='w-full border-b-[1px] border-b-gray-50 outline-none'>
+        </textarea>
+      </div>
+
+      <button class='btn btn-primary' (click)='onSubmit()'>Сохранить</button>
+    </form>
+  </div>
+</ion-content>

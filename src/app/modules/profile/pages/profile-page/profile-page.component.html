@@ -1,0 +1,26 @@
+<div class='p-[22px] h-full bg-white'>
+  <img class='w-[80px] h-[80px] rounded-full mt-[10px]'
+       [src]='currentUser.photo'
+       (error)="errorAvatar($event)"
+       alt=''>
+  <div class='mt-[20px] mb-[10px] text-[30px] leading-[30px] font-medium'>{{ currentUser.name  }}</div>
+  <div class='mb-[10px] text-[14px] leading-[14px] text-gray-800'>{{ currentUser.email }}</div>
+
+  <div class='mt-[46px] flex flex-col h-full'>
+    <div class='flex items-center'
+         [routerLink]="[item.link]"
+         *ngFor='let item of items; let last = last'
+         [class.flex-1]='last'
+         [class.mb-[30px]]='!last'
+         (click)='last && logout()'
+    >
+      <div class='bg-primary rounded-full w-[36px] h-[36px] flex justify-center items-center'
+           [class.bg-red-200]='last'
+      >
+        <span class='icon icon-{{ item.icon }} bg-white w-[16px]'></span>
+      </div>
+
+      <div class='ml-[15px] text-[16px] leading-[19px] text-black-300'>{{ item.title }}</div>
+    </div>
+  </div>
+</div>

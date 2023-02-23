@@ -210,8 +210,13 @@
   }
 
   &-logout {
-    -webkit-mask: url('../assets/icons/log-out-outline.svg') no-repeat 50% 50%;
-    mask: url('../assets/icons/log-out-outline.svg') no-repeat 50% 50%;
+    -webkit-mask: url('../assets/icons/logout.svg') no-repeat 50% 50%;
+    mask: url('../assets/icons/logout.svg') no-repeat 50% 50%;
+  }
+
+  &-sales-list {
+    -webkit-mask: url('../assets/icons/sales-list.svg') no-repeat 50% 50%;
+    mask: url('../assets/icons/sales-list.svg') no-repeat 50% 50%;
   }
 
 }

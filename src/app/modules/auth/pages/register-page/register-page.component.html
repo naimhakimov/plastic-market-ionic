@@ -1,47 +1,62 @@
-<div class="pt-[90px] px-[35px] flex flex-col justify-between h-full pb-[42px] bg-white">
-  <h1 class="pl-[5px] text-[36px] leading-[43px] text-primary font-bold">
+<div class='pt-[90px] px-[35px] flex flex-col justify-between h-full pb-[42px] bg-white'>
+  <h1 class='pl-[5px] text-[36px] leading-[43px] text-primary font-bold'>
     Регистрация
   </h1>
 
   <div *ngIf='errorMessage' class='text-red-300'>{{ errorMessage }}</div>
 
-  <form class="mt-[78px] flex flex-col" [formGroup]='form'>
+  <form class='mt-[78px] flex flex-col' [formGroup]='form'>
     <div class='mb-[16px]'>
       <app-input
         formControlName='name'
-        placeholder="Имя пользователя*"
-        icon="icon-message"
+        placeholder='Имя пользователя*'
+        icon='icon-message'
       ></app-input>
     </div>
 
     <div class='mb-[16px]'>
-      <app-input type='number' placeholder="Номер телефона*" icon="icon-phone" formControlName='phone'></app-input>
+      <app-input
+        [inputMask]="inputMask"
+        placeholder='Номер телефона*'
+        icon='icon-phone'
+        formControlName='phone'>
+      </app-input>
     </div>
 
     <div class='mb-[16px]'>
-      <app-input placeholder="Email*" icon="icon-email" formControlName='email'></app-input>
+      <app-input
+        placeholder='Email*'
+        icon='icon-email'
+        formControlName='email'>
+      </app-input>
     </div>
 
     <div class='mb-[16px]'>
-      <app-input type='password' placeholder="Пароль*" icon="icon-lock" formControlName='password'></app-input>
+      <app-input
+        type='password'
+        placeholder='Пароль*'
+        icon='icon-lock'
+        formControlName='password'>
+      </app-input>
     </div>
 
     <div>
-      <button class="flex items-center justify-center btn btn-primary" type="button" (click)='onSubmit()' [disabled]='form.invalid'>
+      <button class='flex items-center justify-center btn btn-primary' type='button' (click)='onSubmit()'
+              [disabled]='form.invalid'>
         Зарегистрироваться
         <ion-spinner class='h-[20px] ml-[8px]' *ngIf='loading'></ion-spinner>
       </button>
-      <p class="text-[12px] leading-[17px] text-primary text-center mt-[20px]">
+      <p class='text-[12px] leading-[17px] text-primary text-center mt-[20px]'>
         Естӣ аккаунт? &nbsp;
-        <span class="font-bold" routerLink="/auth/login">Войти</span>
+        <span class='font-bold' routerLink='/auth/login'>Войти</span>
       </p>
     </div>
   </form>
 
-  <p class="text-[12px] leading-[17px] text-primary text-center">
+  <p class='text-[12px] leading-[17px] text-primary text-center'>
     У вас нет аккаунта? &nbsp;
-    <span class="font-bold" routerLink="/auth/register"
-      >Зарегистрироваться</span
+    <span class='font-bold' routerLink='/auth/register'
+    >Зарегистрироваться</span
     >
   </p>
 </div>

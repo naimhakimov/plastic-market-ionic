@@ -17,7 +17,7 @@ export class CreateComponent implements OnInit {
 
   form!: FormGroup
   categories: any[] = []
-  regions: any[] = []
+  cities: any[] = []
   subCategories: any[] = []
   cloneCategories: any[] = []
   images: string[] = []
@@ -41,7 +41,7 @@ export class CreateComponent implements OnInit {
     this.getOfferManuals()
     this.categories = this.cloneCategories = JSON.parse(localStorage.getItem('categories') || '[]')
     this.categories = this.cloneCategories.filter(item => item.parent_id === '0')
-    this.regions = JSON.parse(localStorage.getItem('regions') || '[]')
+    this.cities = JSON.parse(localStorage.getItem('cities') || '[]')
 
     this.form.controls['category_id'].valueChanges
       .subscribe(category_id => {

@@ -21,7 +21,7 @@
   <div class='py-[7px] px-[12px]' *ngIf='offer'>
     <p class='font-medium	text-gray-strong text-[12px] leading-[14px]'>{{ offer.name }}</p>
     <div class='flex items-center mt-[5px]'>
-      <span class='text-[14px] leading-[17px] font-semibold text-primary mr-[8px]'>{{ offer.amount }}</span>
+      <span class='text-[14px] leading-[17px] font-semibold text-primary mr-[8px]'>{{ offer.amount + ' руб' }}</span>
       <span class='text-[10px] leading-[12px] text-gray-strong line-through' *ngIf='false'>$25</span>
     </div>
     <div class='flex items-center justify-between'>

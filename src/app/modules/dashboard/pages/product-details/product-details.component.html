@@ -3,7 +3,7 @@
     <swiper [keyboard]='true' [pagination]='true' [zoom]='true'>
       <ng-container *ngFor='let img of offerByIdData?.image'>
         <ng-template swiperSlide>
-          <img [src]="img ? ('https://plastic-market-app.ru/img/' + img) : './assets/no-photo.png'" alt=''>
+          <img class='object-contain' [src]="img ? ('https://plastic-market-app.ru/img/' + img) : './assets/no-photo.png'" alt=''>
         </ng-template>
       </ng-container>
     </swiper>
@@ -25,7 +25,7 @@
         <h1 class='text-[18px] leading-[22px] font-bold text-gray-300'>{{ offerByIdData.name }}</h1>
         <div class='flex flex-col items-end'>
           <p class='text-[12px] leading-[14px] text-gray-200 line-through' *ngIf='false'>$22</p>
-          <p class='text-primary text-[18px] leading-[21px] font-bold'>{{ offerByIdData.amount }}</p>
+          <p class='text-primary text-[18px] leading-[21px] font-bold'>{{ offerByIdData.amount + ' руб' }}</p>
         </div>
       </div>
 
@@ -76,6 +76,7 @@
         <div
           *ngFor="let i of ['Описание', 'Доставка и оплата']; let idx = index"
           class='text-[14px] leading-[18px] font-semibold rounded-[12px] px-[15px] py-[13px] transition-all	text-gray-700'
+          [class.w-full]='idx === 1'
           [class.active]='active === idx' (click)='active = idx'>{{i}}</div>
       </div>
 

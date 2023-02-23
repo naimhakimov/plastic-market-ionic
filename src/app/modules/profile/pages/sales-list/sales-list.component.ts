@@ -1,16 +1,18 @@
 import { Component, DoCheck, OnInit } from '@angular/core'
-import { OfferService } from '../../../../services/offer.service'
-import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy'
-import { Offer } from '../../../../models/offer.interface'
 import { NavController } from '@ionic/angular'
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy'
+
+import { OfferService } from '../../../../services/offer.service'
+import { Offer } from '../../../../models/offer.interface'
 
 @UntilDestroy()
 @Component({
-  selector: 'app-profile-page',
-  templateUrl: './profile-page.component.html',
-  styleUrls: ['./profile-page.component.scss']
+  selector: 'app-sales-list',
+  templateUrl: './sales-list.component.html',
+  styleUrls: ['./sales-list.component.scss']
 })
-export class ProfilePageComponent implements OnInit, DoCheck {
+export class SalesListComponent implements OnInit, DoCheck {
+
   active: number = 0
   public ownOffers: Offer[] = []
   loading = false
@@ -50,4 +52,5 @@ export class ProfilePageComponent implements OnInit, DoCheck {
     this.offerService.offerId.next(id)
     this.navCtrl.navigateBack('/dashboard/product-details')
   }
+
 }

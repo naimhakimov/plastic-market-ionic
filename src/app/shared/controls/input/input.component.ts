@@ -4,9 +4,10 @@ import {
   forwardRef,
   Input,
   Output,
-  EventEmitter,
+  EventEmitter
 } from '@angular/core'
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms'
+import { InputmaskOptions } from '@ngneat/input-mask'
 
 type Type = 'text' | 'email' | 'password' | 'number'
 
@@ -18,25 +19,28 @@ type Type = 'text' | 'email' | 'password' | 'number'
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => InputComponent),
-      multi: true,
-    },
-  ],
+      multi: true
+    }
+  ]
 })
 export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder!: string
   @Input() icon!: string
   @Input() type: Type = 'text'
+  @Input() inputMask!: InputmaskOptions<any>
   @Output() changed = new EventEmitter<string>()
 
   value: string | null = null
   isDisabled!: boolean
 
-  constructor() {}
+  private propagateChange: any = () => {
+  }
+  private propagateTouched: any = () => {
+  }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+  }
 
-  private propagateChange: any = () => {}
-  private propagateTouched: any = () => {}
 
   writeValue(value: string): void {
     this.value = value

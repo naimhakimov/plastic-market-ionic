@@ -111,4 +111,12 @@ export class OfferService {
   deleteOfferById(offer_id: string): Observable<any> {
     return this._http.post<any>('/remove_offer', { offer_id })
   }
+
+  getProfile(): Observable<iResponse<{ user: UserInterface }>> {
+    return this._http.post<iResponse<any>>('/get_profile', {})
+  }
+
+  updateProfile(body: UserInterface): Observable<iResponse<UserInterface>> {
+    return this._http.post<iResponse<UserInterface>>('/update_profile', body)
+  }
 }
