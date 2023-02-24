@@ -11,36 +11,61 @@
     <form [formGroup]='form'>
       <div class='mb-[20px]'>
         <app-input
+          [errors]="form.controls['name']?.errors"
           icon='icon-message'
           formControlName='name'
           placeholder='Введите имя'>
         </app-input>
+
+        <span *ngIf="form.controls['name']?.errors?.['required']" class='error-message'>
+           Поля имя обязательный
+        </span>
       </div>
 
       <div class='mb-[20px]'>
         <app-input
+          [errors]="form.controls['email']?.errors"
           formControlName='email'
           icon='icon-email'
           placeholder='Введите email'>
         </app-input>
+
+        <span *ngIf="form.controls['email']?.errors?.['required']" class='error-message'>
+          Поля email обязательный
+        </span>
+
+        <span *ngIf="form.controls['email']?.errors?.['email']" class='error-message'>
+          Неправильные email
+        </span>
       </div>
 
       <div class='mb-[20px]'>
         <app-input
-          [inputMask]='inputMask'
+          [errors]="form.controls['phone']?.errors"
+          [mask]='inputMask'
           formControlName='phone'
           icon='icon-phone'
           placeholder='Введите телефон'>
         </app-input>
+
+        <span *ngIf="form.controls['phone']?.errors?.['required']" class='error-message'>
+         Поля телефон обязательный
+        </span>
       </div>
 
       <div class='mb-[20px]'>
         <app-input
+          [errors]="form.controls['password']?.errors"
           formControlName='password'
           type='password'
           icon='icon-lock'
           placeholder='Введите новый пароль'>
         </app-input>
+
+        <span *ngIf="form.controls['password']?.touched && form.controls['password']?.errors?.['minlength']"
+              class='error-message'>
+            Поля пароль минимум 6 символов
+        </span>
       </div>
 
       <div class='mb-[20px]'>
@@ -51,7 +76,12 @@
         </textarea>
       </div>
 
-      <button class='btn btn-primary' (click)='onSubmit()'>Сохранить</button>
+      <button
+        [disabled]='loading'
+        class='btn btn-primary'
+        (click)='onSubmit()'>
+        Сохранить
+      </button>
     </form>
   </div>
 </ion-content>

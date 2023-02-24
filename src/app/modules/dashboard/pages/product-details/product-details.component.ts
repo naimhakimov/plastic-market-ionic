@@ -104,6 +104,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
       .pipe(first())
       .subscribe(() => {
         this.navCtrl.navigateForward('/dashboard')
+        this.offerService.filter$.next({})
       })
   }
 }

@@ -1,4 +1,4 @@
-<div class='p-[22px] h-full bg-white'>
+<div class='p-[22px] h-full bg-white' *ngIf='currentUser'>
   <img class='w-[80px] h-[80px] rounded-full mt-[10px]'
        [src]='currentUser.photo'
        (error)="errorAvatar($event)"
@@ -7,16 +7,17 @@
   <div class='mb-[10px] text-[14px] leading-[14px] text-gray-800'>{{ currentUser.email }}</div>
 
   <div class='mt-[46px] flex flex-col h-full'>
-    <div class='flex items-center'
+    <div class='flex items-center mb-[30px]'
          [routerLink]="[item.link]"
          *ngFor='let item of items; let last = last'
-         [class.flex-1]='last'
-         [class.mb-[30px]]='!last'
+         [class.mb-[-30px]]='last'
          (click)='last && logout()'
     >
-      <div class='bg-primary rounded-full w-[36px] h-[36px] flex justify-center items-center'
+      <div class='rounded-full w-[36px] h-[36px] flex justify-center items-center'
+           [class.bg-primary]='!last'
            [class.bg-red-200]='last'
       >
+
         <span class='icon icon-{{ item.icon }} bg-white w-[16px]'></span>
       </div>
 

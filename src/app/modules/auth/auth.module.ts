@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { AuthService } from '../../services/auth.service'
 import { HttpClientModule } from '@angular/common/http'
 import { AuthComponent } from './auth.component'
+import { InputMaskModule } from '@ngneat/input-mask'
 
 const routes: Routes = [
   {
@@ -52,7 +53,8 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    InputModule
+    InputModule,
+    InputMaskModule.forRoot({inputSelector: 'app-input'})
   ],
   providers: [AuthService]
 })

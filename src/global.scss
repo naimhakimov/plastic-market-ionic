@@ -68,3 +68,8 @@
 .active {
   @apply text-white bg-primary;
 }
+
+
+.error-message {
+  @apply text-red-200 text-[12px] leading-3;
+}

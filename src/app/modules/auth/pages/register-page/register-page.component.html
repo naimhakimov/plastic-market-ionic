@@ -4,40 +4,72 @@
   </h1>
 
   <div *ngIf='errorMessage' class='text-red-300'>{{ errorMessage }}</div>
-
   <form class='mt-[78px] flex flex-col' [formGroup]='form'>
     <div class='mb-[16px]'>
       <app-input
+        [errors]="form.controls['name']?.touched && form.controls['name']?.errors"
         formControlName='name'
         placeholder='Имя пользователя*'
         icon='icon-message'
       ></app-input>
+
+      <span *ngIf="form.controls['name']?.touched && form.controls['name']?.errors?.['required']" class='error-message'>
+          Поля имя обязательный
+        </span>
     </div>
 
     <div class='mb-[16px]'>
       <app-input
-        [inputMask]="inputMask"
+        [errors]="form.controls['phone']?.touched && form.controls['phone']?.errors"
+        [mask]='inputMask'
         placeholder='Номер телефона*'
         icon='icon-phone'
         formControlName='phone'>
       </app-input>
+
+      <span *ngIf="form.controls['phone']['touched'] && form.controls['phone']?.errors?.['required']" class='error-message'>
+        Поля телефон обязательный
+        </span>
     </div>
 
     <div class='mb-[16px]'>
       <app-input
+        [errors]="form.controls['email']?.touched && form.controls['email']?.errors"
         placeholder='Email*'
         icon='icon-email'
         formControlName='email'>
       </app-input>
+
+
+      <span *ngIf="form.controls['email']['touched']">
+        <span *ngIf="form.controls['email']?.errors?.['required']" class='error-message'>
+          Поля email обязательный
+        </span>
+
+      <span *ngIf="form.controls['email']?.errors?.['email']" class='error-message'>
+          Неправильные email
+        </span>
+      </span>
     </div>
 
     <div class='mb-[16px]'>
       <app-input
+        [errors]="form.controls['password']?.touched && form.controls['password']?.errors"
         type='password'
         placeholder='Пароль*'
         icon='icon-lock'
         formControlName='password'>
       </app-input>
+
+      <span *ngIf="form.controls['password']?.touched">
+          <span *ngIf="form.controls['password']?.errors?.['required']" class='error-message'>
+        Поля пароль обязательный
+        </span>
+
+        <span *ngIf="form.controls['password']?.errors?.['minlength']" class='error-message'>
+        Поля пароль минимум 6 символов
+        </span>
+      </span>
     </div>
 
     <div>

@@ -131,5 +131,7 @@ export class CreateComponent implements OnInit {
         }
       })
     }
+
+    this.offerService.filter$.next({})
   }
 }

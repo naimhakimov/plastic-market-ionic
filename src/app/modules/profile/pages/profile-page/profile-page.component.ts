@@ -1,5 +1,6 @@
 import { Component } from '@angular/core'
 import { Router } from '@angular/router'
+import { UserInterface } from '../../../../models/user.interface'
 
 @Component({
   selector: 'app-profile-page',
@@ -7,7 +8,8 @@ import { Router } from '@angular/router'
   styleUrls: ['./profile-page.component.scss']
 })
 export class ProfilePageComponent {
-  currentUser = JSON.parse(localStorage.getItem('user') || '')
+  currentUser!: UserInterface
+
   constructor(private router: Router) {}
 
   items: { icon: string, title: string, link: string | null }[] = [
@@ -27,6 +29,10 @@ export class ProfilePageComponent {
       link: null
     }
   ]
+
+  ionViewDidEnter(): void {
+    this.currentUser = JSON.parse(localStorage.getItem('user') || '')
+  }
 
   logout(): void {
     localStorage.clear()

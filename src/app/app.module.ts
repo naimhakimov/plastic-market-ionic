@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core'
+import { LOCALE_ID, NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 import { RouteReuseStrategy } from '@angular/router'
 
@@ -13,6 +13,10 @@ import { AuthService } from './services/auth.service'
 import { HTTP } from '@awesome-cordova-plugins/http/ngx'
 import { ControlsModule } from './shared/controls/controls.module'
 import { CustomSelectModule } from './shared'
+import localeRu from '@angular/common/locales/ru';
+import { registerLocaleData } from '@angular/common'
+
+registerLocaleData(localeRu);
 
 @NgModule({
   declarations: [AppComponent],
@@ -34,6 +38,7 @@ import { CustomSelectModule } from './shared'
       useClass: HttpInterceptorCustom,
       multi: true
     },
+    { provide: LOCALE_ID, useValue: 'ru-RU' },
     AuthGuard,
     AuthService,
     HTTP

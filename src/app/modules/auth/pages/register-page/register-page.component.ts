@@ -17,6 +17,7 @@ export class RegisterPageComponent implements OnInit {
   loading = false
   inputMask = createMask('+[9 ]999 999 999')
 
+
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
@@ -32,10 +33,10 @@ export class RegisterPageComponent implements OnInit {
 
   private initForm(): void {
     this.form = this.fb.group({
-      email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required, Validators.minLength(6)]],
-      phone: [null, [Validators.required]],
-      name: [null, [Validators.required]]
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      phone: ['', [Validators.required]],
+      name: ['', [Validators.required]]
     })
   }
 

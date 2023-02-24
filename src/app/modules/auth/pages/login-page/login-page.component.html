@@ -6,14 +6,35 @@
   <form class='mt-[87px]' [formGroup]='form'>
     <div>
       <app-input
+        [errors]="form.controls['login']?.touched && form.controls['login']?.errors"
         formControlName='login'
         placeholder='Номер телефона или Email*'
         icon='icon-email'
       ></app-input>
+
+      <span *ngIf="form.controls['login']?.touched && form.controls['login']?.errors?.['required']" class='error-message'>
+          Поля имя обязательный
+        </span>
     </div>
 
     <div class='mt-[32px]'>
-      <app-input formControlName='password' placeholder='Пароль*' icon='icon-lock' type='password'></app-input>
+      <app-input
+        [errors]="form.controls['password']?.touched && form.controls['password']?.errors"
+        formControlName='password'
+        placeholder='Пароль*'
+        icon='icon-lock'
+        type='password'>
+      </app-input>
+
+      <span *ngIf="form.controls['password']?.touched">
+          <span *ngIf="form.controls['password']?.errors?.['required']" class='error-message'>
+            Поля пароль обязательный
+          </span>
+
+        <span *ngIf="form.controls['password']?.errors?.['minlength']" class='error-message'>
+            Поля пароль минимум 6 символов
+        </span>
+      </span>
     </div>
 
     <p class='text-[12px] leading-[17px] text-primary text-right mt-[15px]'>

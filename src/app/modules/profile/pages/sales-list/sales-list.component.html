@@ -27,11 +27,13 @@
                      alt=''>
               </div>
 
-              <div class='flex justify-between mt-[15px]'>
+              <div class='flex justify-between items-center'>
                 <h1 class='text-[12px] leading-[14px] font-medium text-gray-strong'>
                   {{ offer.name }}
                 </h1>
-                <span class='icon icon-burger bg-gray-strong'></span>
+                <div (click)='removeOffer($event, offer.id)' class='w-[30px] h-[30px] flex justify-center items-center'>
+                  <span class='icon icon-burger bg-gray-strong'></span>
+                </div>
               </div>
 
               <div>

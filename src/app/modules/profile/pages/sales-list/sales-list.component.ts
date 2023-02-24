@@ -1,9 +1,10 @@
 import { Component, DoCheck, OnInit } from '@angular/core'
-import { NavController } from '@ionic/angular'
+import { ActionSheetController, NavController } from '@ionic/angular'
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy'
 
 import { OfferService } from '../../../../services/offer.service'
 import { Offer } from '../../../../models/offer.interface'
+import { first } from 'rxjs'
 
 @UntilDestroy()
 @Component({
@@ -20,7 +21,8 @@ export class SalesListComponent implements OnInit, DoCheck {
 
   constructor(
     private readonly offerService: OfferService,
-    private navCtrl: NavController
+    private navCtrl: NavController,
+    private actionSheetCtrl: ActionSheetController
   ) {
   }
 
@@ -53,4 +55,28 @@ export class SalesListComponent implements OnInit, DoCheck {
     this.navCtrl.navigateBack('/dashboard/product-details')
   }
 
+  async removeOffer(event: any, id: string) {
+    event.stopPropagation()
+    event.preventDefault()
+    const actionSheet = await this.actionSheetCtrl.create({
+      buttons: [
+        {
+          text: 'Удалить',
+          role: 'destructive',
+          data: {
+            action: 'delete'
+          }
+        }
+      ]
+    })
+
+    await actionSheet.present()
+
+    const result = await actionSheet.onDidDismiss()
+    if (result.data?.action === 'delete') {
+      this.offerService.deleteOfferById(id)
+        .pipe(first())
+        .subscribe(() => this.getOwnOffers(null))
+    }
+  }
 }

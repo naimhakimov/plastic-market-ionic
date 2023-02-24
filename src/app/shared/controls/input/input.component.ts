@@ -7,7 +7,6 @@ import {
   EventEmitter
 } from '@angular/core'
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms'
-import { InputmaskOptions } from '@ngneat/input-mask'
 
 type Type = 'text' | 'email' | 'password' | 'number'
 
@@ -27,10 +26,11 @@ export class InputComponent implements OnInit, ControlValueAccessor {
   @Input() placeholder!: string
   @Input() icon!: string
   @Input() type: Type = 'text'
-  @Input() inputMask!: InputmaskOptions<any>
+  @Input() mask!: any;
+  @Input() errors!: any;
   @Output() changed = new EventEmitter<string>()
 
-  value: string | null = null
+  value: any = ''
   isDisabled!: boolean
 
   private propagateChange: any = () => {

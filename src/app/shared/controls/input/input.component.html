@@ -1,10 +1,11 @@
 <div
   class='flex items-center pb-[10px] border-b-[1px] border-b-gray-50 input'
+  [class.border-b-red-200]='errors'
 >
-  <span *ngIf='icon' class='icon {{ icon }} mr-[13px] input-icon w-[20px] h-[20px]'></span>
+  <span *ngIf='icon' class='icon {{ icon }} mr-[13px] input-icon w-[20px] h-[20px]' [class.bg-red-200]='errors'></span>
   <input
-    [inputMask]='inputMask'
     [type]='type'
+    [inputMask]='mask'
     class='outline-none border-none w-full placeholder:text-gray-100 input-content'
     [value]='value'
     [placeholder]="placeholder || ''"

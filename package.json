@@ -28,7 +28,7 @@
     "@capacitor/keyboard": "4.1.0",
     "@capacitor/status-bar": "4.1.1",
     "@ionic/angular": "^6.4.1",
-    "@ngneat/input-mask": "^6.1.0",
+    "@ngneat/input-mask": "^5.4.0",
     "@ngneat/until-destroy": "^9.2.2",
     "inputmask": "5.0.5",
     "ionicons": "^6.0.3",
