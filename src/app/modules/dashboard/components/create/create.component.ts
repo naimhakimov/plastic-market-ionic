@@ -20,6 +20,7 @@ export class CreateComponent implements OnInit {
   cities: any[] = []
   subCategories: any[] = []
   cloneCategories: any[] = []
+  cloneCities: any[] = []
   images: string[] = []
   loading = false
   offerManuals: any = {
@@ -27,6 +28,7 @@ export class CreateComponent implements OnInit {
     size_types: [],
     meterial_types: []
   }
+  regions: any[] = []
 
   constructor(
     private offerService: OfferService,
@@ -41,12 +43,19 @@ export class CreateComponent implements OnInit {
     this.getOfferManuals()
     this.categories = this.cloneCategories = JSON.parse(localStorage.getItem('categories') || '[]')
     this.categories = this.cloneCategories.filter(item => item.parent_id === '0')
-    this.cities = JSON.parse(localStorage.getItem('cities') || '[]')
+    this.cities = this.cloneCities = JSON.parse(localStorage.getItem('cities') || '[]')
+    this.regions = JSON.parse(localStorage.getItem('regions') || '[]')
 
     this.form.controls['category_id'].valueChanges
       .subscribe(category_id => {
         this.form.controls['subcategory_id'].setValue(null)
         this.subCategories = this.cloneCategories.filter(item => item.parent_id === category_id)
+      })
+
+    this.form.controls['region_id'].valueChanges
+      .subscribe(region_id => {
+        this.form.controls['city_id'].setValue(null)
+        this.cities = this.cloneCities.filter(item => item.region_id === region_id)
       })
 
     if (this.offer) {
@@ -95,6 +104,7 @@ export class CreateComponent implements OnInit {
       category_id: [null, Validators.required],
       subcategory_id: [null],
       city_id: [null, Validators.required],
+      region_id: [null, Validators.required],
       type_id: [null, Validators.required],
       size_type_id: [null, Validators.required],
       size: [null, Validators.required],

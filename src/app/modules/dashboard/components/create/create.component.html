@@ -63,9 +63,18 @@
 
     <div class='mb-[18px]'>
       <app-custom-select
-        formControlName='city_id'
-        placeholder='Местонахождение'
+        formControlName='region_id'
+        placeholder='Регион'
         icon='icon-location'
+        [items]='regions'
+      ></app-custom-select>
+    </div>
+
+    <div class='mb-[18px]' *ngIf="form.controls['region_id']?.value">
+      <app-custom-select
+        formControlName='city_id'
+        icon='icon-location'
+        placeholder='Город'
         [items]='cities'
       ></app-custom-select>
     </div>
