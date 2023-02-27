@@ -9,7 +9,7 @@
           <div *ngFor='let chat of chats'
                (click)='navigate(chat)'
                class='border-b-[1px] first:border-t-[1px] border-gray-50 py-[10px] px-[22px] flex'>
-            <img class='w-[30px] h-[30px] rounded-full object-cover' src='./assets/img/no-avatar.webp' alt=''>
+            <img class='w-[30px] h-[30px] rounded-full object-cover' [src]="'https://plastic-market-app.ru/img/' + chat.user.photo" (error)='errorAvatar($event)' alt=''>
             <div class='ml-[10px] w-full'>
               <div class='text-[16px] leading-[20px] font-bold text-gray-300'>{{ chat?.user?.name }}</div>
               <div class='flex justify-between items-center'>

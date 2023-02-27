@@ -15,7 +15,7 @@ export class RegisterPageComponent implements OnInit {
   form!: FormGroup
   errorMessage = ''
   loading = false
-  inputMask = createMask('+[9 ]999 999 999')
+  inputMask = createMask( '+7 999 999 99 99')
 
 
   constructor(

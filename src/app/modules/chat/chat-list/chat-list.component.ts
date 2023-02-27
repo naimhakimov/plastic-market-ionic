@@ -39,4 +39,8 @@ export class ChatListComponent {
     this.offerService.currentChat$.next(chat.user)
     this.router.navigate(['/dashboard/chat/' + chat.id])
   }
+
+  errorAvatar(event: any): void {
+    event.target.src = './assets/img/no-avatar.webp'
+  }
 }

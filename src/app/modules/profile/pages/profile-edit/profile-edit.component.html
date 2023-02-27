@@ -1,9 +1,14 @@
 <ion-content>
   <div class='p-[22px] bg-white' *ngIf='currentUser'>
-    <img class='w-[80px] h-[80px] rounded-full mt-[10px]'
-         [src]='currentUser.photo'
-         (error)='errorAvatar($event)'
-         alt=''>
+    <ng-container>
+      <input #file type='file' hidden (change)='handleFileInput($event)'>
+      <img class='w-[80px] h-[80px] rounded-full mt-[10px]'
+           (click)="file.click()"
+           [src]="'https://plastic-market-app.ru/img/' + currentUser.photo"
+           (error)='errorAvatar($event)'
+           alt=''>
+
+    </ng-container>
     <div class='mt-[20px] mb-[10px] text-[30px] leading-[30px] font-medium'>{{ currentUser.name  }}</div>
     <div class='mb-[10px] text-[14px] leading-[14px] text-gray-800'>{{ currentUser.email }}</div>
     <div class='text-[14px] leading-[14px] text-gray-800 mb-[36px]'>Редактирование профиля</div>

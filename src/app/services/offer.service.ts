@@ -116,7 +116,7 @@ export class OfferService {
     return this._http.post<iResponse<any>>('/get_profile', {})
   }
 
-  updateProfile(body: UserInterface): Observable<iResponse<UserInterface>> {
+  updateProfile(body: Partial<UserInterface>): Observable<iResponse<UserInterface>> {
     return this._http.post<iResponse<UserInterface>>('/update_profile', body)
   }
 }

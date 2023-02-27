@@ -107,4 +107,8 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
         this.offerService.filter$.next({})
       })
   }
+
+  errorAvatar(event: any) {
+    event.target.src = "./assets/img/no-avatar.webp"
+  }
 }

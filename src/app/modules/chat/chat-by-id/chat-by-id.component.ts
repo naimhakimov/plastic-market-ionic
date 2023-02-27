@@ -84,4 +84,8 @@ export class ChatByIdComponent {
     this.message = ''
     this.content.scrollToBottom(500)
   }
+
+  errorAvatar(event: any): void {
+    event.target.src = './assets/img/no-avatar.webp'
+  }
 }

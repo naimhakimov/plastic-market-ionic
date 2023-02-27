@@ -10,7 +10,7 @@
       <div class='w-full rounded-[12px] flex bg-primary-100 items-center'>
         <div
           *ngFor="let i of ['Активные', 'Неактивные']; let idx = index"
-          class='text-[12px] leading-[16px] font-semibold rounded-[12px] px-[15px] py-[13px] transition-all whitespace-nowrap text-gray-700'
+          class='flex-1 text-center text-[12px] leading-[16px] font-semibold rounded-[12px] px-[15px] py-[13px] transition-all whitespace-nowrap text-gray-700'
           [class.w-full]='idx === 1'
           [class.active]='active === idx' (click)='active = idx'>{{i}}</div>
       </div>
