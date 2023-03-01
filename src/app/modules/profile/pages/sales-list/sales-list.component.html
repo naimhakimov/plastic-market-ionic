@@ -18,7 +18,7 @@
           *ngFor="let i of ['Активные', 'Неактивные']; let idx = index"
           class='flex-1 text-center text-[12px] leading-[16px] font-semibold rounded-[12px] px-[15px] py-[13px] transition-all whitespace-nowrap text-gray-700'
           [class.w-full]='idx === 1'
-          [class.active]='active === idx' (click)='active = idx'>{{i}}</div>
+          [class.active]='active === idx' (click)='toggle(idx)'>{{i}}</div>
       </div>
     </div>
     <div class='h-full mt-[14px]'>
@@ -74,7 +74,7 @@
                 <h1 class='text-[12px] leading-[14px] font-medium text-gray-strong'>
                   {{ offer.name }}
                 </h1>
-                <div (click)='removeOffer($event, offer.id)' class='w-[30px] h-[30px] flex justify-center items-center'>
+                <div *ngIf="offer.disabled === '0'" (click)='removeOffer($event, offer.id)' class='w-[30px] h-[30px] flex justify-center items-center'>
                   <span class='icon icon-burger bg-gray-strong'></span>
                 </div>
               </div>

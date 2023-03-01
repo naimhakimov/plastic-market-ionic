@@ -118,6 +118,10 @@ export class CreateComponent implements OnInit {
   }
 
   onSubmit(): void {
+    if (!this.images.length) {
+      this.alertImage()
+      return;
+    }
     if (this.offer?.id) {
       this.offerService.updateOffer({
         id: this.offer.id,
@@ -155,6 +159,16 @@ export class CreateComponent implements OnInit {
       header: 'Упс!!!',
       buttons: ['OK'],
       message: 'Произошло какой-то необрабатываемое ошибка'
+    })
+
+    await alert.present()
+  }
+
+  async alertImage() {
+    let alert = await this.alertController.create({
+      header: 'Ошибка!!!',
+      buttons: ['OK'],
+      message: 'Необходимо добавить минимум одно фото'
     })
 
     await alert.present()

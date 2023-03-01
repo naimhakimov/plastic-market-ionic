@@ -36,8 +36,10 @@ export class ForgotPasswordComponent implements OnInit {
       .subscribe(res => {
         if (+res.error_code === 0) {
           this.alert()
+        } else {
+          this.alertError()
         }
-      })
+      }, error => this.alertError())
   }
 
   async alert() {
@@ -52,4 +54,14 @@ export class ForgotPasswordComponent implements OnInit {
 
     await alert.present()
   }
+  async alertError() {
+    let alert = await this.alertController.create({
+      header: 'Упс!!!',
+      buttons: ['OK'],
+      message: 'Произошло какой-то необрабатываемое ошибка'
+    })
+
+    await alert.present()
+  }
+
 }

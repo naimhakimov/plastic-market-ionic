@@ -12,7 +12,7 @@ import { first } from 'rxjs'
   templateUrl: './sales-list.component.html',
   styleUrls: ['./sales-list.component.scss']
 })
-export class SalesListComponent implements OnInit, DoCheck {
+export class SalesListComponent implements OnInit {
 
   active: number = 0
   public ownOffers: Offer[] = []
@@ -30,20 +30,12 @@ export class SalesListComponent implements OnInit, DoCheck {
     this.getOwnOffers(null)
   }
 
-  ngDoCheck(): void {
-    if (this.active === 0) {
-      this.ownOffers = this.cloneOffers.filter(item => item.disabled === '0')
-    } else {
-      this.ownOffers = this.cloneOffers.filter(item => item.disabled === '1')
-    }
-  }
-
-  getOwnOffers(event: any): void {
+  getOwnOffers(event: any, disabled?: string): void {
     this.loading = true
-    this.offerService.getOwnOffers()
+    this.offerService.getOwnOffers(disabled)
       .pipe(untilDestroyed(this))
       .subscribe(res => {
-        this.ownOffers = res.data.offers.filter(item => item.disabled === '0')
+        this.ownOffers = res.data.offers
         this.cloneOffers = res.data.offers
         event?.target?.complete()
         this.loading = false
@@ -82,5 +74,15 @@ export class SalesListComponent implements OnInit, DoCheck {
 
   navigateToBack(): void{
     this.navCtrl.back()
+  }
+
+  toggle(idx: number) {
+    this.active = idx
+    if (idx === 1) {
+      this.getOwnOffers(null, '1')
+    } else {
+      this.getOwnOffers(null)
+    }
+
   }
 }

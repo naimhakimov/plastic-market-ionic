@@ -56,8 +56,10 @@ export class OfferService {
       .pipe(map(res => res.data.regions))
   }
 
-  getOwnOffers(): Observable<iResponse<{ offers: Offer[] }>> {
-    return this._http.post<any>('/get_own_offers', {})
+  getOwnOffers(disabled = '0'): Observable<iResponse<{ offers: Offer[] }>> {
+    return this._http.post<any>('/get_own_offers', {
+      disabled
+    })
   }
 
   createOffer(offer: Offer): Observable<iResponse<Offer>> {
