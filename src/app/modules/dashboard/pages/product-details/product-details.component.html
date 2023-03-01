@@ -9,10 +9,11 @@
     </swiper>
 
     <div class='z-10 absolute top-[20px] left-[23px] right-[23px] flex justify-between items-center'>
-      <ion-nav-link router-direction='back' routerLink='/dashboard/home'
+      <div
+        (click)='back()'
                     class='rotate-180 flex items-center justify-center bg-primary w-[44px] h-[44px] rounded-full hover:opacity-[.8]'>
         <span class='icon icon-arrow-right bg-white w-[7px] h-[15px]'></span>
-      </ion-nav-link>
+      </div>
       <span
         [class.icon-heart]='!offerByIdData.favorite'
         [class.icon-heart-full]='offerByIdData.favorite'
@@ -32,12 +33,12 @@
       <div class='mt-[4px] text-[14px] leading-[17px] font-medium text-gray'
            *ngIf='offerByIdData?.city'>{{ offerByIdData.city.name }}</div>
       <div class='mt-[8px] flex'>
-        <span class='icon {{ rating }} ml-[4px] w-[16px]'
-              *ngFor='let rating of generateRatingArray(offerByIdData.user.rating)'>
-        </span>
+<!--        <span class='icon {{ rating }} ml-[4px] w-[16px]'-->
+<!--              *ngFor='let rating of generateRatingArray(offerByIdData.user.rating)'>-->
+<!--        </span>-->
       </div>
 
-      <div class='mt-[5px] text-[14px] leading-[24px] text-primary'>На постоянной основе</div>
+<!--      <div class='mt-[5px] text-[14px] leading-[24px] text-primary'>На постоянной основе</div>-->
 
       <div class='mt-[22px] flex items-start' *ngIf='offerByIdData?.user'>
         <div class='relative'>
@@ -83,20 +84,24 @@
           {{ offerByIdData.description }}
         </div>
         <div *ngSwitchCase='1' class='text-[14px] leading-[23px] text-gray-300 mt-[24px]'>
-
+          {{ offerByIdData?.delivery }}
         </div>
       </ng-container>
 
-      <ng-container *ngIf='false'>
+      <ng-container *ngIf='active === 0'>
         <div class='text-[16px] font-semibold text-black mt-[40px] mb-[25px]'>Характеристики</div>
 
-        <div class='flex justify-between mb-[14px]'>
+        <div class='flex justify-between mb-[14px]' *ngIf='offerByIdData.material'>
           <div class='text-[14px] leading-[20px] font-semibold text-gray-300 opacity-[.7] flex-[40%]'>Материал</div>
-          <div class='text-[14px] leading-[20px] font-semibold text-gray-300'>ПНД/ПВД/ПП/ПВХ/ПА/ПЭТФ/ПК/АБС/</div>
+          <div class='text-[14px] leading-[20px] font-semibold text-gray-300'>{{ offerByIdData.material.name }}</div>
         </div>
-        <div class='flex justify-between mb-[14px]'>
-          <div class='text-[14px] leading-[20px] font-semibold text-gray-300 opacity-[.7] flex-[40%]'>Материал</div>
-          <div class='text-[14px] leading-[20px] font-semibold text-gray-300'>ПНД/ПВД/ПП/ПВХ/ПА/ПЭТФ/ПК/АБС/</div>
+        <div class='flex justify-between mb-[14px]' *ngIf='offerByIdData?.size && offerByIdData?.size_type?.name'>
+          <div class='text-[14px] leading-[20px] font-semibold text-gray-300 opacity-[.7] flex-[40%]'>Размер</div>
+          <div class='text-[14px] leading-[20px] font-semibold text-gray-300'>{{ offerByIdData.size  + ' ' + offerByIdData?.size_type?.name}}</div>
+        </div>
+        <div class='flex justify-between mb-[14px]' *ngIf='offerByIdData?.type?.name'>
+          <div class='text-[14px] leading-[20px] font-semibold text-gray-300 opacity-[.7] flex-[40%]'>Тип</div>
+          <div class='text-[14px] leading-[20px] font-semibold text-gray-300'>{{ offerByIdData?.type?.name}}</div>
         </div>
       </ng-container>
     </div>

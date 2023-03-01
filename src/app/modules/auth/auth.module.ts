@@ -12,6 +12,7 @@ import { AuthService } from '../../services/auth.service'
 import { HttpClientModule } from '@angular/common/http'
 import { AuthComponent } from './auth.component'
 import { InputMaskModule } from '@ngneat/input-mask'
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component'
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
       {
         path: 'register',
         component: RegisterPageComponent,
+      },
+      {
+        path: 'forgot-password',
+        component: ForgotPasswordComponent,
       }
     ]
   }
@@ -44,7 +49,8 @@ const routes: Routes = [
     AuthComponent,
     WelcomePageComponent,
     LoginPageComponent,
-    RegisterPageComponent
+    RegisterPageComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     CommonModule,

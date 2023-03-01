@@ -30,9 +30,9 @@ export class DashboardComponent implements OnInit {
       this.offerService.getCategories(),
       this.offerService.getFavoriteOffers(),
       this.offerService.getCountries(),
-      this.offerService.getRegions()
-    ]).pipe(first())
-      .subscribe(([categories, favorites, cities, regions]) => {
+      this.offerService.getRegions(),
+      this.offerService.getOfferManuals()
+    ]).subscribe(([categories, favorites, cities, regions, { data }]) => {
         this.categories = categories.filter(item => item.parent_id === '0').map(item => ({
           ...item,
           subcategories: [{
@@ -44,6 +44,9 @@ export class DashboardComponent implements OnInit {
         localStorage.setItem('categories', JSON.stringify(categories) || '[]')
         localStorage.setItem('cities', JSON.stringify(cities) || '[]')
         localStorage.setItem('regions', JSON.stringify(regions) || '[]')
+        localStorage.setItem('types', JSON.stringify(data.types) || '[]')
+        localStorage.setItem('size_types', JSON.stringify(data.size_types) || '[]')
+        localStorage.setItem('meterial_types', JSON.stringify(data.meterial_types) || '[]')
       })
 
     this.router.events.subscribe(res => {
@@ -81,8 +84,9 @@ export class DashboardComponent implements OnInit {
   }
 
   next(id: string, first: boolean): void {
+    const name = JSON.parse(localStorage.getItem('categories') || '[]').find((item: any) => item.id === id).name
     this.router.navigate(['/dashboard']).finally(() => {
-      this.offerService.category.next({ id, isParent: first })
+      return this.offerService.category.next({ id, name, isParent: first })
     })
   }
 }

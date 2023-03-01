@@ -1,6 +1,6 @@
 ion-textarea.custom-textarea {
   --background: white;
-  --placeholder-color: #4F4F4F;
+  --placeholder-color: #A4A4A6;
   --padding-end: 0;
   --padding-start: 0;
   --padding-top: 0;
@@ -16,6 +16,6 @@ ion-textarea.custom-textarea {
   }
 
   .input-content::placeholder {
-    @apply text-gray-600;
+    @apply text-gray;
   }
 }

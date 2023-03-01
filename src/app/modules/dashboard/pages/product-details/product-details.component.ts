@@ -46,6 +46,9 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
     ).subscribe(res => {
       if (res?.data.offer) {
         this.offerByIdData = res.data.offer
+        this.offerByIdData.material = JSON.parse(localStorage.getItem('meterial_types') || '[]').find((item: any) => item.id === this.offerByIdData.meterial_type_id)
+        this.offerByIdData.size_type = JSON.parse(localStorage.getItem('size_types') || '[]').find((item: any) => item.id === this.offerByIdData.size_type_id)
+        this.offerByIdData.type = JSON.parse(localStorage.getItem('types') || '[]').find((item: any) => item.id === this.offerByIdData.type_id)
         this.isFavorite = this.favouriteService.isFavourite(res.data.offer.id);
         this.cdf.detectChanges()
       } else {
@@ -110,5 +113,9 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
 
   errorAvatar(event: any) {
     event.target.src = "./assets/img/no-avatar.webp"
+  }
+
+  back(): void {
+    this.navCtrl.back()
   }
 }

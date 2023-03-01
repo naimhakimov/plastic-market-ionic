@@ -20,7 +20,7 @@ export class OfferService {
   offerId: BehaviorSubject<string> = new BehaviorSubject<string>('')
   currentChat$: BehaviorSubject<UserInterface | null> = new BehaviorSubject<UserInterface | null>(null)
   chatList$: BehaviorSubject<any | null> = new BehaviorSubject<any | null>(null)
-  category = new BehaviorSubject<{ id: string, isParent: boolean }>({ id: '', isParent: false })
+  category = new BehaviorSubject<{ id: string, isParent: boolean, name?: string }>({ id: '', isParent: false })
 
   getOffers(body?: any): Observable<iResponse<{ offers: Offer[] }>> {
     return this._http.post<any>('/get_offers', body)
@@ -118,5 +118,9 @@ export class OfferService {
 
   updateProfile(body: Partial<UserInterface>): Observable<iResponse<UserInterface>> {
     return this._http.post<iResponse<UserInterface>>('/update_profile', body)
+  }
+
+  resetPassword(email: string): Observable<iResponse<any>> {
+    return this._http.post<iResponse<any>>('/forgot', {email})
   }
 }

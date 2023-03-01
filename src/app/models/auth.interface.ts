@@ -11,6 +11,9 @@ export interface LoginInterface {
 }
 
 export interface iResponse<T> {
+  meterial_types(meterial_types: any): string;
+  size_types(size_types: any): string;
+  types(types: any): string;
   error_code: number;
   message: string;
   data: T;

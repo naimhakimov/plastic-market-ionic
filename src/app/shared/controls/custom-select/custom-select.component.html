@@ -1,8 +1,8 @@
 <div class='border-b-[1px] border-gray-50 pb-[16px]' (click)='openSelect()' (blur)='onBlur()'>
-  <div *ngIf='label && !placeholder' class='text-[11px] leading-[13px] text-gray-400 mb-[6px]'>{{ label }}</div>
+  <div *ngIf='label && !placeholder' class='text-[11px] leading-[13px] text-gray mb-[6px]'>{{ label }}</div>
   <div class='flex items-center'>
     <span *ngIf='icon' class='icon {{ icon }} w-[18px] h-[18px]'></span>
-    <span [class.ml-[15px]]='icon' class='flex-1 text-[16px] leading-[17px] text-gray-600'>
+    <span [class.ml-[15px]]='icon' class='flex-1 text-[16px] leading-[17px]' [class.text-gray]='placeholder' [class.text-gray-600]='name'>
     {{ name ? name : placeholder }}
   </span>
     <span class='icon icon-arrow-right w-[7px] h-[13px] bg-purple-900'></span>

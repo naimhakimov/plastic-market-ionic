@@ -32,9 +32,9 @@ export class SalesListComponent implements OnInit, DoCheck {
 
   ngDoCheck(): void {
     if (this.active === 0) {
-      this.ownOffers = this.cloneOffers
+      this.ownOffers = this.cloneOffers.filter(item => item.disabled === '0')
     } else {
-      this.ownOffers = []
+      this.ownOffers = this.cloneOffers.filter(item => item.disabled === '1')
     }
   }
 
@@ -43,7 +43,7 @@ export class SalesListComponent implements OnInit, DoCheck {
     this.offerService.getOwnOffers()
       .pipe(untilDestroyed(this))
       .subscribe(res => {
-        this.ownOffers = res.data.offers
+        this.ownOffers = res.data.offers.filter(item => item.disabled === '0')
         this.cloneOffers = res.data.offers
         event?.target?.complete()
         this.loading = false
@@ -78,5 +78,9 @@ export class SalesListComponent implements OnInit, DoCheck {
         .pipe(first())
         .subscribe(() => this.getOwnOffers(null))
     }
+  }
+
+  navigateToBack(): void{
+    this.navCtrl.back()
   }
 }

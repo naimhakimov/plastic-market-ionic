@@ -12,6 +12,13 @@ export interface Category {
 export interface Offer {
   id: string;
   user_id: string;
+  material?: {name: string},
+  meterial_type_id?: string,
+  size_type_id?: string,
+  type_id?: string,
+  size_type?: {name: string},
+  type?: {name: string},
+  size?: string;
   user: UserInterface;
   category_id: string;
   city_id: string;
@@ -20,10 +27,12 @@ export interface Offer {
   name: string;
   amount: string;
   description: string;
-  image: string[];
+  image: any[];
   disabled: string;
   city: CityInterface;
+  favorites_count: number;
   category: Category;
+  delivery?: string;
   favorite: number;
 }
 

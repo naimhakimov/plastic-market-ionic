@@ -21,8 +21,7 @@ export class ProductsComponent implements OnInit {
     private modalCtrl: ModalController,
     public offerService: OfferService,
     private navCtrl: NavController
-  ) {
-  }
+  ) {}
 
   ngOnInit() {
     this.getOffers(null)
@@ -86,5 +85,10 @@ export class ProductsComponent implements OnInit {
     } else {
       this.offers = this.cloneOffers
     }
+  }
+
+  resetFilter(): void {
+    this.offerService.filter$.next({})
+    this.offerService.category.next({ id: '', isParent: false })
   }
 }

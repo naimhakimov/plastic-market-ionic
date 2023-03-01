@@ -10,8 +10,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "android": "ionic capacitor build android",
-    "prepare": "husky install"
+    "android": "ionic capacitor run android",
+    "ios": "ionic capacitor run ios"
   },
   "private": true,
   "dependencies": {
@@ -26,6 +26,7 @@
     "@capacitor/camera": "^4.1.4",
     "@capacitor/core": "4.6.1",
     "@capacitor/haptics": "4.1.0",
+    "@capacitor/ios": "4.6.1",
     "@capacitor/keyboard": "4.1.0",
     "@capacitor/status-bar": "4.1.1",
     "@ionic/angular": "^6.4.1",

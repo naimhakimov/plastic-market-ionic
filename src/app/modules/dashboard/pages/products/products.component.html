@@ -6,8 +6,8 @@
 
   <div class='px-[22px] pb-[22px]'>
     <div>
-      <p class='text-primary text-[20px] leading-[24px] font-bold mt-[32px] mb-[27px]'>Полимерное сырье</p>
-      <p *ngIf='offers?.length !== cloneOffers?.length' class='text-[14px] leading-[17px] text-gray-200 mb-[10px] text-right' (click)='offerService.filter$.next({})'>
+      <p class='text-primary text-[20px] leading-[24px] font-bold mt-[32px] mb-[27px]'>{{ (offerService.category | async)?.name }}</p>
+      <p *ngIf='offers?.length !== cloneOffers?.length' class='text-[14px] leading-[17px] text-gray-200 mb-[10px] text-right' (click)='resetFilter()'>
         Сброс фильтра</p>
 
       <div

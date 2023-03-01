@@ -5,7 +5,13 @@
 
   <div class='px-[22px] bg-white'>
     <div class='sticky top-0 bg-white z-40 pt-[22px] pb-[10px]'>
-      <h1 class='text-primary font-bold text-[20px] leading-[24px] mb-[37px]'>Список продаж</h1>
+      <div class='flex items-center mb-[15px]'>
+        <div (click)='navigateToBack()'
+                      class='rotate-180 flex items-center justify-center bg-primary w-[44px] h-[44px] rounded-full hover:opacity-[.8]'>
+          <span class='icon icon-arrow-right bg-white w-[7px] h-[15px]'></span>
+        </div>
+        <h1 class='ml-[10px] text-primary font-bold text-[20px] leading-[24px]'>Список продаж</h1>
+      </div>
 
       <div class='w-full rounded-[12px] flex bg-primary-100 items-center'>
         <div
@@ -45,18 +51,46 @@
               <div class='flex justify-between items-center mt-[6px]'>
                 <span class='text-[12px] leading-[14px] text-gray-200'>{{ offer.created_at | date }}</span>
                 <div class='flex justify-center items-center'>
-                  <div class='flex items-center'>
-                    <span class='icon icon-view bg-gray-strong mr-[5px]'></span>
-                    <span class='text-[11px] leading-[14px] text-gray-strong font-bold'>50</span>
-                  </div>
-                  <div class='ml-[14px] flex items-center'>
-                    <span class='icon icon-phone bg-gray-strong mr-[5px] w-[10px] h-[10px]'></span>
-                    <span class='text-[11px] leading-[14px] text-gray-strong font-bold'>8</span>
-                  </div>
-
-                  <div class='ml-[14px] flex items-center'>
+                  <div class='ml-[14px] flex items-center' *ngIf='offer?.favorites_count'>
                     <span class='icon icon-heart-svg bg-gray-strong mr-[5px]'></span>
-                    <span class='text-[11px] leading-[14px] text-gray-strong font-bold'>3</span>
+                    <span class='text-[11px] leading-[14px] text-gray-strong font-bold'>{{ offer.favorites_count }}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+
+        <ng-container *ngSwitchCase='1'>
+          <div *ngIf='ownOffers?.length'>
+            <div class='mb-[14px]' *ngFor='let offer of ownOffers' (click)='navigate(offer.id)'>
+              <div class='bg-green-100 rounded-[12px] flex items-center justify-center'>
+                <img class='max-w-[330px] h-[170px] object-cover'
+                     [src]="'https://plastic-market-app.ru/img/' + offer.image[0]"
+                     alt=''>
+              </div>
+
+              <div class='flex justify-between items-center'>
+                <h1 class='text-[12px] leading-[14px] font-medium text-gray-strong'>
+                  {{ offer.name }}
+                </h1>
+                <div (click)='removeOffer($event, offer.id)' class='w-[30px] h-[30px] flex justify-center items-center'>
+                  <span class='icon icon-burger bg-gray-strong'></span>
+                </div>
+              </div>
+
+              <div>
+            <span
+              class='text-[14px] leading-[17px] font-semibold text-primary mr-[10px]'>{{ offer.amount + ' руб'   }}</span>
+                <!--          <span class='text-gray-strong text-[10px] leading-[12px] line-through'>$35</span>-->
+              </div>
+
+              <div class='flex justify-between items-center mt-[6px]'>
+                <span class='text-[12px] leading-[14px] text-gray-200'>{{ offer.created_at | date }}</span>
+                <div class='flex justify-center items-center'>
+                  <div class='ml-[14px] flex items-center' *ngIf='offer?.favorites_count'>
+                    <span class='icon icon-heart-svg bg-gray-strong mr-[5px]'></span>
+                    <span class='text-[11px] leading-[14px] text-gray-strong font-bold'>{{ offer.favorites_count }}</span>
                   </div>
                 </div>
               </div>
@@ -64,6 +98,7 @@
           </div>
         </ng-container>
       </ng-container>
+
 
       <ng-container *ngIf='!loading && ownOffers?.length === 0'>
         <div class='text-center text-gray-200  h-full flex justify-center items-center mt-[35vh]'>

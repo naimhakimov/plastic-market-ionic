@@ -34,7 +34,7 @@ export class CreateComponent implements OnInit {
     private offerService: OfferService,
     private modalCtrl: ModalController,
     private alertController: AlertController,
-    private fb: FormBuilder
+    private fb: FormBuilder,
   ) {
   }
 
@@ -104,6 +104,7 @@ export class CreateComponent implements OnInit {
       category_id: [null, Validators.required],
       subcategory_id: [null],
       city_id: [null, Validators.required],
+      delivery: ['', Validators.required],
       region_id: [null, Validators.required],
       type_id: [null, Validators.required],
       size_type_id: [null, Validators.required],
@@ -122,26 +123,40 @@ export class CreateComponent implements OnInit {
         id: this.offer.id,
         ...this.form.value,
         category_id: this.form.value.subcategory_id,
-        image: this.images
+        image: this.images.length ? this.images : null
       }).subscribe(res => {
         this.loading = false
-        if (res.error_code === 0) {
+        if (+res.error_code === 0) {
           this.cancel(res.post_data)
+        } else {
+          this.alert()
         }
       })
     } else {
       this.offerService.createOffer({
         ...this.form.value,
         category_id: this.form.value.subcategory_id,
-        image: this.images
+        image: this.images.length ? this.images : null
       }).subscribe(res => {
         this.loading = false
-        if (res.error_code === 0) {
+        if (+res.error_code === 0) {
           this.cancel()
+        } else {
+          this.alert()
         }
       })
     }
 
     this.offerService.filter$.next({})
+  }
+
+  async alert() {
+    let alert = await this.alertController.create({
+      header: 'Упс!!!',
+      buttons: ['OK'],
+      message: 'Произошло какой-то необрабатываемое ошибка'
+    })
+
+    await alert.present()
   }
 }
