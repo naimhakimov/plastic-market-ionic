@@ -11,7 +11,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "android": "ionic capacitor run android",
-    "ios": "ionic capacitor run ios"
+    "ios": "ionic capacitor build ios"
   },
   "private": true,
   "dependencies": {
