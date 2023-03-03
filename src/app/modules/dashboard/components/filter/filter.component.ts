@@ -33,7 +33,7 @@ export class FilterComponent implements OnInit {
 
   constructor(
     private readonly modalCtrl: ModalController,
-    private readonly offerService: OfferService,
+    public readonly offerService: OfferService,
     private fb: FormBuilder,
   ) {
   }

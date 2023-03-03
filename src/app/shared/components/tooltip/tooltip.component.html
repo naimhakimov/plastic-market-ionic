@@ -1,4 +1,5 @@
-<div class='flex items-center justify-between p-[22px] sticky top-0 z-40 bg-white pb-[10px] h-[76px]'>
+<div [ngStyle]="{'padding-top': offerService.isPlatform.is('ios') ? '40px' : '20px'}"
+     class='flex items-center justify-between p-[22px] sticky top-0 z-[99] bg-white pb-[10px]'>
   <ion-menu-toggle class='mr-[12px]'>
     <span class='icon icon-menu w-[16px]'></span>
   </ion-menu-toggle>

@@ -20,7 +20,7 @@ export class SalesListComponent implements OnInit {
   cloneOffers: Offer[] = []
 
   constructor(
-    private readonly offerService: OfferService,
+    public readonly offerService: OfferService,
     private navCtrl: NavController,
     private actionSheetCtrl: ActionSheetController
   ) {

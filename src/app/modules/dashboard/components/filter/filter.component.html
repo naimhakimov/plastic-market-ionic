@@ -1,5 +1,5 @@
 <ion-content>
-  <div class='p-[22px] bg-white '>
+  <div class='p-[22px] bg-white' [ngStyle]="{'padding-top': offerService.isPlatform.is('ios') ? '40px' : '22px'}">
     <div class='flex justify-between items-center'>
       <div (click)='cancel()' class='bg-primary flex justify-center items-center rounded-full p-[15px]'>
         <span class='icon icon-close bg-white w-[14px] h-[14px]'></span>

@@ -1,4 +1,6 @@
-<div class='p-[22px] h-full bg-white relative' *ngIf='currentUser'>
+<div class='p-[22px] h-full bg-white relative'
+     *ngIf='currentUser'
+     [ngStyle]="{'padding-top': offerService.isPlatform.is('ios') ? '40px' : '20px'}">
   <img class='w-[80px] h-[80px] rounded-full mt-[10px]'
        [src]="'https://plastic-market-app.ru/img/' + currentUser.photo"
        (error)="errorAvatar($event)"
@@ -6,7 +8,10 @@
   <div class='mt-[20px] mb-[10px] text-[30px] leading-[30px] font-medium'>{{ currentUser.name  }}</div>
   <div class='mb-[10px] text-[14px] leading-[14px] text-gray-800'>{{ currentUser.email }}</div>
 
-  <div (click)='back()' class='bg-gray flex justify-center items-center rounded-full p-[15px] absolute top-[22px] right-[22px]'>
+  <div (click)='back()'
+       class='bg-gray flex justify-center items-center rounded-full p-[15px] absolute right-[22px]'
+       [ngStyle]="{'top': offerService.isPlatform.is('ios') ? '40px' : '20px'}"
+  >
     <span class='icon icon-close bg-white w-[14px] h-[14px]'></span>
   </div>
 

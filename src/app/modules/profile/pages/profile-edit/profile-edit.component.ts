@@ -32,7 +32,7 @@ export class ProfileEditComponent {
   currentPlatform!: CurrentPlatform
 
   constructor(
-    private offerService: OfferService,
+    public offerService: OfferService,
     private fb: FormBuilder,
     private toastController: ToastController,
     private loadingCtrl: LoadingController,

@@ -1,5 +1,8 @@
 :host {
   .card-img {
-    max-height: 240px;
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    max-height: 100%;
   }
 }

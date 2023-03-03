@@ -9,12 +9,15 @@ import { CategoryInterface } from '../models/category.interface'
 import { CityInterface, RegionInterface } from '../models/city.interface'
 import { HttpService } from './http.service'
 import { Chat, Data, Message } from '../models/chat.interface'
+import { Platform } from '@ionic/angular'
 
 @Injectable({
   providedIn: 'root'
 })
 export class OfferService {
-  constructor(private readonly _http: HttpClient) {}
+  constructor(private readonly _http: HttpClient, public platform: Platform) {}
+
+  isPlatform = this.platform
 
   filter$ = new BehaviorSubject<any>(null)
   offerId: BehaviorSubject<string> = new BehaviorSubject<string>('')

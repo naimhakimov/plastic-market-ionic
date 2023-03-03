@@ -3,6 +3,8 @@ import { FilterComponent } from '../../../modules/dashboard/components/filter/fi
 import { ModalController } from '@ionic/angular'
 import { OfferService } from '../../../services/offer.service'
 
+import {isPlatform} from '@ionic/angular'
+
 @Component({
   selector: 'app-tooltip',
   templateUrl: './tooltip.component.html',
@@ -14,7 +16,7 @@ export class TooltipComponent implements OnInit {
 
   constructor(
     private modalCtrl: ModalController,
-    private offerService: OfferService
+    public offerService: OfferService
   ) { }
 
   ngOnInit() {}

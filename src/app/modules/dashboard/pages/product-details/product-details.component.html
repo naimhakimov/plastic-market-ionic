@@ -80,11 +80,9 @@
       </div>
 
       <ng-container [ngSwitch]='active'>
-        <div *ngSwitchCase='0' class='text-[14px] leading-[23px] text-gray-300 mt-[24px]'>
-          {{ offerByIdData.description }}
+        <div *ngSwitchCase='0' class='text-[14px] leading-[23px] text-gray-300 mt-[24px]' [innerHTML]='offerByIdData.description'>
         </div>
-        <div *ngSwitchCase='1' class='text-[14px] leading-[23px] text-gray-300 mt-[24px]'>
-          {{ offerByIdData?.delivery }}
+        <div *ngSwitchCase='1' class='text-[14px] leading-[23px] text-gray-300 mt-[24px]' [innerHTML]='offerByIdData?.delivery'>
         </div>
       </ng-container>
 

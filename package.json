@@ -10,7 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "android": "ionic capacitor run android",
+    "android": "ionic capacitor build android",
     "ios": "ionic capacitor build ios"
   },
   "private": true,
@@ -32,6 +32,7 @@
     "@ionic/angular": "^6.4.1",
     "@ngneat/input-mask": "^5.4.0",
     "@ngneat/until-destroy": "^9.2.2",
+    "@tailwindcss/line-clamp": "^0.4.2",
     "inputmask": "5.0.5",
     "ionicons": "^6.0.3",
     "rxjs": "~7.5.0",

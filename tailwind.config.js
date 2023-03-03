@@ -38,5 +38,7 @@ module.exports = {
       'red-200': '#FF5757'
     }
   },
-  plugins: []
+  plugins: [
+    require('@tailwindcss/line-clamp'),
+  ]
 }

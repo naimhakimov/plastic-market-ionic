@@ -3,7 +3,7 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <div class='px-[22px] bg-white'>
+  <div class='px-[22px] bg-white' [ngStyle]="{'padding-top': offerService.isPlatform.is('ios') ? '40px' : '22px'}">
     <div class='sticky top-0 bg-white z-40 pt-[22px] pb-[10px]'>
       <div class='flex items-center mb-[15px]'>
         <div (click)='navigateToBack()'

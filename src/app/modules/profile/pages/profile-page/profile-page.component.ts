@@ -2,6 +2,7 @@ import { Component } from '@angular/core'
 import { Router } from '@angular/router'
 import { UserInterface } from '../../../../models/user.interface'
 import { NavController } from '@ionic/angular'
+import { OfferService } from '../../../../services/offer.service'
 
 @Component({
   selector: 'app-profile-page',
@@ -11,7 +12,11 @@ import { NavController } from '@ionic/angular'
 export class ProfilePageComponent {
   currentUser!: UserInterface
 
-  constructor(private router: Router, private navCtrl: NavController) {}
+  constructor(
+    public offerService: OfferService,
+    private router: Router,
+    private navCtrl: NavController
+  ) {}
 
   items: { icon: string, title: string, link: string | null }[] = [
     {

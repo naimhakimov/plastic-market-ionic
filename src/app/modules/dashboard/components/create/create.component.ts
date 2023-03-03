@@ -31,7 +31,7 @@ export class CreateComponent implements OnInit {
   regions: any[] = []
 
   constructor(
-    private offerService: OfferService,
+    public offerService: OfferService,
     private modalCtrl: ModalController,
     private alertController: AlertController,
     private fb: FormBuilder,
