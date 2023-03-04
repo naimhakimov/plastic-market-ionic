@@ -2,3 +2,13 @@ ion-checkbox {
   --background-checked: #8BCD50;
   --border-color-checked: #8BCD50;
 }
+
+
+ion-content {
+  &.ios {
+    .modal-container {
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+}
