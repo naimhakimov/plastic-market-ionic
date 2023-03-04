@@ -1,5 +1,5 @@
 <ion-content>
-  <div class='relative' *ngIf='offerByIdData'>
+  <div class='relative' *ngIf='offerByIdData' >
     <swiper [keyboard]='true' [pagination]='true' [zoom]='true'>
       <ng-container *ngFor='let img of offerByIdData?.image'>
         <ng-template swiperSlide>
@@ -8,7 +8,8 @@
       </ng-container>
     </swiper>
 
-    <div class='z-10 absolute top-[20px] left-[23px] right-[23px] flex justify-between items-center'>
+    <div class='z-10 absolute top-[20px] left-[23px] right-[23px] flex justify-between items-center'
+         [ngStyle]="{'top': offerService.isPlatform.is('ios') ? '70px' : '20px'}">
       <div
         (click)='back()'
                     class='rotate-180 flex items-center justify-center bg-primary w-[44px] h-[44px] rounded-full hover:opacity-[.8]'>
@@ -26,7 +27,7 @@
         <h1 class='text-[18px] leading-[22px] font-bold text-gray-300'>{{ offerByIdData.name }}</h1>
         <div class='flex flex-col items-end'>
           <p class='text-[12px] leading-[14px] text-gray-200 line-through' *ngIf='false'>$22</p>
-          <p class='text-primary text-[18px] leading-[21px] font-bold'>{{ offerByIdData.amount + ' руб' }}</p>
+          <p class='text-primary whitespace-nowrap text-[18px] leading-[21px] font-bold'>{{ offerByIdData.amount + ' руб' }}</p>
         </div>
       </div>
 

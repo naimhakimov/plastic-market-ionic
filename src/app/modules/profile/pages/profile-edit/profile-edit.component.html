@@ -1,5 +1,5 @@
 <ion-content>
-  <div class='p-[22px] bg-white' *ngIf='currentUser' [ngStyle]="{'padding-top': offerService.isPlatform.is('ios') ? '40px' : '20px'}">
+  <div class='p-[22px] bg-white form-container' *ngIf='currentUser'>
     <ng-container>
       <input #file type='file' hidden (change)='handleFileInput($event)'>
       <img class='w-[80px] h-[80px] rounded-full mt-[10px]'

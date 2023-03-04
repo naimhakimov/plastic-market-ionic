@@ -7,3 +7,16 @@
     @apply bg-primary;
   }
 }
+  .list-container {
+    padding-top: 20px;
+  }
+.menu_content.ios {
+  background: red;
+  .list-container {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+.ion-tab-bar.ios {
+  padding-bottom: env(safe-area-inset-bottom);
+}

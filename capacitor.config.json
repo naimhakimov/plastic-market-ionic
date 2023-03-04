@@ -1,6 +1,6 @@
 {
-	"appId": "io.ionic.starter",
-	"appName": "plastic",
+	"appId": "io.plastic.starter",
+	"appName": "Plastic",
 	"webDir": "www",
 	"bundledWebRuntime": false
 }

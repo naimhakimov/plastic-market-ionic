@@ -1,6 +1,5 @@
 <ion-content>
-  <form [formGroup]='form' class='py-[30px] px-[22px] bg-white'
-        [ngStyle]="{'padding-top': offerService.isPlatform.is('ios') ? '40px' : '22px'}">
+  <form [formGroup]='form' class='py-[30px] px-[22px] bg-white form'>
     <div class='flex justify-between items-center mb-[37px]'>
       <h1 class='text-[20px] leading-[24px] text-primary font-bold'>{{ offer?.id ? 'Редактировать' : 'Создать' }} объявление</h1>
       <div (click)='cancel()' class='bg-primary flex justify-center items-center rounded-full p-[15px]'>

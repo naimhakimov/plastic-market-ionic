@@ -22,7 +22,7 @@ export class ProductDetailsComponent implements OnInit, AfterViewInit {
   currentUser = JSON.parse(localStorage.getItem('user') || '')
   isFavorite = false;
   constructor(
-    private offerService: OfferService,
+    public offerService: OfferService,
     private navCtrl: NavController,
     public readonly favouriteService: FavouriteService,
     private modalCtrl: ModalController,

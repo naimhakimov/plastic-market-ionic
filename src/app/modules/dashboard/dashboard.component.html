@@ -3,7 +3,7 @@
 </div>
 
 <ion-tabs>
-  <ion-tab-bar [hidden]='isChat' slot='bottom'>
+  <ion-tab-bar class='ion-tab-bar' [hidden]='isChat' slot='bottom'>
     <ion-tab-button tab='home'>
       <span class='icon icon-home'></span>
       <ion-label class='text-[10px] leading-[12px] text-gray'>Главная</ion-label>
@@ -28,8 +28,8 @@
 </ion-tabs>
 
 <ion-menu contentId='main-content'>
-  <ion-content>
-    <div class='mt-[20px]'>
+  <ion-content class='menu_content'>
+    <div class='list-container'>
       <ng-container *ngFor='let category of categories'>
         <div class='flex items-center px-[25px] py-[10px]'
              (click)='selectCategory(category.id)'>

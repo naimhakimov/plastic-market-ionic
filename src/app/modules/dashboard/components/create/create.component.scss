@@ -19,3 +19,13 @@ ion-textarea.custom-textarea {
     @apply text-gray;
   }
 }
+
+
+ion-content {
+  &.ios {
+    .form {
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+}

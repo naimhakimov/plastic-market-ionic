@@ -7,3 +7,12 @@ ion-checkbox {
 ::ng-deep .input {
   @apply pb-[7px] border-[#EBEBED];
 }
+
+ion-content {
+  &.ios {
+    .form-container {
+      padding-top: env(safe-area-inset-top);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+  }
+}
